@@ -1,0 +1,45 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  short_description: MyText
+  manufacturer: one
+  model: MyString
+  supported_biometric_modalities: MyString
+  additional_components: MyText
+  mosip_compliance: false
+  macp_certification_link: MyString
+  sbi_version: MyString
+  global_certifications: MyText
+  ftm_certification: MyString
+  ftm_chip_make_and_model: MyString
+  firmware_version: MyString
+  software_version: MyString
+  full_specifications: MyText
+  usage: MyText
+  print_software_version: MyString
+  integration_methodology: MyText
+  category: one
+  image_data: MyText
+
+two:
+  name: MyString
+  short_description: MyText
+  manufacturer: two
+  model: MyString
+  supported_biometric_modalities: MyString
+  additional_components: MyText
+  mosip_compliance: false
+  macp_certification_link: MyString
+  sbi_version: MyString
+  global_certifications: MyText
+  ftm_certification: MyString
+  ftm_chip_make_and_model: MyString
+  firmware_version: MyString
+  software_version: MyString
+  full_specifications: MyText
+  usage: MyText
+  print_software_version: MyString
+  integration_methodology: MyText
+  category: two
+  image_data: MyText

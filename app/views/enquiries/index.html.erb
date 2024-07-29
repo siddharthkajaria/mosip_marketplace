@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Contact Us</h1>
+
+<p>We’re happy to answer any questions you may have and help you determine which of our services best fit your needs.</p>
+
+<div id="enquiries">
+  <% @enquiries.each do |enquiry| %>
+    <%= render enquiry %>
+    <p>
+      <%= link_to "Show this enquiry", enquiry %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New enquiry", new_enquiry_path %>

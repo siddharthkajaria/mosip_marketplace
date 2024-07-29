@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @partner_category %>
+
+<div>
+  <%= link_to "Edit this partner category", edit_partner_category_path(@partner_category) %> |
+  <%= link_to "Back to partner categories", partner_categories_path %>
+
+  <%= button_to "Destroy this partner category", @partner_category, method: :delete %>
+</div>

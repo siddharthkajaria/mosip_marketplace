@@ -1,0 +1,42 @@
+<%= form_with(model: enquiry) do |form| %>
+  <% if enquiry.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(enquiry.errors.count, "error") %> prohibited this enquiry from being saved:</h2>
+
+      <ul>
+        <% enquiry.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number, style: "display: block" %>
+    <%= form.text_field :phone_number %>
+  </div>
+
+  <div>
+    <%= form.label :question, style: "display: block" %>
+    <%= form.text_area :question %>
+  </div>
+
+  <div>
+    <%= form.label :enquiry_type, style: "display: block" %>
+    <%= form.select :enquiry_type, ["General", "Partner"], {}, class: 'form-control', id: 'enquiry_type_select', prompt: 'Status' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

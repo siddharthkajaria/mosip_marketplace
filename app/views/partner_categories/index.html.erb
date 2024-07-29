@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Partner categories</h1>
+
+<div id="partner_categories">
+  <% @partner_categories.each do |partner_category| %>
+    <%= render partner_category %>
+    <p>
+      <%= link_to "Show this partner category", partner_category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New partner category", new_partner_category_path %>

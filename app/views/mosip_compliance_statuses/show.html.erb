@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @mosip_compliance_status %>
+
+<div>
+  <%= link_to "Edit this mosip compliance status", edit_mosip_compliance_status_path(@mosip_compliance_status) %> |
+  <%= link_to "Back to mosip compliance statuses", mosip_compliance_statuses_path %>
+
+  <%= button_to "Destroy this mosip compliance status", @mosip_compliance_status, method: :delete %>
+</div>

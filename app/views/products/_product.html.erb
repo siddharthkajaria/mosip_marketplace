@@ -1,0 +1,10 @@
+<% @products.each do |product| %>
+  <div id="<%= dom_id product %>">
+    <p>
+      <strong>Name:</strong>
+      <%= product.name %>
+    </p>
+
+  </div>
+<% end %>
+<%= will_paginate @products, class:"pagination" %>

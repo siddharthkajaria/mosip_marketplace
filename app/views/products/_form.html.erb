@@ -1,0 +1,117 @@
+<%= form_with(model: product) do |form| %>
+  <% if product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :short_description, style: "display: block" %>
+    <%= form.text_area :short_description %>
+  </div>
+
+  <div>
+    <%= form.label :manufacturer_id, style: "display: block" %>
+    <%= form.text_field :manufacturer_id %>
+  </div>
+
+  <div>
+    <%= form.label :model, style: "display: block" %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div>
+    <%= form.label :supported_biometric_modalities, style: "display: block" %>
+    <%= form.text_field :supported_biometric_modalities %>
+  </div>
+
+  <div>
+    <%= form.label :additional_components, style: "display: block" %>
+    <%= form.text_area :additional_components %>
+  </div>
+
+  <div>
+    <%= form.label :mosip_compliance, style: "display: block" %>
+    <%= form.check_box :mosip_compliance %>
+  </div>
+
+  <div>
+    <%= form.label :macp_certification_link, style: "display: block" %>
+    <%= form.text_field :macp_certification_link %>
+  </div>
+
+  <div>
+    <%= form.label :sbi_version, style: "display: block" %>
+    <%= form.text_field :sbi_version %>
+  </div>
+
+  <div>
+    <%= form.label :global_certifications, style: "display: block" %>
+    <%= form.text_area :global_certifications %>
+  </div>
+
+  <div>
+    <%= form.label :ftm_certification, style: "display: block" %>
+    <%= form.text_field :ftm_certification %>
+  </div>
+
+  <div>
+    <%= form.label :ftm_chip_make_and_model, style: "display: block" %>
+    <%= form.text_field :ftm_chip_make_and_model %>
+  </div>
+
+  <div>
+    <%= form.label :firmware_version, style: "display: block" %>
+    <%= form.text_field :firmware_version %>
+  </div>
+
+  <div>
+    <%= form.label :software_version, style: "display: block" %>
+    <%= form.text_field :software_version %>
+  </div>
+
+  <div>
+    <%= form.label :full_specifications, style: "display: block" %>
+    <%= form.text_area :full_specifications %>
+  </div>
+
+  <div>
+    <%= form.label :usage, style: "display: block" %>
+    <%= form.text_area :usage %>
+  </div>
+
+  <div>
+    <%= form.label :print_software_version, style: "display: block" %>
+    <%= form.text_field :print_software_version %>
+  </div>
+
+  <div>
+    <%= form.label :integration_methodology, style: "display: block" %>
+    <%= form.text_area :integration_methodology %>
+  </div>
+
+  <div>
+    <%= form.label :category_id, style: "display: block" %>
+    <%= form.text_field :category_id %>
+  </div>
+
+  <div>
+    <%= form.label :image_data, style: "display: block" %>
+    <%= form.text_area :image_data %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

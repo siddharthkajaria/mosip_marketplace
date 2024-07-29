@@ -1,0 +1,176 @@
+<!-- app/views/products/_filter.html.erb -->
+
+<!-- app/views/products/_filter.html.erb -->
+
+<div>
+  <h3>Biometrics</h3>
+  <% Biometric.all.each do |biometric| %>
+    <%= check_box_tag 'biometrics[]', biometric.name, params[:biometrics]&.include?(biometric.name), id: "biometrics_#{biometric.id}", class: 'filter-checkbox' %>
+    <label for="biometrics_<%= biometric.id %>"><%= biometric.name %></label>
+  <% end %>
+</div>
+
+<div>
+  <h3>Product Name</h3>
+  <% @uniq_pdt_names.each_with_index do |pdt_name, index| %>
+    <%= check_box_tag 'product_name[]', pdt_name, params[:product_name]&.include?(pdt_name), id: "pdt_name_#{index}", class: 'filter-checkbox' %>
+    <label for="product_name_<%= index %>"><%= pdt_name %></label>
+  <% end %>
+</div>
+
+<div>
+  <h3>Device Category</h3>
+  <% @uniq_pdt_category.each_with_index do |cat, index| %>
+    <%= check_box_tag 'device_category[]', cat, params[:device_category]&.include?(cat), id: "device_category_#{index}", class: 'filter-checkbox' %>
+    <label for "device_category_<%= index %>"><%= cat %></label>
+  <% end %>
+</div>
+
+<div>
+  <h3>MOSIP Version Compatibility</h3>
+  <%= check_box_tag 'mosip_version[]', 'MOSIP 1.0', params[:mosip_version]&.include?('MOSIP 1.0'), id: 'mosip_1_0', class: 'filter-checkbox' %>
+  <label for="mosip_1_0">MOSIP 1.0</label>
+  <%= check_box_tag 'mosip_version[]', 'MOSIP 1.5.0', params[:mosip_version]&.include?('MOSIP 1.5.0'), id: 'mosip_1_5_0', class: 'filter-checkbox' %>
+  <label for="mosip_1_5_0">MOSIP 1.5.0</label>
+  <%= check_box_tag 'mosip_version[]', 'LTS 1.2.0', params[:mosip_version]&.include?('LTS 1.2.0'), id: 'lts_1_2_0', class: 'filter-checkbox' %>
+  <label for="lts_1_2_0">LTS 1.2.0</label>
+</div>
+
+<div>
+  <h3>Status of MOSIP Compliance</h3>
+  <%= check_box_tag 'mosip_compliance_status[]', 'MOSIP Compliant', params[:mosip_compliance_status]&.include?('MOSIP Compliant'), id: 'mosip_compliant', class: 'filter-checkbox' %>
+  <label for="mosip_compliant">MOSIP Compliant</label>
+  <%= check_box_tag 'mosip_compliance_status[]', 'Compliance in Progress', params[:mosip_compliance_status]&.include?('Compliance in Progress'), id: 'compliance_in_progress', class: 'filter-checkbox' %>
+  <label for="compliance_in_progress">Compliance in Progress</label>
+  <%= check_box_tag 'mosip_compliance_status[]', 'MOSIP Integrated', params[:mosip_compliance_status]&.include?('MOSIP Integrated'), id: 'mosip_integrated', class: 'filter-checkbox' %>
+  <label for="mosip_integrated">MOSIP Integrated</label>
+  <%= check_box_tag 'mosip_compliance_status[]', 'Integration in Progress', params[:mosip_compliance_status]&.include?('Integration in Progress'), id: 'integration_in_progress', class: 'filter-checkbox' %>
+  <label for="integration_in_progress">Integration in Progress</label>
+</div>
+
+<div>
+  <h3>MACP Certified</h3>
+  <%= check_box_tag 'macp_certified', '1', params[:macp_certified].present?, id: 'macp_certified', class: 'filter-checkbox' %>
+  <label for="macp_certified">MACP Certified</label>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    // Handle filter change
+    $('.filter-checkbox').on('change', function() {
+      var selectedFilters = getSelectedFilters();
+      updateURL(selectedFilters);
+      fetchFilteredProducts(selectedFilters);
+    });
+
+    // Handle pagination click
+    $(document).on('click', '.pagination a', function(e) {
+      e.preventDefault();
+      var selectedFilters = getSelectedFilters();
+      var url = $(this).attr('href');
+      var newUrl = updateURLWithParams(url, selectedFilters);
+      fetchFilteredProducts(selectedFilters, newUrl);
+    });
+
+    // Handle sort link click
+    $(document).on('click', '.sort_link', function(e) {
+      e.preventDefault();
+      var selectedFilters = getSelectedFilters();
+      var url = $(this).attr('href');
+      var newUrl = toggleSortDirection(url, selectedFilters);
+      fetchFilteredProducts(selectedFilters, newUrl);
+    });
+
+    // Get selected filters
+    function getSelectedFilters() {
+      var selectedFilters = {};
+      $('.filter-checkbox').each(function() {
+        if ($(this).is(':checked')) {
+          var name = $(this).attr('name');
+          if (!selectedFilters[name]) {
+            selectedFilters[name] = [];
+          }
+          selectedFilters[name].push($(this).val());
+        }
+      });
+      return selectedFilters;
+    }
+
+    // Update URL with selected filters
+    function updateURL(filters) {
+      var queryString = $.param(filters);
+      var newUrl = window.location.pathname + '?' + queryString;
+      history.replaceState(null, '', newUrl);
+    }
+
+    // Update URL with pagination and selected filters
+    function updateURLWithParams(url, filters) {
+      var urlObj = new URL(url, window.location.origin);
+      var searchParams = new URLSearchParams(urlObj.search);
+
+      // Append the selected filters to the URL parameters
+      for (var key in filters) {
+        if (filters.hasOwnProperty(key)) {
+          searchParams.delete(key); // Remove existing filter params
+          filters[key].forEach(function(value) {
+            searchParams.append(key, value); // Add updated filter params
+          });
+        }
+      }
+
+      urlObj.search = searchParams.toString();
+      return urlObj.toString();
+    }
+
+    // Toggle sort direction
+    function toggleSortDirection(url, filters) {
+      var urlObj = new URL(url, window.location.origin);
+      var searchParams = new URLSearchParams(urlObj.search);
+      var currentSort = searchParams.get('q');
+        console.log(currentSort)
+      // Toggle between ascending and descending
+      if (currentSort) {
+        if (currentSort.includes(' desc')) {
+          searchParams.set('s', currentSort.replace(' desc', ' asc'));
+        } else if (currentSort.includes(' asc')) {
+          searchParams.set('s', currentSort.replace(' asc', ' desc'));
+        } else {
+          searchParams.set('s', currentSort + ' desc');
+        }
+      } else {
+        searchParams.set('s', 'name desc');
+      }
+
+      // Append the selected filters to the URL parameters
+      for (var key in filters) {
+        if (filters.hasOwnProperty(key)) {
+          searchParams.delete(key); // Remove existing filter params
+          filters[key].forEach(function(value) {
+            searchParams.append(key, value); // Add updated filter params
+          });
+        }
+      }
+
+      urlObj.search = searchParams.toString();
+      return urlObj.toString();
+    }
+
+    // Fetch filtered products
+    function fetchFilteredProducts(filters, url = window.location.pathname + window.location.search) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: filters,
+        dataType: 'script',
+        success: function(data) {
+          // Successfully loaded filtered products
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching filtered products:', error);
+        }
+      });
+    }
+  });
+</script>
+

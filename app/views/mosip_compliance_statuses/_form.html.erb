@@ -1,0 +1,32 @@
+<%= form_with(model: mosip_compliance_status) do |form| %>
+  <% if mosip_compliance_status.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(mosip_compliance_status.errors.count, "error") %> prohibited this mosip_compliance_status from being saved:</h2>
+
+      <ul>
+        <% mosip_compliance_status.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :desc, style: "display: block" %>
+    <%= form.text_area :desc %>
+  </div>
+
+  <div>
+    <%= form.label :is_active, style: "display: block" %>
+    <%= form.check_box :is_active %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

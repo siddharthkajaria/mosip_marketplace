@@ -1,0 +1,2 @@
+json.extract! product, :id, :name, :short_description, :manufacturer_id, :model, :supported_biometric_modalities, :additional_components, :mosip_compliance, :macp_certification_link, :sbi_version, :global_certifications, :ftm_certification, :ftm_chip_make_and_model, :firmware_version, :software_version, :full_specifications, :usage, :print_software_version, :integration_methodology, :category_id, :image_data, :created_at, :updated_at
+json.url product_url(product, format: :json)

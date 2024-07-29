@@ -1,0 +1,16 @@
+
+<%= sort_link(@q, :name, 'Sort By Name', default_order: :desc, class: 'sort_link') %>
+
+<%= render 'filter', :locals => {:uniq_pdt_category => @uniq_pdt_category, :uniq_pdt_names=>@uniq_pdt_names} %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Products</h1>
+
+
+
+<div id="products">
+  <%= render 'products/product', products: @products %>
+  
+</div>
+
+<%= link_to "New product", new_product_path %>

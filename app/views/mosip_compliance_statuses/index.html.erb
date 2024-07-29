@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Mosip compliance statuses</h1>
+
+<div id="mosip_compliance_statuses">
+  <% @mosip_compliance_statuses.each do |mosip_compliance_status| %>
+    <%= render mosip_compliance_status %>
+    <p>
+      <%= link_to "Show this mosip compliance status", mosip_compliance_status %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New mosip compliance status", new_mosip_compliance_status_path %>

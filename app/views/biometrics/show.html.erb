@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @biometric %>
+
+<div>
+  <%= link_to "Edit this biometric", edit_biometric_path(@biometric) %> |
+  <%= link_to "Back to biometrics", biometrics_path %>
+
+  <%= button_to "Destroy this biometric", @biometric, method: :delete %>
+</div>

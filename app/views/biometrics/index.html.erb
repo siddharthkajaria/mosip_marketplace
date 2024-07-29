@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Biometrics</h1>
+
+<div id="biometrics">
+  <% @biometrics.each do |biometric| %>
+    <%= render biometric %>
+    <p>
+      <%= link_to "Show this biometric", biometric %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New biometric", new_biometric_path %>
