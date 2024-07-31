@@ -1,10 +1,273 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/header" %>
 
-<%= render @product %>
+<%= render "shared/breadcrumbs" %>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
-</div>
+  <section class="mt-50 mt-20-sm container zoom">
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="border-grey-1 br-60 br-30-sm">
+          <div class="bg-style-1">
+            <div class="h-400px h-200px-sm">
+              <img id="main-product-image" src="/images/product/prod-1.png" alt="product-1"
+                class="w-100 h-100 br-60 br-30-sm object-contain">
+            </div>
+          </div>
+          <div class="bg-style-2">
+            <div class="d-flex align-items-center justify-content-end">
+              <div class="w-80px h-30px">
+                <img src="/images/product/compliant-a.png" alt="compliant-a" class="w-100 object-contain">
+              </div>
+              <div class="w-80px h-30px ml-3">
+                <img src="/images/product/compliant-b.png" alt="compliant-a" class="w-100 object-contain">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-30 mt-15-sm">
+          <div class="d-flex justify-content-center">
+            <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
+              <div class="w-80px h-70px">
+                <img src="/images/product/prod-1.png" alt="product-1" class="thumbnail w-100 h-100 br-10 object-contain">
+              </div>
+            </div>
+            <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
+              <div class="w-80px h-70px">
+                <img src="/images/product/compliant-a.png" alt="compliant-a" class="thumbnail w-100 h-100 br-10 object-contain">
+              </div>
+            </div>
+            <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
+              <div class="w-80px h-70px">
+                <img src="/images/product/compliant-b.png" alt="compliant-b" class="thumbnail w-100 h-100 br-10 object-contain">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div class="mt-20">
+          <div class="text-style-1 fs-18-sm">Gilles Leroux Industries</div>
+          <div class="mt-10 text-style-2 fs-24-sm">DigitalPersona 4500 OEM <br> Module</div>
+          <div class="mt-10 text-style-3 fs-12-sm">GLi’s ID CASE mobile registration station can be used for a wide range of applications: citizen identity registration
+          and verification, passport, identity cards, border security and law enforcement, transport security, drivers’ license,
+          vehicle registration and other fields.
+          Our ID CASE rigid case is an all-terrain, shock-proof, waterproof, ergonomic piece of mobile equipment, with its
+          peripherals stored in their proper place, and multi-purpose for enrollment or identity verification.
+          Connect your ID CASE to any laptop or Windows 10 tablet and start your enrollment campaign anywhere at anytime.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div id="accordion" class="accordion-1">
+      <!-- First Accordion -->
+      <div class="mt-50 mt-20-sm">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                aria-controls="collapseOne">
+                Details
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+              <table class="table table-striped">
+                <tr>
+                  <td>Manufacturer</td>
+                  <td>:</td>
+                  <td>BioRugged</td>
+                </tr>
+                <tr>
+                  <td>Model</td>
+                  <td>:</td>
+                  <td>Mark M1 Biometric Enrolment Kit</td>
+                </tr>
+                <tr>
+                  <td>Supported Biometric Modalities</td>
+                  <td>:</td>
+                  <td>Fingerprint Slap (4-4-2) Iris (dual) Face</td>
+                </tr>
+                <tr>
+                  <td>Additional Components</td>
+                  <td>:</td>
+                  <td>Battery Pack Signature Pad Laptop Power Management</td>
+                </tr>
+                <tr>
+                  <td>Status of MOSIP-Compliance</td>
+                  <td>:</td>
+                  <td>Fingerprint Slap (4-4-2) Iris (dual) Face</td>
+                </tr>
+                <tr>
+                  <td>MACP Certification Link</td>
+                  <td>:</td>
+                  <td> <a href="" class="blue-1"> < link to certification agency website > </a></td>
+                </tr>
+                <tr>
+                  <td>SBI Version</td>
+                  <td>:</td>
+                  <td>V1.1 (Android) <br>
+                      V2.0 (Windows)
+                  </td>
+                </tr>
+                <tr>
+                  <td>Global Certifications</td>
+                  <td>:</td>
+                  <td>IP67, FBI PIV</td>
+                </tr>
+                <tr>
+                  <td>Full Specifications</td>
+                  <td>:</td>
+                  <td>
+                    <a href="" class="blue-1">
+                      < link to PDF >
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Second Accordion -->
+      <div class="">
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                aria-controls="collapseTwo">
+                Additional Feature
+                <i class="fas fa-chevron-down"></i>
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse second-accor" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <ul class="mb-0">
+                <li class="text-style-3 fs-12-sm">
+                  <div>ID CASE integrated a 4-4-2 or 1 fingerprint scanner (FAP10 to FAP60), an iris scanner, a HD camera and led lightening
+                  systems, a smartcard reader, a signature pad, a ticket printer.</div>
+                </li>
+                <li class="text-style-3 fs-12-sm mt-15">
+                  <div>ID CASE integrated a 4-4-2 or 1 fingerprint scanner (FAP10 to FAP60), an iris scanner, a HD camera and led lightening
+                  systems, a smartcard reader, a signature pad, a ticket printer.</div>
+                </li>
+                <li class="text-style-3 fs-12-sm mt-15">
+                  <div>ID CASE integrated a 4-4-2 or 1 fingerprint scanner (FAP10 to FAP60), an iris scanner, a HD camera and led lightening
+                  systems, a smartcard reader, a signature pad, a ticket printer.</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-grey-1 my-30 py-30 my-20-sm py-20-sm">
+    <div class="container">
+      <div>
+        <h2 class="text-style-2 fs-24-sm">About <span class="blue-1">Gilles Leroux Industrie</span></h2>
+      </div>
+      <div class="mt-30 mt-15-sm">
+        <div class="text-style-3 fs-12-sm">
+          GLi provides Biometric devices and digital identity solutions.
+          We develop cutting-edge biometric identity solutions that enhance security, efficiency, and inclusivity.
+          GLi biometric equipments are used worldwide. Deployed in numerous projects, our biometric products guarantee high secure
+          enrollment and identity verification. They allow the issuance of secure and travel documents such as identity cards,
+          passports, driver’s licenses, all of which are essential to state sovereignty and fight against fraud. <br>
+          Our Research & Development team can design your customized biometric kits to suit your needs. Our equipment is entirely
+          designed, developed and assembled on our premises, enabling us to control the manufacturing cycle.
+          GLI also has strong expertise in the design, deployment and use of information systems for social security, pension and
+          health funds.
+        </div>
+      </div>
+      <div class="mt-30 mt-15-sm">
+        <div class="text-style-3 black fs-12-sm">Visit <a href=""><span class="blue-1">www.GLI.com</span></a> to know more!</div>
+      </div>
+      <div class="mt-30 mt-15-sm">
+        <div class="bg-blue-style text-center">
+          <div class="text-style-2 yellow fs-24-sm">
+            Contact with Us
+          </div>
+          <div class="mt-30 mt-15-sm">
+            <div class="row">
+              <div class="col-lg-4 col-md-12 mt-20-md">
+                <div>
+                  <img src="/images/product/con-envelope.png" width="25" height="25" alt="con-envelope">
+                </div>
+                <div class="mt-30 mt-15-sm">
+                  <a href="mailto:">
+                    <h5 class="text-style-4 fs-14-sm">
+                      Leo.messi@mosip.com
+                    </h5>
+                  </a>
+                  <a href="mailto:">
+                    <h5 class="text-style-4 fs-14-sm">
+                      David.miller10@mosip.com
+                    </h5>
+                  </a>
+                  <a href="mailto:">
+                    <h5 class="text-style-4 fs-14-sm">
+                      Rory.Burns08@mosip.com
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-12 mt-20-md mt-20-sm">
+                <div>
+                  <img src="/images/product/con-phone-call.png" width="25" height="25" alt="con-envelope">
+                </div>
+                <div class="mt-30 mt-15-sm">
+                  <a href="tell:+91 7565272827">
+                    <h5 class="text-style-4 fs-14-sm">
+                      +91 7565272827
+                    </h5>
+                  </a>
+                  <a href="tell:+91 7565272827">
+                    <h5 class="text-style-4 fs-14-sm">
+                      +91 7565272827
+                    </h5>
+                  </a>
+                  <a href="tell:+91 7565272827">
+                    <h5 class="text-style-4 fs-14-sm">
+                      +91 7565272827
+                    </h5>
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-12 mt-20-md mt-20-sm">
+                <div>
+                  <img src="/images/product/con-marker.png" width="25" height="25" alt="con-envelope">
+                </div>
+                <div class="mt-30 mt-15-sm">
+                  <div class="text-style-4 fs-14-sm">
+                    GLI 27, rue Bernard Palissy <br> 45800 SAINT-JEAN-DE-<br>BRAYE FRANCE
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<style>
+  
+</style>
+
+<script>
+  $(document).ready(function () {
+      $('.thumbnail').click(function () {
+        var newSrc = $(this).attr('src');
+        $('#main-product-image').attr('src', newSrc);
+      });
+    });
+
+    
+
+</script>

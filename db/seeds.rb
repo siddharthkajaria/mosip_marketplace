@@ -36,7 +36,7 @@ Product_names.each_with_index do |name,index|
         model: "IR210",
         supported_biometric_modalities: "Fingerprint Slap (4-4-2), Iris (dual), Face",
         additional_components: "Battery Pack, Signature Pad, Laptop, Power Management",
-        mosip_compliance: true,
+        mosip_compliance_status_id: index+1,
         macp_certification_link: "",
         sbi_version: "V1.1 (Android), V2.0 (Windows)",
         global_certifications: "IP67, FBI PIV",
