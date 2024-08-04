@@ -3,6 +3,7 @@
 # Table name: categories
 #
 #  id          :bigint           not null, primary key
+#  code        :string(255)
 #  description :text(65535)
 #  image_data  :text(65535)
 #  name        :string(255)

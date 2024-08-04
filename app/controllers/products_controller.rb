@@ -89,6 +89,15 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :short_description, :manufacturer_id, :model, :supported_biometric_modalities, :additional_components, :mosip_compliance, :macp_certification_link, :sbi_version, :global_certifications, :ftm_certification, :ftm_chip_make_and_model, :firmware_version, :software_version, :full_specifications, :usage, :print_software_version, :integration_methodology, :category_id, :image_data)
+      def product_params
+        params.require(:product).permit(
+          :name, :short_description, :manufacturer_id, :model, :supported_biometric_modalities,
+          :additional_components, :macp_certification_link, :sbi_version, :global_certifications,
+          :ftm_certification, :ftm_chip_make_and_model, :firmware_version, :software_version,
+          :full_specifications, :usage, :print_software_version, :integration_methodology,
+          :category_id, :mosip_compliance_status_id, :additional_feature,
+          product_images_attributes: [:id, :image_data, :position, :status, :_destroy]
+        )
+      end
     end
 end

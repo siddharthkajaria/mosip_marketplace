@@ -24,6 +24,13 @@ $(document).ready(function(){
         
       });
     }
+
+    $(document).ready(function () {
+      $('.thumbnail').click(function () {
+        var newSrc = $(this).attr('src');
+        $('#main-product-image').attr('src', newSrc);
+      });
+    });
 });
 
 

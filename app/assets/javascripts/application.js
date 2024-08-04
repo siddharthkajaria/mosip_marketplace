@@ -11,4 +11,4 @@
 // about supported directives.
 //
 
-//= script.js 
+//= require script

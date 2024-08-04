@@ -4,12 +4,12 @@
 #
 #  id                             :bigint           not null, primary key
 #  additional_components          :text(65535)
+#  additional_feature             :text(65535)
 #  firmware_version               :string(255)
 #  ftm_certification              :string(255)
 #  ftm_chip_make_and_model        :string(255)
 #  full_specifications            :text(65535)
 #  global_certifications          :text(65535)
-#  image_data                     :text(65535)
 #  integration_methodology        :text(65535)
 #  macp_certification_link        :string(255)
 #  model                          :string(255)
@@ -43,6 +43,10 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :mosip_compliance_status
   has_and_belongs_to_many :biometrics
+
+
+  has_many :product_images, dependent: :destroy
+  accepts_nested_attributes_for :product_images, allow_destroy: true
 
 
   def self.filtered_product params
@@ -88,5 +92,7 @@ class Product < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     %w[category]
   end
+
+  
   
 end

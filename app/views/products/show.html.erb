@@ -5,11 +5,15 @@
 
   <section class="mt-50 mt-20-sm container zoom">
     <div class="row">
+
+
+
+    
       <div class="col-lg-6 col-md-12">
         <div class="border-grey-1 br-60 br-30-sm">
           <div class="bg-style-1">
             <div class="h-400px h-200px-sm">
-              <img id="main-product-image" src="/images/product/prod-1.png" alt="product-1"
+              <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1"
                 class="w-100 h-100 br-60 br-30-sm object-contain">
             </div>
           </div>
@@ -26,34 +30,26 @@
         </div>
         <div class="mt-30 mt-15-sm">
           <div class="d-flex justify-content-center">
-            <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
-              <div class="w-80px h-70px">
-                <img src="/images/product/prod-1.png" alt="product-1" class="thumbnail w-100 h-100 br-10 object-contain">
+            <% @product.product_images.active.order(:position).each do |img| %>
+              <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
+                <div class="w-80px h-70px">
+                  <img src="<%= img.image_url%>" alt="product-1" class="thumbnail w-100 h-100 br-10 object-contain">
+                </div>
               </div>
-            </div>
-            <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
-              <div class="w-80px h-70px">
-                <img src="/images/product/compliant-a.png" alt="compliant-a" class="thumbnail w-100 h-100 br-10 object-contain">
-              </div>
-            </div>
-            <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
-              <div class="w-80px h-70px">
-                <img src="/images/product/compliant-b.png" alt="compliant-b" class="thumbnail w-100 h-100 br-10 object-contain">
-              </div>
-            </div>
+            <% end %>
+            
           </div>
         </div>
       </div>
+
+
+
+
       <div class="col-lg-6 col-md-12">
         <div class="mt-20">
-          <div class="text-style-1 fs-18-sm">Gilles Leroux Industries</div>
-          <div class="mt-10 text-style-2 fs-24-sm">DigitalPersona 4500 OEM <br> Module</div>
-          <div class="mt-10 text-style-3 fs-12-sm">GLi’s ID CASE mobile registration station can be used for a wide range of applications: citizen identity registration
-          and verification, passport, identity cards, border security and law enforcement, transport security, drivers’ license,
-          vehicle registration and other fields.
-          Our ID CASE rigid case is an all-terrain, shock-proof, waterproof, ergonomic piece of mobile equipment, with its
-          peripherals stored in their proper place, and multi-purpose for enrollment or identity verification.
-          Connect your ID CASE to any laptop or Windows 10 tablet and start your enrollment campaign anywhere at anytime.</div>
+          <div class="text-style-1 fs-18-sm"><%= @product.manufacturer.name %></div>
+          <div class="mt-10 text-style-2 fs-24-sm"><%= @product.name %></div>
+          <div class="mt-10 text-style-3 fs-12-sm"><%= @product.short_description %></div>
         </div>
       </div>
     </div>
@@ -76,57 +72,188 @@
           <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
               <table class="table table-striped">
-                <tr>
-                  <td>Manufacturer</td>
-                  <td>:</td>
-                  <td>BioRugged</td>
-                </tr>
-                <tr>
-                  <td>Model</td>
-                  <td>:</td>
-                  <td>Mark M1 Biometric Enrolment Kit</td>
-                </tr>
-                <tr>
-                  <td>Supported Biometric Modalities</td>
-                  <td>:</td>
-                  <td>Fingerprint Slap (4-4-2) Iris (dual) Face</td>
-                </tr>
-                <tr>
-                  <td>Additional Components</td>
-                  <td>:</td>
-                  <td>Battery Pack Signature Pad Laptop Power Management</td>
-                </tr>
-                <tr>
-                  <td>Status of MOSIP-Compliance</td>
-                  <td>:</td>
-                  <td>Fingerprint Slap (4-4-2) Iris (dual) Face</td>
-                </tr>
-                <tr>
-                  <td>MACP Certification Link</td>
-                  <td>:</td>
-                  <td> <a href="" class="blue-1"> < link to certification agency website > </a></td>
-                </tr>
-                <tr>
-                  <td>SBI Version</td>
-                  <td>:</td>
-                  <td>V1.1 (Android) <br>
-                      V2.0 (Windows)
-                  </td>
-                </tr>
-                <tr>
-                  <td>Global Certifications</td>
-                  <td>:</td>
-                  <td>IP67, FBI PIV</td>
-                </tr>
-                <tr>
-                  <td>Full Specifications</td>
-                  <td>:</td>
-                  <td>
-                    <a href="" class="blue-1">
-                      < link to PDF >
-                    </a>
-                  </td>
-                </tr>
+                <% if @product.category.code == "registration-devices" %>
+                  <tr>
+                    <td>Manufacturer</td>
+                    <td>:</td>
+                    <td><%= @product.manufacturer.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Model</td>
+                    <td>:</td>
+                    <td><%= @product.model %></td>
+                  </tr>
+                  <tr>
+                    <td>Supported Biometric Modalities</td>
+                    <td>:</td>
+                    <td><%= @product.supported_biometric_modalities.split(',').map(&:strip).join('<br>').html_safe %></td>
+                  </tr>
+                  <tr>
+                    <td>Additional Components</td>
+                    <td>:</td>
+                    <td><%= @product.additional_components.split(',').map(&:strip).join('<br>').html_safe %></td>
+                  </tr>
+                  <tr>
+                    <td>Status of MOSIP-Compliance</td>
+                    <td>:</td>
+                    <td><%= @product.mosip_compliance_status.name %></td>
+                  </tr>
+                  <tr>
+                    <td>MACP Certification Link</td>
+                    <td>:</td>
+                    <td>
+                      <a href="<%= @product.macp_certification_link %>" class="blue-1">Link to certification</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SBI Version</td>
+                    <td>:</td>
+                    <td><%= @product.sbi_version.split(',').map(&:strip).join('<br>').html_safe %></td>
+                  </tr>
+                  <tr>
+                    <td>Global Certifications</td>
+                    <td>:</td>
+                    <td><%= @product.global_certifications.split(',').map(&:strip).join('<br>').html_safe %></td>
+                  </tr>
+                  <tr>
+                    <td>Full Specifications</td>
+                    <td>:</td>
+                    <td>
+                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                    </td>
+                  </tr>
+                <% elsif @product.category.code == "authentication-devices" %>
+                  <tr>
+                    <td>Manufacturer</td>
+                    <td>:</td>
+                    <td><%= @product.manufacturer.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Model</td>
+                    <td>:</td>
+                    <td><%= @product.model %></td>
+                  </tr>
+                  <tr>
+                    <td>Supported Biometric Modalities</td>
+                    <td>:</td>
+                    <td><%= @product.supported_biometric_modalities %></td>
+                  </tr>
+                  <tr>
+                    <td>Status of MOSIP-Compliance</td>
+                    <td>:</td>
+                    <td><%= @product.mosip_compliance_status_id %></td>
+                  </tr>
+                  <tr>
+                    <td>MACP Certification Link</td>
+                    <td>:</td>
+                    <td>
+                      <a href="<%= @product.macp_certification_link %>" class="blue-1">Link to certification</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SBI Version</td>
+                    <td>:</td>
+                    <td><%= @product.sbi_version %></td>
+                  </tr>
+                  <tr>
+                    <td>FTM Certification</td>
+                    <td>:</td>
+                    <td><%= @product.ftm_certification %></td>
+                  </tr>
+                  <tr>
+                    <td>FTM Chip Make and Model</td>
+                    <td>:</td>
+                    <td><%= @product.ftm_chip_make_and_model %></td>
+                  </tr>
+                  <tr>
+                    <td>Firmware Version</td>
+                    <td>:</td>
+                    <td><%= @product.firmware_version %></td>
+                  </tr>
+                  <tr>
+                    <td>Global Certifications</td>
+                    <td>:</td>
+                    <td><%= @product.global_certifications %></td>
+                  </tr>
+                  <tr>
+                    <td>Full Specifications</td>
+                    <td>:</td>
+                    <td>
+                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                    </td>
+                  </tr>
+                <% elsif @product.category.code == "abis" %>
+                  <tr>
+                    <td>Manufacturer</td>
+                    <td>:</td>
+                    <td><%= @product.manufacturer_id %></td>
+                  </tr>
+                  <tr>
+                    <td>Product Name</td>
+                    <td>:</td>
+                    <td><%= @product.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Supported Biometric Modalities</td>
+                    <td>:</td>
+                    <td><%= @product.supported_biometric_modalities %></td>
+                  </tr>
+                  <tr>
+                    <td>Status of MOSIP-Compliance</td>
+                    <td>:</td>
+                    <td><%= @product.mosip_compliance_status_id %></td>
+                  </tr>
+                  <tr>
+                    <td>Software Version</td>
+                    <td>:</td>
+                    <td><%= @product.software_version %></td>
+                  </tr>
+                  <tr>
+                    <td>Full Specifications</td>
+                    <td>:</td>
+                    <td>
+                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                    </td>
+                  </tr>
+                <% elsif @product.category.code == "sdk" %>
+                  <tr>
+                    <td>Manufacturer</td>
+                    <td>:</td>
+                    <td><%= @product.manufacturer_id %></td>
+                  </tr>
+                  <tr>
+                    <td>Product Name</td>
+                    <td>:</td>
+                    <td><%= @product.name %></td>
+                  </tr>
+                  <tr>
+                    <td>Supported Biometric Modalities</td>
+                    <td>:</td>
+                    <td><%= @product.supported_biometric_modalities %></td>
+                  </tr>
+                  <tr>
+                    <td>Usage</td>
+                    <td>:</td>
+                    <td><%= @product.usage %></td>
+                  </tr>
+                  <tr>
+                    <td>Status of MOSIP-Compliance</td>
+                    <td>:</td>
+                    <td><%= @product.mosip_compliance_status_id %></td>
+                  </tr>
+                  <tr>
+                    <td>Software Version</td>
+                    <td>:</td>
+                    <td><%= @product.software_version %></td>
+                  </tr>
+                  <tr>
+                    <td>Full Specifications</td>
+                    <td>:</td>
+                    <td>
+                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                    </td>
+                  </tr>
+                <% end %>
               </table>
             </div>
           </div>
@@ -146,20 +273,7 @@
           </div>
           <div id="collapseTwo" class="collapse second-accor" aria-labelledby="headingTwo" data-parent="#accordion">
             <div class="card-body">
-              <ul class="mb-0">
-                <li class="text-style-3 fs-12-sm">
-                  <div>ID CASE integrated a 4-4-2 or 1 fingerprint scanner (FAP10 to FAP60), an iris scanner, a HD camera and led lightening
-                  systems, a smartcard reader, a signature pad, a ticket printer.</div>
-                </li>
-                <li class="text-style-3 fs-12-sm mt-15">
-                  <div>ID CASE integrated a 4-4-2 or 1 fingerprint scanner (FAP10 to FAP60), an iris scanner, a HD camera and led lightening
-                  systems, a smartcard reader, a signature pad, a ticket printer.</div>
-                </li>
-                <li class="text-style-3 fs-12-sm mt-15">
-                  <div>ID CASE integrated a 4-4-2 or 1 fingerprint scanner (FAP10 to FAP60), an iris scanner, a HD camera and led lightening
-                  systems, a smartcard reader, a signature pad, a ticket printer.</div>
-                </li>
-              </ul>
+              <%= @product.additional_feature.html_safe %>
             </div>
           </div>
         </div>
@@ -170,23 +284,15 @@
   <section class="bg-grey-1 my-30 py-30 my-20-sm py-20-sm">
     <div class="container">
       <div>
-        <h2 class="text-style-2 fs-24-sm">About <span class="blue-1">Gilles Leroux Industrie</span></h2>
+        <h2 class="text-style-2 fs-24-sm">About <span class="blue-1"><%= @product.manufacturer.name %></span></h2>
       </div>
       <div class="mt-30 mt-15-sm">
         <div class="text-style-3 fs-12-sm">
-          GLi provides Biometric devices and digital identity solutions.
-          We develop cutting-edge biometric identity solutions that enhance security, efficiency, and inclusivity.
-          GLi biometric equipments are used worldwide. Deployed in numerous projects, our biometric products guarantee high secure
-          enrollment and identity verification. They allow the issuance of secure and travel documents such as identity cards,
-          passports, driver’s licenses, all of which are essential to state sovereignty and fight against fraud. <br>
-          Our Research & Development team can design your customized biometric kits to suit your needs. Our equipment is entirely
-          designed, developed and assembled on our premises, enabling us to control the manufacturing cycle.
-          GLI also has strong expertise in the design, deployment and use of information systems for social security, pension and
-          health funds.
+          <%= @product.manufacturer.desc %>
         </div>
       </div>
       <div class="mt-30 mt-15-sm">
-        <div class="text-style-3 black fs-12-sm">Visit <a href=""><span class="blue-1">www.GLI.com</span></a> to know more!</div>
+        <div class="text-style-3 black fs-12-sm">Visit <a href="<%= @product.manufacturer.website_link %>" target="_blank"><span class="blue-1"><%= @product.manufacturer.website_link %></span></a> to know more!</div>
       </div>
       <div class="mt-30 mt-15-sm">
         <div class="bg-blue-style text-center">
@@ -202,17 +308,17 @@
                 <div class="mt-30 mt-15-sm">
                   <a href="mailto:">
                     <h5 class="text-style-4 fs-14-sm">
-                      Leo.messi@mosip.com
+                      <%= @product.manufacturer.email_one %>
                     </h5>
                   </a>
                   <a href="mailto:">
                     <h5 class="text-style-4 fs-14-sm">
-                      David.miller10@mosip.com
+                      <%= @product.manufacturer.email_two %>
                     </h5>
                   </a>
                   <a href="mailto:">
                     <h5 class="text-style-4 fs-14-sm">
-                      Rory.Burns08@mosip.com
+                      <%= @product.manufacturer.email_three %>
                     </h5>
                   </a>
                 </div>
@@ -224,17 +330,17 @@
                 <div class="mt-30 mt-15-sm">
                   <a href="tell:+91 7565272827">
                     <h5 class="text-style-4 fs-14-sm">
-                      +91 7565272827
+                      <%= @product.manufacturer.phone_one %>
                     </h5>
                   </a>
                   <a href="tell:+91 7565272827">
                     <h5 class="text-style-4 fs-14-sm">
-                      +91 7565272827
+                      <%= @product.manufacturer.phone_two %>
                     </h5>
                   </a>
                   <a href="tell:+91 7565272827">
                     <h5 class="text-style-4 fs-14-sm">
-                      +91 7565272827
+                      <%= @product.manufacturer.phone_three %>
                     </h5>
                   </a>
                 </div>
@@ -245,7 +351,7 @@
                 </div>
                 <div class="mt-30 mt-15-sm">
                   <div class="text-style-4 fs-14-sm">
-                    GLI 27, rue Bernard Palissy <br> 45800 SAINT-JEAN-DE-<br>BRAYE FRANCE
+                    <%= @product.manufacturer.address %>
                   </div>
                 </div>
               </div>
@@ -261,12 +367,7 @@
 </style>
 
 <script>
-  $(document).ready(function () {
-      $('.thumbnail').click(function () {
-        var newSrc = $(this).attr('src');
-        $('#main-product-image').attr('src', newSrc);
-      });
-    });
+  
 
     
 

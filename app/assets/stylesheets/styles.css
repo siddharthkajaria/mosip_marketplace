@@ -270,6 +270,8 @@
   background-color: #F4F4F4;
 }
 
+
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .p-0-lg {
     padding: 0 !important;
@@ -395,3 +397,5 @@
     zoom: 1 !important;
   }
 }
+
+

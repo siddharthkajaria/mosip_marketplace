@@ -71,3 +71,31 @@ Product.all.each do |p|
     p.biometrics << Biometric.find(rand(1..4))
     p.save!
 end
+
+# Product images
+uploader = ImageUploader.new(:store)
+
+Product.all.each do |p|
+    3.times do |i|
+        file = File.open("public/images/product/mp-"+(i+1).to_s+".jpg")
+        uploaded_file = uploader.upload(file)
+        images = p.product_images.create!(
+            image_data: uploaded_file.to_json,
+            position:i+1
+        )
+        images.image_derivatives! 
+        images.save!
+    end
+end
+
+ p = Product.third
+ 2.times do |i|
+    file = File.open("public/images/product/mps-"+(i+1).to_s+".jpg")
+    uploaded_file = uploader.upload(file)
+    images = p.product_images.create!(
+        image_data: uploaded_file.to_json,
+        position:i+1
+    )
+    images.image_derivatives! 
+    images.save!
+end
