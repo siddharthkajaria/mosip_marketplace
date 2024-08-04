@@ -1,0 +1,58 @@
+<div class="container mt-5 mb-5">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link active" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link after" href="#" aria-label="Next">
+          Next
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link after" href="#" aria-label="Last">
+          Last
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<style>
+  .page-item {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .page-item .page-link {
+    border-radius: 50px;
+    padding: 5px 12px;
+    background-color: transparent;
+    color: #222222;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    border: none;
+  }
+
+  .page-item .page-link.after {
+    border: 2px solid #222222;
+    border-radius: 20px;
+    padding: 5px 20px;
+    color: #222222;
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .page-item .page-link.active {
+    border-radius: 50px;
+    background-color: #222222;
+    color: #ffffff;
+  }
+
+  .pagination {
+    justify-content: center;
+  }
+
+
+</style>
