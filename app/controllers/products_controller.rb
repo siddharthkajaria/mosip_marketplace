@@ -4,24 +4,47 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     per_page = 1
+
+    if params[:category_code]
+      @category = Category.find_by(code: params[:category_code])
+      if @category
+        @selected_category = @category.name
+        @products = @category.products
+      else
+        @products = Product.none
+      end
+    else
+      @products = Product.all
+    end
+
     # binding.irb
-    @products = Product.all.paginate(page: params[:page], per_page: per_page)
+    # @products = @products.all.paginate(page: params[:page], per_page: per_page)
     @uniq_pdt_category = Product.joins(:category).pluck('categories.name').uniq
     @uniq_pdt_names = Product.pluck('name').uniq
 
 
     # Check if the request contains any filter parameters
-    filter_params = [:device_category, :biometrics, :mosip_version, :mosip_compliance_status, :macp_certified, :product_name]
+    filter_params = [:device_category, :biometrics, :mosip_version, :mosip_compliance_status, :macp_certified, :mosip_version, :manufacturers]
     filter_applied = params.slice(*filter_params).present?
 
 
     if filter_applied
-      @products = (Product.filtered_product params).paginate(page: params[:page], per_page: per_page)
+      # @products = (Product.filtered_product params, @products)
+      @products = (Product.filtered_product params, @products)
+
     end
 
+    if params[:search_query].present?
+      search_query = params[:search_query]
+      # binding.irb
+      @products = @products
+      .where("products.name LIKE ? OR products.model LIKE ? OR products.short_description LIKE ?", 
+             "%#{search_query}%", "%#{search_query}%", "%#{search_query}%")
+        end
+    # binding.irb 
     # if params[:q].present?
       @q = @products.ransack(params[:q])
-      @products = @q.result(distinct: true).paginate(page: params[:page], per_page: per_page)
+      @products = @q.result(distinct: true)
     # end
 
     respond_to do |format|

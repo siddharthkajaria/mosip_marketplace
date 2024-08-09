@@ -1,176 +1,148 @@
-<!-- app/views/products/_filter.html.erb -->
+<div class="w-25p w-40p-md mt-30 w-auto-sm mb-5">
+  <i id="toggleOpen" class="fas fa-arrow-right toggle-icon"></i>
+  <div class="sticky-sidebar">
+    <i id="toggleClose" class="fas fa-times toggle-icon d-none"></i>
+    <div class="text-style-2 fs-18 blue-2 mb-3">
+      FILTERS <span class="ml-2"><img src="/images/product-main/filter-1.png" width="20" height="20"></span>
+    </div>
+    <div id="filterAccordion" class="accordion-2">
 
-<!-- app/views/products/_filter.html.erb -->
+      <!-- Biometrics Filter -->
+      <% if @category.present? %>
+        <% if ["registration-devices","authentication-devices"].include?@category.code  %>
+          <div class="card border-0">
+            <div class="card-header">
+              <a class="card-link" data-toggle="collapse" href="#filterCollapseTwo">
+                <span>Biometrics</span>
+                <i class="fas fa-chevron-down arrow-icon"></i>
+              </a>
+            </div>
+            <div id="filterCollapseTwo" class="custom-collapse collapse show" data-parent="#filterAccordion">
+              <div class="card-body">
+                <% Biometric.all.each do |biometric| %>
+                  <div class="custom-control custom-checkbox">
+                    <%= check_box_tag 'biometrics[]', biometric.name, params[:biometrics]&.include?(biometric.name), id: "biometrics_#{biometric.id}", class: 'custom-control-input filter-checkbox' %>
+                    <label class="custom-control-label" for="biometrics_<%= biometric.id %>"><%= biometric.name %></label>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
 
-<div>
-  <h3>Biometrics</h3>
-  <% Biometric.all.each do |biometric| %>
-    <%= check_box_tag 'biometrics[]', biometric.name, params[:biometrics]&.include?(biometric.name), id: "biometrics_#{biometric.id}", class: 'filter-checkbox' %>
-    <label for="biometrics_<%= biometric.id %>"><%= biometric.name %></label>
-  <% end %>
+
+      <!-- Device Category Filter -->
+      <div class="card border-0">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" href="#filterCollapseOne">
+            <span>Device Category</span>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+        </div>
+        <div id="filterCollapseOne" class="custom-collapse collapse show" data-parent="#filterAccordion">
+          <div class="card-body">
+            <% @uniq_pdt_category.each_with_index do |cat, index| %>
+              <div class="custom-control custom-checkbox">
+                <%= check_box_tag 'device_category[]', cat, 
+                        params[:device_category]&.include?(cat) || (params[:category_code] && @selected_category == cat),
+                        id: "device_category_#{index}", 
+                        class: 'custom-control-input filter-checkbox' %>
+                <label class="custom-control-label" for="device_category_<%= index %>"><%= cat %></label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOSIP Compliance Status Filter -->
+      <div class="card border-0">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" href="#filterCollapseThree">
+            <span>Status of MOSIP Compliance</span>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+        </div>
+        <div id="filterCollapseThree" class="custom-collapse collapse show" data-parent="#filterAccordion">
+          <div class="card-body">
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_compliance_status[]', 'MOSIP Compliant', params[:mosip_compliance_status]&.include?('MOSIP Compliant'), id: 'mosip_compliant', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="mosip_compliant">MOSIP Compliant</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_compliance_status[]', 'Compliance in Progress', params[:mosip_compliance_status]&.include?('Compliance in Progress'), id: 'compliance_in_progress', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="compliance_in_progress">Compliance in Progress</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_compliance_status[]', 'MOSIP Integrated', params[:mosip_compliance_status]&.include?('MOSIP Integrated'), id: 'mosip_integrated', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="mosip_integrated">MOSIP Integrated</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_compliance_status[]', 'Integration in Progress', params[:mosip_compliance_status]&.include?('Integration in Progress'), id: 'integration_in_progress', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="integration_in_progress">Integration in Progress</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOSIP Version Compatibility Filter -->
+      <div class="card border-0">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" href="#filterCollapseFour">
+            <span>MOSIP Version Compatibility</span>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+        </div>
+        <div id="filterCollapseFour" class="custom-collapse collapse show" data-parent="#filterAccordion">
+          <div class="card-body">
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_version[]', 'MOSIP 1.0', params[:mosip_version]&.include?('MOSIP 1.0'), id: 'mosip_1_0', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="mosip_1_0">MOSIP 1.0</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_version[]', 'MOSIP 1.5.0', params[:mosip_version]&.include?('MOSIP 1.5.0'), id: 'mosip_1_5_0', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="mosip_1_5_0">MOSIP 1.5.0</label>
+            </div>
+            <div class="custom-control custom-checkbox">
+              <%= check_box_tag 'mosip_version[]', 'LTS 1.2.0', params[:mosip_version]&.include?('LTS 1.2.0'), id: 'lts_1_2_0', class: 'custom-control-input filter-checkbox' %>
+              <label class="custom-control-label" for="lts_1_2_0">LTS 1.2.0</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MACP Certification Filter -->
+      <div class="d-flex justify-content-between mt-10 align-items-center macp">
+        <h5 class="text-style-1 pl-10px blue-3 fs-16 mb-0">MACP Certified</h5>
+        <div class="custom-control custom-checkbox">
+          <%= check_box_tag 'macp_certified', '1', params[:macp_certified].present?, id: 'macp_certified', class: 'custom-control-input filter-checkbox' %>
+          <label class="custom-control-label" for="macp_certified"></label>
+        </div>
+      </div>
+
+      <!-- Manufacturer Filter -->
+      <div class="card border-0">
+        <div class="card-header">
+          <a class="card-link" data-toggle="collapse" href="#filterCollapseFive">
+            <span>Manufacturer</span>
+            <i class="fas fa-chevron-down arrow-icon"></i>
+          </a>
+        </div>
+        <div id="filterCollapseFive" class="custom-collapse collapse show" aria-labelledby="headingFive" data-parent="#filterAccordion">
+          <div class="card-body mt-15">
+            <input type="text" id="filterSearch" class="form-control mb-2" placeholder="Search...">
+            <div class="scrollable-options">
+              <% Manufacturer.all.each do |manufacturer| %>
+                <div class="custom-control custom-checkbox">
+                  <%= check_box_tag 'manufacturers[]', manufacturer.id, params[:manufacturers]&.include?(manufacturer.id.to_s), id: "manufacturer_#{manufacturer.id}", class: 'custom-control-input filter-checkbox' %>
+                  <label class="custom-control-label" for="manufacturer_<%= manufacturer.id %>"><%= manufacturer.name %></label>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
-
-<div>
-  <h3>Product Name</h3>
-  <% @uniq_pdt_names.each_with_index do |pdt_name, index| %>
-    <%= check_box_tag 'product_name[]', pdt_name, params[:product_name]&.include?(pdt_name), id: "pdt_name_#{index}", class: 'filter-checkbox' %>
-    <label for="product_name_<%= index %>"><%= pdt_name %></label>
-  <% end %>
-</div>
-
-<div>
-  <h3>Device Category</h3>
-  <% @uniq_pdt_category.each_with_index do |cat, index| %>
-    <%= check_box_tag 'device_category[]', cat, params[:device_category]&.include?(cat), id: "device_category_#{index}", class: 'filter-checkbox' %>
-    <label for "device_category_<%= index %>"><%= cat %></label>
-  <% end %>
-</div>
-
-<div>
-  <h3>MOSIP Version Compatibility</h3>
-  <%= check_box_tag 'mosip_version[]', 'MOSIP 1.0', params[:mosip_version]&.include?('MOSIP 1.0'), id: 'mosip_1_0', class: 'filter-checkbox' %>
-  <label for="mosip_1_0">MOSIP 1.0</label>
-  <%= check_box_tag 'mosip_version[]', 'MOSIP 1.5.0', params[:mosip_version]&.include?('MOSIP 1.5.0'), id: 'mosip_1_5_0', class: 'filter-checkbox' %>
-  <label for="mosip_1_5_0">MOSIP 1.5.0</label>
-  <%= check_box_tag 'mosip_version[]', 'LTS 1.2.0', params[:mosip_version]&.include?('LTS 1.2.0'), id: 'lts_1_2_0', class: 'filter-checkbox' %>
-  <label for="lts_1_2_0">LTS 1.2.0</label>
-</div>
-
-<div>
-  <h3>Status of MOSIP Compliance</h3>
-  <%= check_box_tag 'mosip_compliance_status[]', 'MOSIP Compliant', params[:mosip_compliance_status]&.include?('MOSIP Compliant'), id: 'mosip_compliant', class: 'filter-checkbox' %>
-  <label for="mosip_compliant">MOSIP Compliant</label>
-  <%= check_box_tag 'mosip_compliance_status[]', 'Compliance in Progress', params[:mosip_compliance_status]&.include?('Compliance in Progress'), id: 'compliance_in_progress', class: 'filter-checkbox' %>
-  <label for="compliance_in_progress">Compliance in Progress</label>
-  <%= check_box_tag 'mosip_compliance_status[]', 'MOSIP Integrated', params[:mosip_compliance_status]&.include?('MOSIP Integrated'), id: 'mosip_integrated', class: 'filter-checkbox' %>
-  <label for="mosip_integrated">MOSIP Integrated</label>
-  <%= check_box_tag 'mosip_compliance_status[]', 'Integration in Progress', params[:mosip_compliance_status]&.include?('Integration in Progress'), id: 'integration_in_progress', class: 'filter-checkbox' %>
-  <label for="integration_in_progress">Integration in Progress</label>
-</div>
-
-<div>
-  <h3>MACP Certified</h3>
-  <%= check_box_tag 'macp_certified', '1', params[:macp_certified].present?, id: 'macp_certified', class: 'filter-checkbox' %>
-  <label for="macp_certified">MACP Certified</label>
-</div>
-
-
-<script>
-  $(document).ready(function(){
-    // Handle filter change
-    $('.filter-checkbox').on('change', function() {
-      var selectedFilters = getSelectedFilters();
-      updateURL(selectedFilters);
-      fetchFilteredProducts(selectedFilters);
-    });
-
-    // Handle pagination click
-    $(document).on('click', '.pagination a', function(e) {
-      e.preventDefault();
-      var selectedFilters = getSelectedFilters();
-      var url = $(this).attr('href');
-      var newUrl = updateURLWithParams(url, selectedFilters);
-      fetchFilteredProducts(selectedFilters, newUrl);
-    });
-
-    // Handle sort link click
-    $(document).on('click', '.sort_link', function(e) {
-      e.preventDefault();
-      var selectedFilters = getSelectedFilters();
-      var url = $(this).attr('href');
-      var newUrl = toggleSortDirection(url, selectedFilters);
-      fetchFilteredProducts(selectedFilters, newUrl);
-    });
-
-    // Get selected filters
-    function getSelectedFilters() {
-      var selectedFilters = {};
-      $('.filter-checkbox').each(function() {
-        if ($(this).is(':checked')) {
-          var name = $(this).attr('name');
-          if (!selectedFilters[name]) {
-            selectedFilters[name] = [];
-          }
-          selectedFilters[name].push($(this).val());
-        }
-      });
-      return selectedFilters;
-    }
-
-    // Update URL with selected filters
-    function updateURL(filters) {
-      var queryString = $.param(filters);
-      var newUrl = window.location.pathname + '?' + queryString;
-      history.replaceState(null, '', newUrl);
-    }
-
-    // Update URL with pagination and selected filters
-    function updateURLWithParams(url, filters) {
-      var urlObj = new URL(url, window.location.origin);
-      var searchParams = new URLSearchParams(urlObj.search);
-
-      // Append the selected filters to the URL parameters
-      for (var key in filters) {
-        if (filters.hasOwnProperty(key)) {
-          searchParams.delete(key); // Remove existing filter params
-          filters[key].forEach(function(value) {
-            searchParams.append(key, value); // Add updated filter params
-          });
-        }
-      }
-
-      urlObj.search = searchParams.toString();
-      return urlObj.toString();
-    }
-
-    // Toggle sort direction
-    function toggleSortDirection(url, filters) {
-      var urlObj = new URL(url, window.location.origin);
-      var searchParams = new URLSearchParams(urlObj.search);
-      var currentSort = searchParams.get('q');
-        console.log(currentSort)
-      // Toggle between ascending and descending
-      if (currentSort) {
-        if (currentSort.includes(' desc')) {
-          searchParams.set('s', currentSort.replace(' desc', ' asc'));
-        } else if (currentSort.includes(' asc')) {
-          searchParams.set('s', currentSort.replace(' asc', ' desc'));
-        } else {
-          searchParams.set('s', currentSort + ' desc');
-        }
-      } else {
-        searchParams.set('s', 'name desc');
-      }
-
-      // Append the selected filters to the URL parameters
-      for (var key in filters) {
-        if (filters.hasOwnProperty(key)) {
-          searchParams.delete(key); // Remove existing filter params
-          filters[key].forEach(function(value) {
-            searchParams.append(key, value); // Add updated filter params
-          });
-        }
-      }
-
-      urlObj.search = searchParams.toString();
-      return urlObj.toString();
-    }
-
-    // Fetch filtered products
-    function fetchFilteredProducts(filters, url = window.location.pathname + window.location.search) {
-      $.ajax({
-        url: url,
-        type: 'GET',
-        data: filters,
-        dataType: 'script',
-        success: function(data) {
-          // Successfully loaded filtered products
-        },
-        error: function(xhr, status, error) {
-          console.error('Error fetching filtered products:', error);
-        }
-      });
-    }
-  });
-</script>
-

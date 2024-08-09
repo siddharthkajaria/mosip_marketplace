@@ -13,18 +13,26 @@
         <div class="border-grey-1 br-60 br-30-sm">
           <div class="bg-style-1">
             <div class="h-400px h-200px-sm">
-              <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1"
-                class="w-100 h-100 br-60 br-30-sm object-contain">
+              <% if @product.product_images.active.order(:position).first.present? %>
+                <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1" class="w-100 h-100 br-60 br-30-sm object-contain">
+              <% else %>
+                <img id="main-product-image" src="public/images/meeting_default.png" alt="product-1" class="w-100 h-100 br-60 br-30-sm object-contain">
+              <% end %>
             </div>
           </div>
           <div class="bg-style-2">
             <div class="d-flex align-items-center justify-content-end">
-              <div class="w-80px h-30px">
-                <img src="/images/product/compliant-a.png" alt="compliant-a" class="w-100 object-contain">
-              </div>
-              <div class="w-80px h-30px ml-3">
-                <img src="/images/product/compliant-b.png" alt="compliant-a" class="w-100 object-contain">
-              </div>
+
+              <% if @product.mosip_compliance_status.present? %>
+                <% if @product.mosip_compliance_status.image_data.present? %>
+                  <div class="w-80px h-30px ml-3">
+                    <img src="<%= @product.mosip_compliance_status.image_url %>" alt="compliant-a" class="w-100 object-contain">
+                  </div>
+                <% end %>
+              <% end %>
+              
+
+              
             </div>
           </div>
         </div>

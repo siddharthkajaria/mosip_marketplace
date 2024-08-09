@@ -1,1 +1,5 @@
 <%= link_to 'Contact Us', enquiries_path, class: 'btn btn-primary' %>
+<br />
+<% ["registration-devices", "authentication-devices", "abis", "sdk"].each do |category_code| %>
+  <%= link_to category_code.humanize, products_path(category_code: category_code), class: "category-button" %><br/>
+<% end %>

@@ -35,5 +35,5 @@ class ProductImage < ApplicationRecord
       end
       images['original']=self.image_url
     return images
-end
+  end
 end

@@ -99,3 +99,17 @@ end
     images.image_derivatives! 
     images.save!
 end
+
+
+# Mosip Compliance state
+uploader = ComplianceImageUploader.new(:store)
+
+MosipComplianceStatus.all.each_with_index do |a,index|
+    if index <= 1
+        file = File.open("public/c-"+(index).to_s+".png")
+        uploaded_file = uploader.upload(file)
+        a.image_data = uploaded_file.to_json
+        a.image_derivatives! 
+        a.save!
+    end
+end

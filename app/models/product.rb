@@ -49,12 +49,16 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :product_images, allow_destroy: true
 
 
-  def self.filtered_product params
-
-    all_products = Product.all
+  def self.filtered_product params, products
+    if products.present?
+      all_products = products
+    else
+      all_products = Product.all
+    end
     filtered_pdts = []
     if params[:device_category].present?
-      category_names = params[:device_category]
+      all_products = Product.all
+      category_names = params[:device_category].uniq
 
       if filtered_pdts.present?
         filtered_pdts = filtered_pdts.joins(:category).where(categories: { name: category_names })
@@ -65,23 +69,42 @@ class Product < ApplicationRecord
 
     if params[:biometrics].present?
 
-      biometrics_names = params[:biometrics]
+      biometrics_names = params[:biometrics].uniq
       if filtered_pdts.present?
         filtered_pdts = filtered_pdts.joins(:biometrics).where(biometrics: { name: biometrics_names }).distinct
       else
         filtered_pdts = all_products.joins(:biometrics).where(biometrics: { name: biometrics_names }).distinct
       end
     end
-    
-    if params[:product_name].present?
-      pdt_name = params[:product_name]
 
+    if params[:mosip_compliance_status].present?
+      mosip_compliance_status_names = params[:mosip_compliance_status].uniq
       if filtered_pdts.present?
-        filtered_pdts = filtered_pdts.where(name:pdt_name)
+        filtered_pdts = filtered_pdts.joins(:mosip_compliance_status).where(mosip_compliance_statuses: { name: mosip_compliance_status_names })
       else
-        filtered_pdts = all_products.where(name:pdt_name)
+        filtered_pdts = all_products.joins(:mosip_compliance_status).where(mosip_compliance_statuses: { name: mosip_compliance_status_names })
       end
     end
+    
+
+    if params[:macp_certified].present?
+      if filtered_pdts.present?
+        filtered_pdts = filtered_pdts.where.not(macp_certification_link: [nil, ''])
+      else
+        filtered_pdts = all_products.where.not(macp_certification_link: [nil, ''])
+      end
+    end
+
+    if params[:manufacturers].present?
+      manufacturer_ids = params[:manufacturers].uniq
+      if filtered_pdts.present?
+        filtered_pdts = filtered_pdts.where(manufacturer_id: manufacturer_ids)
+      else
+        filtered_pdts = all_products.where(manufacturer_id: manufacturer_ids)
+      end
+    end
+    
+    
     return filtered_pdts
   end
 
