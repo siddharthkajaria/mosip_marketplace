@@ -1,14 +1,173 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/header" %>
 
-<h1>Categories</h1>
+  <div class="zoom">
+    <section class="bg-image-1 bg-img-style-1 mt-60-sm">
+      <div class="py-50 py-30-sm">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-4 col-md-5">
+              <h1 class="text-style-1 black fs-55 fs-35-sm">MOSIP, Our <br>
+                Solutions</h1>
+              <div class="mt-30 mt-20-sm">
+                <p class="text-style-4 fs-16 grey-1 pr-80-sm">
+                  Discover ready-to-use
+                  technology solutions for your
+                  national ID systems.
+                </p>
+              </div>
+              <div class="mt-50 mt-30-sm">
+                <button class="btn btn-style-2 fs-14">
+                  EXPLORE SOLUTIONS
+                </button>
+              </div>
+            </div>
+            <div class="col-lg-8 col-md-7 mt-15-sm">
+              <div>
+                <img src="../images/home/home-img-1.png" alt="home-img-1" class="w-100p" loading="lazy">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
 
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this category", category %>
-    </p>
-  <% end %>
-</div>
+    <section class="bg-image-3 bg-img-style-1">
+      <div class="py-50 py-30-sm">
+        <div class="container">
+          <h1 class="text-style-2 fw-300 fs-80 fs-35-sm">Explore Solutions</h1>
+          <div class="mt-50 mt-30-sm">
+            <div class="row">
+              <div class="col-md-7">
+                <p class="text-style-4 fs-16 grey-1 pr-5">
+                  Explore MOSIP’s extensive and nurtured technology ecosystem – from biometric devices to deduplication
+                  software, and
+                  digital wallets – categorised by compliance, certifications, biometric modalities, and more.
+                </p>
+              </div>
+              <div class="col-md-5">
+        
+              </div>
+            </div>
+          </div>
+          <div class="mt-50 mt-30-sm">
+            <div class="row">
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-1.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+        
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      Registration Devices
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-2.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+        
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      Authentication Devices
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-3.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+        
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      ABIS
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-4.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+        
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      Biometric SDK
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-1.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+        
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      System Integrators
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-2.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+        
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      Print Solutions
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-6 mt-30 mt-15-sm">
+                <div class="border-grey-3 br-35">
+                  <div class="p-20">
+                    <img src="../images/home/home-car-3.png" class="w-100p" alt="solution-1" loading="lazy">
+                  </div>
+                  <div class="border-top-1">
+              
+                  </div>
+                  <div class="p-20">
+                    <div class="text-style-2 text-center black fs-18 fs-14-sm solution-1 d-flex align-items-center justify-content-center">
+                      Digital Credentials & Wallets
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<%= link_to "New category", new_category_path %>
+    <section class="py-50 py-30-sm">
+     <div class="container">
+      <div>
+        <img src="../images/home/home-partner.png" alt="home-partner" class="w-100p" loading="lazy">
+      </div>
+     </div>
+    </section>
+  </div>
