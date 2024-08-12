@@ -750,6 +750,10 @@ input:focus {
   margin: auto;
 }
 
+.toggle-icon{
+  display: none !important;
+}
+
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
   .p-0-lg {
@@ -801,6 +805,10 @@ input:focus {
   }
 
   .d-block-sm {
+    display: block !important;
+  }
+
+  .toggle-icon {
     display: block !important;
   }
 
