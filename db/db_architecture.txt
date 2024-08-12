@@ -6,12 +6,17 @@ rails g migration AddRoleToUser role:references
 User.create(email: "giridhar@tailwebs.com", role_id: 1, password: "123456")
 
 rails generate scaffold Category name:string image_data:text desc:text
+
 rails generate scaffold Product name:string short_description:text manufacturer:references model:string supported_biometric_modalities:string additional_components:text mosip_compliance:boolean macp_certification_link:string sbi_version:string global_certifications:text ftm_certification:string ftm_chip_make_and_model:string firmware_version:string software_version:string full_specifications:text usage:text print_software_version:string integration_methodology:text category:references image_data:text
 rails generate scaffold ProductImage image_data:text position:integer status:boolean product:references
+rails generate migration AddMosipComplianceIntegrationAndCertifiedToProducts mosip_compliance:string mosip_integration:string certified:boolean
+
 rails g migration AddAditionalFeatureToProduct aditional_feature:text
 rails generate scaffold Manufacturer name:string email_one:string email_two:string email_three:string phone_one:string phone_two:string phone_three:string address:text desc:text website_link:string image_data:text
 
 rails generate scaffold mosip_compliance_status name:string desc:text is_active:boolean
+rails g migration AddCodeToMosipComplianceStatus code:string
+
 rails generate scaffold Biometric name:string desc:text code:string
 
 
@@ -21,4 +26,4 @@ rails g migration AddQuestionToEnquiry question:text
 
 rails generate scaffold PartnerCategory name:string desc:text image_data:text
 rails generate scaffold Partner name:string desc:text image_data:text position:integer url:text
-
+rails g migration AddPartnerCategoryIdToPartner partner_category:references

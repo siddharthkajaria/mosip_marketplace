@@ -9,6 +9,8 @@ gem 'rails', '~> 7.0.3'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 gem 'mysql2', '0.5.4'
+gem 'state_machines-activerecord', '~> 0.9.0'
+
 
 # Use sqlite3 as the database for Active Record
 

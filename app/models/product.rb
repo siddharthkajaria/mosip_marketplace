@@ -5,6 +5,7 @@
 #  id                             :bigint           not null, primary key
 #  additional_components          :text(65535)
 #  additional_feature             :text(65535)
+#  certified                      :boolean          default(FALSE)
 #  firmware_version               :string(255)
 #  ftm_certification              :string(255)
 #  ftm_chip_make_and_model        :string(255)
@@ -13,6 +14,8 @@
 #  integration_methodology        :text(65535)
 #  macp_certification_link        :string(255)
 #  model                          :string(255)
+#  mosip_compliance               :string(255)
+#  mosip_integration              :string(255)
 #  name                           :string(255)
 #  print_software_version         :string(255)
 #  sbi_version                    :string(255)
@@ -48,6 +51,24 @@ class Product < ApplicationRecord
   has_many :product_images, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true
 
+  state_machine :mosip_compliance do
+    state :compliance_in_progress, value: "Compliance in Progress"
+    state :compliant, value: "Compliant"
+  
+    event :compliant do
+      transition [:compliance_in_progress] => :compliant
+    end
+  end
+  
+  state_machine :mosip_integration do
+    state :integration_in_progress, value: "Integration in Progress"
+    state :integrated, value: "Integrated"
+  
+    event :integrated do
+      transition [:integration_in_progress] => :integrated
+    end
+  end
+  
 
   def self.filtered_product params, products
     if products.present?

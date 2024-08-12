@@ -3,6 +3,7 @@
 # Table name: mosip_compliance_statuses
 #
 #  id         :bigint           not null, primary key
+#  code       :string(255)
 #  desc       :text(65535)
 #  image_data :text(65535)
 #  is_active  :boolean          default(TRUE)

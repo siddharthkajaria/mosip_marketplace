@@ -113,3 +113,49 @@ MosipComplianceStatus.all.each_with_index do |a,index|
         a.save!
     end
 end
+
+
+
+# Partner Category
+
+PartnerCategory.create([
+    { name: 'MOSIP Compliant', desc: "Products that have completed a self-compliance exercise against MOSIP’s specifications." },
+    { name: 'MOSIP Integrated', desc: "A product or solution that has demonstrated the ability to work with MOSIP systems." },
+    { name: 'MOSIP SI Partner', desc: "SI entities that have completed training and capacity-building exercises through the MOSIP Partner Programme." }
+  ])
+  
+uploader = PartnerCategoryImageUploader.new(:store)
+
+PartnerCategory.all.each_with_index do |a,index|
+    file = File.open("public/images/partner_cat/"+(index+1).to_s+".png")
+    uploaded_file = uploader.upload(file)
+    a.image_data = uploaded_file.to_json
+    a.image_derivatives! 
+    a.save!
+end
+
+# Product Integration/compliant
+
+state = ["Compliance in Progress", "Integration in Progress"]
+
+Product.all.each_with_index do |p,index|
+    if index%2 == 0
+        p.mosip_compliance = "Compliance in Progress"
+        p.save!
+    else
+        p.mosip_integration = "Integration in Progress"
+        p.save!
+    end
+end
+
+p = Product.first
+p.compliant
+
+p = Product.second
+p.integrated
+
+# adding code to MosipComplianceStatus
+MosipComplianceStatus.all.each do |c|
+    c.code = c.name.parameterize()
+    c.save!
+end

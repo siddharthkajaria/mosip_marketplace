@@ -10,4 +10,21 @@
 #  updated_at :datetime         not null
 #
 class PartnerCategory < ApplicationRecord
+    has_many :partners
+
+    include PartnerCategoryImageUploader::Attachment(:image)
+
+    def get_image_url
+        images=Hash.new 
+        images['available']=self.image.present?
+          if images['available']
+            images['thumb']=self.image(:small).url
+            images['medium']=self.image(:medium).url
+          else 
+            images['thumb']=self.image_url
+            images['medium']=self.image_url
+          end
+          images['original']=self.image_url
+        return images
+    end
 end

@@ -23,10 +23,18 @@
           <div class="bg-style-2">
             <div class="d-flex align-items-center justify-content-end">
 
-              <% if @product.mosip_compliance_status.present? %>
-                <% if @product.mosip_compliance_status.image_data.present? %>
+              <% if @product.mosip_compliance.present? %>
+                <% if MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>
                   <div class="w-80px h-30px ml-3">
-                    <img src="<%= @product.mosip_compliance_status.image_url %>" alt="compliant-a" class="w-100 object-contain">
+                    <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
+                  </div>
+                <% end %>
+              <% end %>
+
+              <% if @product.mosip_integration.present? %>
+                <% if MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).image_url %>
+                  <div class="w-80px h-30px ml-3">
+                    <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
                   </div>
                 <% end %>
               <% end %>
@@ -57,7 +65,7 @@
         <div class="mt-20">
           <div class="text-style-1 fs-18-sm"><%= @product.manufacturer.name %></div>
           <div class="mt-10 text-style-2 fs-24-sm"><%= @product.name %></div>
-          <div class="mt-10 text-style-3 fs-12-sm"><%= @product.short_description %></div>
+          <div class="mt-10 text-style-3 fs-12-sm"><%= @product.short_description.html_safe %></div>
         </div>
       </div>
     </div>
@@ -81,211 +89,312 @@
             <div class="card-body">
               <table class="table table-striped">
                 <% if @product.category.code == "registration-devices" %>
-                  <tr>
-                    <td>Manufacturer</td>
-                    <td>:</td>
-                    <td><%= @product.manufacturer.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Model</td>
-                    <td>:</td>
-                    <td><%= @product.model %></td>
-                  </tr>
-                  <tr>
-                    <td>Supported Biometric Modalities</td>
-                    <td>:</td>
-                    <td><%= @product.supported_biometric_modalities.split(',').map(&:strip).join('<br>').html_safe %></td>
-                  </tr>
-                  <tr>
-                    <td>Additional Components</td>
-                    <td>:</td>
-                    <td><%= @product.additional_components.split(',').map(&:strip).join('<br>').html_safe %></td>
-                  </tr>
-                  <tr>
-                    <td>Status of MOSIP-Compliance</td>
-                    <td>:</td>
-                    <td><%= @product.mosip_compliance_status.name %></td>
-                  </tr>
-                  <tr>
-                    <td>MACP Certification Link</td>
-                    <td>:</td>
-                    <td>
-                      <a href="<%= @product.macp_certification_link %>" class="blue-1">Link to certification</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>SBI Version</td>
-                    <td>:</td>
-                    <td><%= @product.sbi_version.split(',').map(&:strip).join('<br>').html_safe %></td>
-                  </tr>
-                  <tr>
-                    <td>Global Certifications</td>
-                    <td>:</td>
-                    <td><%= @product.global_certifications.split(',').map(&:strip).join('<br>').html_safe %></td>
-                  </tr>
-                  <tr>
-                    <td>Full Specifications</td>
-                    <td>:</td>
-                    <td>
-                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
-                    </td>
-                  </tr>
+                  <% if @product.manufacturer.name.present? %>
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>:</td>
+                      <td><%= @product.manufacturer.name %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.model.present? %>
+                    <tr>
+                      <td>Model</td>
+                      <td>:</td>
+                      <td><%= @product.model %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.supported_biometric_modalities.present? %>
+                    <tr>
+                      <td>Supported Biometric Modalities</td>
+                      <td>:</td>
+                      <td><%= @product.supported_biometric_modalities.split(',').map(&:strip).join('<br>').html_safe %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.additional_components.present? %>
+                    <tr>
+                      <td>Additional Components</td>
+                      <td>:</td>
+                      <td><%= @product.additional_components.split(',').map(&:strip).join('<br>').html_safe %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.mosip_compliance.present? %>
+                    <tr>
+                      <td>Status of MOSIP-Compliance</td>
+                      <td>:</td>
+                      <td><%= @product.mosip_compliance %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.macp_certification_link.present? %>
+                    <tr>
+                      <td>MACP Certification Link</td>
+                      <td>:</td>
+                      <td>
+                        <a href="<%= @product.macp_certification_link %>" class="blue-1">Link to certification</a>
+                      </td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.sbi_version.present? %>
+                    <tr>
+                      <td>SBI Version</td>
+                      <td>:</td>
+                      <td><%= @product.sbi_version.split(',').map(&:strip).join('<br>').html_safe %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.global_certifications.present? %>
+                    <tr>
+                      <td>Global Certifications</td>
+                      <td>:</td>
+                      <td><%= @product.global_certifications.split(',').map(&:strip).join('<br>').html_safe %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.full_specifications.present? %>
+                    <tr>
+                      <td>Full Specifications</td>
+                      <td>:</td>
+                      <td>
+                        <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                      </td>
+                    </tr>
+                  <% end %>
+
                 <% elsif @product.category.code == "authentication-devices" %>
-                  <tr>
-                    <td>Manufacturer</td>
-                    <td>:</td>
-                    <td><%= @product.manufacturer.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Model</td>
-                    <td>:</td>
-                    <td><%= @product.model %></td>
-                  </tr>
-                  <tr>
-                    <td>Supported Biometric Modalities</td>
-                    <td>:</td>
-                    <td><%= @product.supported_biometric_modalities %></td>
-                  </tr>
-                  <tr>
-                    <td>Status of MOSIP-Compliance</td>
-                    <td>:</td>
-                    <td><%= @product.mosip_compliance_status_id %></td>
-                  </tr>
-                  <tr>
-                    <td>MACP Certification Link</td>
-                    <td>:</td>
-                    <td>
-                      <a href="<%= @product.macp_certification_link %>" class="blue-1">Link to certification</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>SBI Version</td>
-                    <td>:</td>
-                    <td><%= @product.sbi_version %></td>
-                  </tr>
-                  <tr>
-                    <td>FTM Certification</td>
-                    <td>:</td>
-                    <td><%= @product.ftm_certification %></td>
-                  </tr>
-                  <tr>
-                    <td>FTM Chip Make and Model</td>
-                    <td>:</td>
-                    <td><%= @product.ftm_chip_make_and_model %></td>
-                  </tr>
-                  <tr>
-                    <td>Firmware Version</td>
-                    <td>:</td>
-                    <td><%= @product.firmware_version %></td>
-                  </tr>
-                  <tr>
-                    <td>Global Certifications</td>
-                    <td>:</td>
-                    <td><%= @product.global_certifications %></td>
-                  </tr>
-                  <tr>
-                    <td>Full Specifications</td>
-                    <td>:</td>
-                    <td>
-                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
-                    </td>
-                  </tr>
+                  <% if @product.manufacturer.name.present? %>
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>:</td>
+                      <td><%= @product.manufacturer.name %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.model.present? %>
+                    <tr>
+                      <td>Model</td>
+                      <td>:</td>
+                      <td><%= @product.model %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.supported_biometric_modalities.present? %>
+                    <tr>
+                      <td>Supported Biometric Modalities</td>
+                      <td>:</td>
+                      <td><%= @product.supported_biometric_modalities %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.mosip_compliance.present? %>
+                    <tr>
+                      <td>Status of MOSIP-Compliance</td>
+                      <td>:</td>
+                      <td><%= @product.mosip_compliance %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.macp_certification_link.present? %>
+                    <tr>
+                      <td>MACP Certification Link</td>
+                      <td>:</td>
+                      <td>
+                        <a href="<%= @product.macp_certification_link %>" class="blue-1">Link to certification</a>
+                      </td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.sbi_version.present? %>
+                    <tr>
+                      <td>SBI Version</td>
+                      <td>:</td>
+                      <td><%= @product.sbi_version %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.ftm_certification.present? %>
+                    <tr>
+                      <td>FTM Certification</td>
+                      <td>:</td>
+                      <td><%= @product.ftm_certification %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.ftm_chip_make_and_model.present? %>
+                    <tr>
+                      <td>FTM Chip Make and Model</td>
+                      <td>:</td>
+                      <td><%= @product.ftm_chip_make_and_model %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.firmware_version.present? %>
+                    <tr>
+                      <td>Firmware Version</td>
+                      <td>:</td>
+                      <td><%= @product.firmware_version %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.global_certifications.present? %>
+                    <tr>
+                      <td>Global Certifications</td>
+                      <td>:</td>
+                      <td><%= @product.global_certifications %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.full_specifications.present? %>
+                    <tr>
+                      <td>Full Specifications</td>
+                      <td>:</td>
+                      <td>
+                        <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                      </td>
+                    </tr>
+                  <% end %>
+
                 <% elsif @product.category.code == "abis" %>
-                  <tr>
-                    <td>Manufacturer</td>
-                    <td>:</td>
-                    <td><%= @product.manufacturer_id %></td>
-                  </tr>
-                  <tr>
-                    <td>Product Name</td>
-                    <td>:</td>
-                    <td><%= @product.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Supported Biometric Modalities</td>
-                    <td>:</td>
-                    <td><%= @product.supported_biometric_modalities %></td>
-                  </tr>
-                  <tr>
-                    <td>Status of MOSIP-Compliance</td>
-                    <td>:</td>
-                    <td><%= @product.mosip_compliance_status_id %></td>
-                  </tr>
-                  <tr>
-                    <td>Software Version</td>
-                    <td>:</td>
-                    <td><%= @product.software_version %></td>
-                  </tr>
-                  <tr>
-                    <td>Full Specifications</td>
-                    <td>:</td>
-                    <td>
-                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
-                    </td>
-                  </tr>
+                  <% if @product.manufacturer_id.present? %>
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>:</td>
+                      <td><%= @product.manufacturer_id %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.name.present? %>
+                    <tr>
+                      <td>Product Name</td>
+                      <td>:</td>
+                      <td><%= @product.name %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.supported_biometric_modalities.present? %>
+                    <tr>
+                      <td>Supported Biometric Modalities</td>
+                      <td>:</td>
+                      <td><%= @product.supported_biometric_modalities %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.mosip_compliance.present? %>
+                    <tr>
+                      <td>Status of MOSIP-Compliance</td>
+                      <td>:</td>
+                      <td><%= @product.mosip_compliance %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.software_version.present? %>
+                    <tr>
+                      <td>Software Version</td>
+                      <td>:</td>
+                      <td><%= @product.software_version %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.full_specifications.present? %>
+                    <tr>
+                      <td>Full Specifications</td>
+                      <td>:</td>
+                      <td>
+                        <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                      </td>
+                    </tr>
+                  <% end %>
+
                 <% elsif @product.category.code == "sdk" %>
-                  <tr>
-                    <td>Manufacturer</td>
-                    <td>:</td>
-                    <td><%= @product.manufacturer_id %></td>
-                  </tr>
-                  <tr>
-                    <td>Product Name</td>
-                    <td>:</td>
-                    <td><%= @product.name %></td>
-                  </tr>
-                  <tr>
-                    <td>Supported Biometric Modalities</td>
-                    <td>:</td>
-                    <td><%= @product.supported_biometric_modalities %></td>
-                  </tr>
-                  <tr>
-                    <td>Usage</td>
-                    <td>:</td>
-                    <td><%= @product.usage %></td>
-                  </tr>
-                  <tr>
-                    <td>Status of MOSIP-Compliance</td>
-                    <td>:</td>
-                    <td><%= @product.mosip_compliance_status_id %></td>
-                  </tr>
-                  <tr>
-                    <td>Software Version</td>
-                    <td>:</td>
-                    <td><%= @product.software_version %></td>
-                  </tr>
-                  <tr>
-                    <td>Full Specifications</td>
-                    <td>:</td>
-                    <td>
-                      <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
-                    </td>
-                  </tr>
+                  <% if @product.manufacturer_id.present? %>
+                    <tr>
+                      <td>Manufacturer</td>
+                      <td>:</td>
+                      <td><%= @product.manufacturer_id %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.name.present? %>
+                    <tr>
+                      <td>Product Name</td>
+                      <td>:</td>
+                      <td><%= @product.name %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.supported_biometric_modalities.present? %>
+                    <tr>
+                      <td>Supported Biometric Modalities</td>
+                      <td>:</td>
+                      <td><%= @product.supported_biometric_modalities %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.usage.present? %>
+                    <tr>
+                      <td>Usage</td>
+                      <td>:</td>
+                      <td><%= @product.usage %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.mosip_compliance.present? %>
+                    <tr>
+                      <td>Status of MOSIP-Compliance</td>
+                      <td>:</td>
+                      <td><%= @product.mosip_compliance %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.software_version.present? %>
+                    <tr>
+                      <td>Software Version</td>
+                      <td>:</td>
+                      <td><%= @product.software_version %></td>
+                    </tr>
+                  <% end %>
+
+                  <% if @product.full_specifications.present? %>
+                    <tr>
+                      <td>Full Specifications</td>
+                      <td>:</td>
+                      <td>
+                        <a href="<%= @product.full_specifications %>" class="blue-1">Link to specifications PDF</a>
+                      </td>
+                    </tr>
+                  <% end %>
                 <% end %>
+
               </table>
             </div>
           </div>
         </div>
       </div>
       <!-- Second Accordion -->
-      <div class="">
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                aria-controls="collapseTwo">
-                Additional Feature
-                <i class="fas fa-chevron-down"></i>
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse show second-accor" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-              <%= @product.additional_feature.html_safe %>
+      <% if @product.additional_feature.present? %>
+        <div class="">
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
+                  aria-controls="collapseTwo">
+                  Additional Feature
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse show second-accor" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <%= @product.additional_feature.html_safe %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   </section>
 
