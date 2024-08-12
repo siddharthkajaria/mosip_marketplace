@@ -36,6 +36,13 @@
   color: #ffffff;
 }
 
+.text-style-6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 200;
+  font-size: 60px;
+  color: #000000;
+}
+
 /* font-size */
 
 .fs-14 {
@@ -52,6 +59,10 @@
 
 .fs-20 {
   font-size: 20px;
+}
+
+.fs-22 {
+  font-size: 22px;
 }
 
 .fs-25 {
@@ -124,6 +135,10 @@
 
 .grey-1 {
   color: #6A6A6A;
+}
+
+.green {
+  color: #048654;
 }
 
 /* margins */
@@ -295,6 +310,10 @@
   border: 0.74px solid #6A6A6A;
 }
 
+.border-grey-4 {
+  border: 1.5px solid #6A6A6A;
+}
+
 .border-right-1{
   border-right: 1.5px solid #2C2C2C;
 }
@@ -453,6 +472,17 @@
 }
 
 /* other-css */
+
+.benefits-container ul li {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+}
+
+.lh-normal {
+  line-height: normal;
+}
 
 .object-cover {
   object-fit: cover;

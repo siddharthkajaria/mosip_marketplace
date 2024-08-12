@@ -427,9 +427,11 @@ $(document).ready(function () {
   function handleResize() {
     if ($(window).width() > 767) {
       setEqualHeight('solution-1');
+      setEqualHeight('partner-h1');
+      setEqualHeight('partner-h2');
     } else {
       // Reset heights to 'auto' when screen width is 800px or less
-      $('.solution-1').css('height', 'auto');
+      $('.solution-1, .partner-h1, .partner-h2').css('height', 'auto');
     }
   }
 
