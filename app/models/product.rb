@@ -101,9 +101,11 @@ class Product < ApplicationRecord
     if params[:mosip_compliance_status].present?
       mosip_compliance_status_names = params[:mosip_compliance_status].uniq
       if filtered_pdts.present?
-        filtered_pdts = filtered_pdts.joins(:mosip_compliance_status).where(mosip_compliance_statuses: { name: mosip_compliance_status_names })
+        filtered_pdts = filtered_pdts.where(mosip_compliance: mosip_compliance_status_names)
+                                      .or(filtered_pdts.where(mosip_integration: mosip_compliance_status_names))
       else
-        filtered_pdts = all_products.joins(:mosip_compliance_status).where(mosip_compliance_statuses: { name: mosip_compliance_status_names })
+        filtered_pdts = all_products.where(mosip_compliance: mosip_compliance_status_names)
+                                    .or(all_products.where(mosip_integration: mosip_compliance_status_names))
       end
     end
     
