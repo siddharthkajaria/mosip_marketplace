@@ -141,6 +141,14 @@
   color: #048654;
 }
 
+.red {
+  color: #E85456;
+}
+
+.orange {
+  color: #EA8001;
+}
+
 /* margins */
 
 .mt-80 {
@@ -472,6 +480,10 @@
 }
 
 /* other-css */
+
+.d-flex-lg{
+  display: flex;
+}
 
 .benefits-container ul li {
   font-family: "Montserrat", sans-serif;
