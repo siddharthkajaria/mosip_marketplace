@@ -16,9 +16,7 @@
             </p>
           </div>
           <div class="mt-50 mt-30-sm">
-            <button class="btn btn-style-2 fs-14">
-              EXPLORE SOLUTIONS
-            </button>
+            <%= link_to 'EXPLORE SOLUTIONS', categories_path, class: 'btn btn-style-2 fs-14' %>
           </div>
         </div>
         <div class="col-lg-8 col-lg-7 mt-15-sm">
@@ -91,7 +89,7 @@
             </p>
           </div>
           <div class="mt-50 mt-30-sm">
-            <a href="" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
+            <a href="<%= categories_path %>" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
               <div class="d-flex align-items-center border-bottom-1 w-fit">
                 <div class="fs-25 blue-4 text-style-1 fs-22-sm">All Solutions</div>
                 <div class="ml-3">
@@ -109,65 +107,48 @@
       </div>
       <div class="mt-50 mt-30-sm">
         <div class="owl-carousel custom-carousel-1">
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-1.png" alt="home-car-1" class="w-100p" loading="lazy">
+          <a href="<%= products_path(category_code: 'authentication-devices') %>">
+            <div class="item">
+              <div>
+                <img src="images/home/home-car-1.png" alt="home-car-1" class="w-100p" loading="lazy">
+              </div>
+              <div class="text-style-4 text-center black fs-18 fs-14-sm">
+                Authentication<br>
+                Devices
+              </div>
             </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              Authentication<br>
-              Devices
+          </a>
+          <a href="<%= products_path(category_code: 'registration-devices') %>">
+            <div class="item">
+              <div>
+                <img src="images/home/home-car-2.png" alt="home-car-2" class="w-100p" loading="lazy">
+              </div>
+              <div class="text-style-4 text-center black fs-18 fs-14-sm">
+                Registration<br>
+                Devices
+              </div>
             </div>
-          </div>
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-2.png" alt="home-car-2" class="w-100p" loading="lazy">
+          </a>
+          <a href="<%= products_path(category_code: 'abis') %>">
+            <div class="item">
+              <div>
+                <img src="images/home/home-car-3.png" alt="home-car-3" class="w-100p" loading="lazy">
+              </div>
+              <div class="text-style-4 text-center black fs-18 fs-14-sm">
+                ABIS
+              </div>
             </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              Registration<br>
-              Devices
+          </a>
+          <a href="<%= products_path(category_code: 'sdk') %>">
+            <div class="item">
+              <div>
+                <img src="images/home/home-car-4.png" alt="home-car-3" class="w-100p" loading="lazy">
+              </div>
+              <div class="text-style-4 text-center black fs-18 fs-14-sm">
+                SDK
+              </div>
             </div>
-          </div>
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-3.png" alt="home-car-3" class="w-100p" loading="lazy">
-            </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              ABIS
-            </div>
-          </div>
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-4.png" alt="home-car-3" class="w-100p" loading="lazy">
-            </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              SDK
-            </div>
-          </div>
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-2.png" alt="home-car-2" class="w-100p" loading="lazy">
-            </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              Registration<br>
-              Devices
-            </div>
-          </div>
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-3.png" alt="home-car-3" class="w-100p" loading="lazy">
-            </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              ABIS
-            </div>
-          </div>
-          <div class="item">
-            <div>
-              <img src="images/home/home-car-4.png" alt="home-car-3" class="w-100p" loading="lazy">
-            </div>
-            <div class="text-style-4 text-center black fs-18 fs-14-sm">
-              SDK
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -275,7 +256,7 @@
     </div>
     <div class="text-center">
       <div class="mt-50 mt-30-sm">
-        <a href="" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
+        <a href="<%= partner_categories_path %>" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
           <div class="d-flex align-items-center border-bottom-1 w-fit m-auto">
             <div class="fs-25 blue-4 text-style-1 fs-22-sm">All Partners</div>
             <div class="ml-3">
