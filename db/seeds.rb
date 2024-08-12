@@ -32,11 +32,11 @@ Product_names.each_with_index do |name,index|
     Product.create(
         name: name,
         short_description: "A comprehensive biometric enrolment kit with multiple modalities.",
-        manufacturer_id: Manufacturer.find(index+1).id,
+        manufacturer_id: Manufacturer.find(index+7).id,
         model: "IR210",
         supported_biometric_modalities: "Fingerprint Slap (4-4-2), Iris (dual), Face",
         additional_components: "Battery Pack, Signature Pad, Laptop, Power Management",
-        mosip_compliance_status_id: index+1,
+        mosip_compliance_status_id: index+5,
         macp_certification_link: "",
         sbi_version: "V1.1 (Android), V2.0 (Windows)",
         global_certifications: "IP67, FBI PIV",
@@ -44,7 +44,7 @@ Product_names.each_with_index do |name,index|
         usage: "Biometric enrolment for various applications",
         print_software_version: "",
         integration_methodology: "Various integration methods available",
-        category_id: Category.find(index+1).id
+        category_id: Category.find(index+9).id
     )
 end
 
@@ -73,11 +73,24 @@ Product.all.each do |p|
 end
 
 # Product images
-uploader = ImageUploader.new(:store)
+    uploader = ImageUploader.new(:store)
 
-Product.all.each do |p|
-    3.times do |i|
-        file = File.open("public/images/product/mp-"+(i+1).to_s+".jpg")
+    Product.all.each do |p|
+        3.times do |i|
+            file = File.open("public/images/product/mp-"+(i+1).to_s+".jpg")
+            uploaded_file = uploader.upload(file)
+            images = p.product_images.create!(
+                image_data: uploaded_file.to_json,
+                position:i+1
+            )
+            images.image_derivatives! 
+            images.save!
+        end
+    end
+
+    p = Product.third
+    2.times do |i|
+        file = File.open("public/images/product/mps-"+(i+1).to_s+".jpg")
         uploaded_file = uploader.upload(file)
         images = p.product_images.create!(
             image_data: uploaded_file.to_json,
@@ -86,19 +99,6 @@ Product.all.each do |p|
         images.image_derivatives! 
         images.save!
     end
-end
-
- p = Product.third
- 2.times do |i|
-    file = File.open("public/images/product/mps-"+(i+1).to_s+".jpg")
-    uploaded_file = uploader.upload(file)
-    images = p.product_images.create!(
-        image_data: uploaded_file.to_json,
-        position:i+1
-    )
-    images.image_derivatives! 
-    images.save!
-end
 
 
 # Mosip Compliance state

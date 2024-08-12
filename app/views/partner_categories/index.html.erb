@@ -1,14 +1,339 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/header" %>
 
-<h1>Partner categories</h1>
+<div class="zoom">
+  <section class="bg-image-1 bg-img-style-1 mt-60-sm">
+    <div class="py-50 py-30-sm">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 col-md-5">
+            <h1 class="text-style-1 black fs-55 fs-35-sm">Become a Partner</h1>
+            <div class="mt-30 mt-20-sm">
+              <p class="text-style-4 fs-16 grey-1 pr-80-sm">
+                Discover ready-to-use
+                technology solutions for your
+                national ID systems.
+              </p>
+            </div>
+            <div class="mt-50 mt-30-sm">
+              <button class="btn btn-style-2 fs-14">
+                EXPLORE SOLUTIONS
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-7 mt-15-sm">
+            <div>
+              <img src="../images/home/home-img-1.png" alt="home-img-1" class="w-100p" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div id="partner_categories">
-  <% @partner_categories.each do |partner_category| %>
-    <%= render partner_category %>
-    <p>
-      <%= link_to "Show this partner category", partner_category %>
-    </p>
-  <% end %>
+  <section class="">
+    <div class="bg-blue-2 py-50 py-30-sm">
+      <div class="container">
+        <div class="text-center">
+          <h3 class="text-style-2 fs-30 fs-18-sm white">Partner Categories</h3>
+          <div class="mt-50 mt-30-sm">
+            <div class="row">
+              <div class="col-md-4 col-4">
+                <div>
+                  <img src="../images/home/tech-cat-1.png" alt="tech-1" class="w-40p w-70p-sm" loading="lazy">
+                </div>
+                <div class="mt-30 mt-20-sm">
+                  <div class="text-style-1 fs-25 fs-14-sm yellow-1">
+                    <u>MOSIP Compliant</u>
+                  </div>
+                </div>
+                <div class="mt-30 mt-20-sm">
+                  <div class="text-style-3 fs-16 fs-10-sm white">
+                    Products that have completed a self-compliance exercise against MOSIP’s specifications.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-4">
+                <div>
+                  <img src="../images/home/tech-cat-2.png" alt="tech-2" class="w-40p w-70p-sm" loading="lazy">
+                </div>
+                <div class="mt-30 mt-20-sm">
+                  <div class="text-style-1 fs-25 fs-14-sm yellow-1">
+                    <u>MOSIP Integrated</u>
+                  </div>
+                </div>
+                <div class="mt-30 mt-20-sm">
+                  <div class="text-style-3 fs-16 fs-10-sm white">
+                    A product or solution that has demonstrated the ability to work with MOSIP systems.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-4">
+                <div>
+                  <img src="../images/home/tech-cat-3.png" alt="tech-3" class="w-40p w-70p-sm" loading="lazy">
+                </div>
+                <div class="mt-30 mt-20-sm">
+                  <div class="text-style-1 fs-25 fs-14-sm yellow-1">
+                    <u>MOSIP SI Partner</u>
+                  </div>
+                </div>
+                <div class="mt-30 mt-20-sm">
+                  <div class="text-style-3 fs-16 fs-10-sm white">
+                    SI entities that have completed training and capacity-building exercises through the MOSIP Partner Programme.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-50 py-30-sm">
+    <div class="container">
+      <h1 class="text-style-2 fw-300 fs-80 fs-35-sm">Initiatives for Technology Partners</h1>
+      <div class="mt-50 mt-30-sm">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="border-grey-4 br-35 p-20">
+              <div class="text-style-6">
+                  01.
+              </div>
+              <div class="mt-20 mt-10-sm">
+                <div class="text-style-2 fs-22 fs-18-sm green lh-normal partner-h1">
+                  MOSIP Partner Programme
+                </div>
+              </div>
+              <div class="mt-20 mt-10-sm">
+                <div class="text-style-3 fs-16 fs-14-sm partner-h2">
+                  A training and capacity-building programme for System Integrators, initiated to help stakeholders connect with MOSIP,
+                  and become part of a cohesive ecosystem.
+                </div>
+              </div>
+              <div class="mt-50 mt-30-sm">
+                <button class="btn btn-style-2 fs-14">
+                  Download PDF <span class="ml-2"><img src="../images/partner/pdf-1.png" width="15"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mt-15-sm mt-20-md">
+            <div class="border-grey-4 br-35 p-20">
+              <div class="text-style-6">
+                02.
+              </div>
+              <div class="mt-20 mt-10-sm">
+                <div class="text-style-2 fs-22 fs-18-sm green lh-normal partner-h1">
+                  MOSIP Advanced Compliance Programme (MACP)
+                </div>
+              </div>
+              <div class="mt-20 mt-10-sm">
+                <div class="text-style-3 fs-16 fs-14-sm partner-h2">
+                  A partnership between MOSIP and multiple labs to certify compliant biometric devices and solutions
+                </div>
+              </div>
+              <div class="mt-50 mt-30-sm">
+                <button class="btn btn-style-2 fs-14">
+                  Download PDF <span class="ml-2"><img src="../images/partner/pdf-1.png" width="15"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 mt-15-sm mt-20-md">
+            <div class="border-grey-4 br-35 p-20">
+              <div class="text-style-6">
+                03.
+              </div>
+              <div class="mt-20 mt-10-sm">
+                <div class="text-style-2 fs-22 fs-18-sm green lh-normal partner-h1">
+                  Compliance Exercise
+                </div>
+              </div>
+              <div class="mt-20 mt-10-sm">
+                <div class="text-style-3 fs-16 fs-14-sm partner-h2">
+                  An assisted compliance programme for technology partners to ensure compliance against MOSIP’s standard specifications.
+                </div>
+              </div>
+              <div class="mt-50 mt-30-sm">
+                <button class="btn btn-style-2 fs-14">
+                  Download PDF <span class="ml-2"><img src="../images/partner/pdf-1.png" width="15"></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-50 py-30-sm benefits-container">
+    <div class="container">
+      <h1 class="text-style-2 fw-300 fs-80 fs-35-sm">Benefits</h1>
+      <div class="mt-30 mt-10-sm">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="text-style-2 fs-20 fs-14-sm grey-1">
+              Partnering with MOSIP opens the door to a comprehensive array of benefits, offering a collaborative journey towards
+              innovation and growth.
+            </div>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+      </div>
+      <div class="mt-50 mt-30-sm">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="text-style-6">
+              01.
+            </div>
+            <div class="mt-15 mt-10-sm">
+              <div class="text-style-2 fs-22 fs-18-sm green lh-normal">
+                Build on MOSIP
+              </div>
+            </div>
+            <div class="mt-20 mt-10-sm">
+              <ul>
+                <li>Access to MOSIP Engineers and Community</li>
+                <li>Tailor-made training Programmes</li>
+                <li>Access to Sandbox and test environments</li>
+                <li>Tools Kits, sample codes and utilities</li>
+                <li>Compliance Programmes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="">
+              <img src="../images/benefits/benefits-1.jpg" class="w-100p" alt="benefit-1" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-50 mt-30-sm">
+        <div class="row align-items-center">
+          <div class="col-md-6 d-none-sm">
+            <div class="">
+              <img src="../images/benefits/benefits-2.jpg" class="w-100p" alt="benefit-2" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex-lg d-block-sm align-items-center justify-content-center">
+              <div>
+                <div class="text-style-6">
+                  02.
+                </div>
+                <div class="mt-15 mt-10-sm">
+                  <div class="text-style-2 fs-22 fs-18-sm blue-1 lh-normal">
+                    Enhance Visibility
+                  </div>
+                </div>
+                <div class="mt-20 mt-10-sm">
+                  <ul>
+                    <li>
+                      Showcase Solutions 
+                      <ul>
+                        <li>Marketplace</li>
+                        <li>Experience Centres</li>
+                        <li>Mosip Communication Channels</li>
+                        <li>PR/Marketing</li>
+                      </ul>
+                    </li>
+                    <li>Participate in Pilots</li>
+                    <li>Workshops and Webinars</li>
+                    <li>Exclusive invites to MOSIP events</li>
+                    <li>Blogs/Whitepapers</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-block-sm d-none-lg">
+            <div class="">
+              <img src="../images/benefits/benefits-2.jpg" class="w-100p" alt="benefit-2" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-50 mt-30-sm">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="text-style-6">
+              03.
+            </div>
+            <div class="mt-15 mt-10-sm">
+              <div class="text-style-2 fs-22 fs-18-sm red lh-normal">
+                Contribute
+              </div>
+            </div>
+            <div class="mt-20 mt-10-sm">
+              <ul>
+                <li>Code Contribution</li>
+                <li>Help define the roadmap</li>
+                <li>Create standards (ieee/QR code for example)</li>
+                <li>Participate in PoCs and evaluation programmes</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="">
+              <img src="../images/benefits/benefits-1.jpg" class="w-100p" alt="benefit-1" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-50 mt-30-sm">
+        <div class="row align-items-center">
+          <div class="col-md-6 d-none-sm">
+            <div class="">
+              <img src="../images/benefits/benefits-2.jpg" class="w-100p" alt="benefit-2" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="d-flex-lg d-block-sm align-items-center justify-content-center">
+              <div>
+                <div class="text-style-6">
+                  04.
+                </div>
+                <div class="mt-15 mt-10-sm">
+                  <div class="text-style-2 fs-22 fs-18-sm orange lh-normal">
+                    Collaborate
+                  </div>
+                </div>
+                <div class="mt-20 mt-10-sm">
+                  <ul>
+                    <li>With Countries</li>
+                    <li>With Academia</li>
+                    <li>With Multilateral Agencies.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 d-none-lg d-block-sm">
+            <div class="">
+              <img src="../images/benefits/benefits-2.jpg" class="w-100p" alt="benefit-2" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-50 py-30-sm">
+    <div class="py-50 py-30-sm bg-grey-2">
+      <div class="container">
+        <div class="text-center text-style-4 fs-16 black">
+          MOSIP technology is developed with the understanding that technology solutions cannot be static. The support team at
+          MOSIP offers concerted capacity-building to ensure that, over a period of time, country partners are equipped to adapt
+          and modify their national ID technology in a way that can be dynamic to changing environments.
+        </div>
+        <div class="mt-50 mt-30-sm">
+          <div class="">
+            <img src="../images/benefits/benefits-3.jpg" class="w-100p" alt="benefit-2" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
-
-<%= link_to "New partner category", new_partner_category_path %>

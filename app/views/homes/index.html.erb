@@ -1,5 +1,336 @@
-<%= link_to 'Contact Us', enquiries_path, class: 'btn btn-primary' %>
-<br />
-<% ["registration-devices", "authentication-devices", "abis", "sdk"].each do |category_code| %>
-  <%= link_to category_code.humanize, products_path(category_code: category_code), class: "category-button" %><br/>
-<% end %>
+<%= render "shared/header" %>
+
+<div class="zoom">
+<section class="bg-image-1 bg-img-style-1 mt-60-sm">
+  <div class="py-50 py-30-sm">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-4 col-md-5">
+          <h1 class="text-style-1 black fs-55 fs-35-sm">Build <br>
+          with MOSIP</h1>
+          <div class="mt-30 mt-20-sm">
+            <p class="text-style-4 fs-16 grey-1 pr-80-sm">
+              Discover ready-to-use
+              technology solutions for your
+              national ID systems.
+            </p>
+          </div>
+          <div class="mt-50 mt-30-sm">
+            <button class="btn btn-style-2 fs-14">
+              EXPLORE SOLUTIONS
+            </button>
+          </div>
+        </div>
+        <div class="col-lg-8 col-lg-7 mt-15-sm">
+          <div>
+            <img src="images/home/home-img-1.png" alt="home-img-1" class="w-100p" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-blue-2">
+  <div class="py-50 py-30-sm">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-4 col-4">
+          <div class="text-center">
+            <div class="text-style-1 yellow-1 fs-40 fs-35-sm">
+              60+
+            </div>
+            <div class="text-style-4 fs-16 fs-10-sm">
+              Technology <br>
+              Solution Partners
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-4">
+          <div class="text-center">
+            <div class="text-style-1 yellow-1 fs-40 fs-35-sm">
+              13+
+            </div>
+            <div class="text-style-4 fs-16 fs-10-sm">
+              System <br>
+              Integrator Partners
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-4">
+          <div class="text-center">
+            <div class="text-style-1 yellow-1 fs-40 fs-35-sm">
+              50+
+            </div>
+            <div class="text-style-4 fs-16 fs-10-sm">
+              Listing on the MOSIP <br>
+              Marketplace
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-image-1 bg-img-style-1">
+  <div class="py-50 py-30-sm">
+    <div class="container">
+      <h1 class="text-style-2 fw-300 fs-80 fs-35-sm">Discover Solutions</h1>
+      <div class="row align-items-center">
+        <div class="col-lg-5 d-none-lg d-none-md d-block-sm mt-15-sm">
+          <div>
+            <img src="images/home/home-img-2.png" alt="home-img-2" class="w-100p" loading="lazy">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div>
+            <p class="text-style-4 fs-16 grey-1">
+              Explore MOSIP’s extensive and nurtured technology ecosystem – from biometric devices to deduplication software, and
+              digital wallets – categorised by compliance, certifications, biometric modalities, and more.
+            </p>
+          </div>
+          <div class="mt-50 mt-30-sm">
+            <a href="" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
+              <div class="d-flex align-items-center border-bottom-1 w-fit">
+                <div class="fs-25 blue-4 text-style-1 fs-22-sm">All Solutions</div>
+                <div class="ml-3">
+                  <img class="" width="20" src="images/home/home-arrow.png" alt="arrow">
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-5 d-none-sm">
+          <div>
+            <img src="images/home/home-img-2.png" alt="home-img-2" class="w-100p" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="mt-50 mt-30-sm">
+        <div class="owl-carousel custom-carousel-1">
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-1.png" alt="home-car-1" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              Authentication<br>
+              Devices
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-2.png" alt="home-car-2" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              Registration<br>
+              Devices
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-3.png" alt="home-car-3" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              ABIS
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-4.png" alt="home-car-3" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              SDK
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-2.png" alt="home-car-2" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              Registration<br>
+              Devices
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-3.png" alt="home-car-3" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              ABIS
+            </div>
+          </div>
+          <div class="item">
+            <div>
+              <img src="images/home/home-car-4.png" alt="home-car-3" class="w-100p" loading="lazy">
+            </div>
+            <div class="text-style-4 text-center black fs-18 fs-14-sm">
+              SDK
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-image-2 bg-img-style-1">
+  <div class="py-50 py-30-sm">
+    <div class="container">
+      <h1 class="text-style-5 fs-35-sm">About <br>
+      MOSIP Marketplace?</h1>
+      <div class="row align-items-center d-none-sm">
+        <div class="col-lg-5">
+          <div class="pr-5">
+            <div>
+              <p class="text-style-2 fs-16 white">
+                MOSIP Marketplace aims to
+                bridge the gap between
+                adopting countries and critical
+                additional technologies needed
+                for the building of holistic
+                national ID systems.
+              </p>
+            </div>
+            <div class="mt-30">
+              <p class="text-style-4 fs-16">
+                Envisioned as a curated catalogue of
+                pre-compliant solutions, the Marketplace allows MOSIP’s country partners to make informed decisions on vendors for their
+                national Digital Public Infrastructure. As this initiative continues to grow, we are hopeful that it will help adopting
+                countries avoid vendor lock-in, maintain best practices on global standards, and save precious time and resources as
+                they develop their national ID systems.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div>
+            <img src="images/home/home-img-3.png" alt="home-img-2" class="w-90p" loading="lazy">
+          </div>
+        </div>
+      </div>
+      <div class="d-none-lg d-none-md d-block-sm">
+        <div class="row">
+          <div class="col-12">
+            <div class="">
+              <div class="pr-80-sm mt-50-sm">
+                <p class="text-style-2 fs-16 white">
+                  MOSIP Marketplace aims to
+                  bridge the gap between
+                  adopting countries and critical
+                  additional technologies needed
+                  for the building of holistic
+                  national ID systems.
+                </p>
+              </div>
+              <div class="-mt-70-sm">
+                <img src="images/home/home-img-3.png" alt="home-img-2" class="w-100p" loading="lazy">
+              </div>
+              <div class="mt-30">
+                <p class="text-style-4 fs-16">
+                  Envisioned as a curated catalogue of
+                  pre-compliant solutions, the Marketplace allows MOSIP’s country partners to make informed decisions on vendors
+                  for their
+                  national Digital Public Infrastructure. As this initiative continues to grow, we are hopeful that it will help
+                  adopting
+                  countries avoid vendor lock-in, maintain best practices on global standards, and save precious time and
+                  resources as
+                  they develop their national ID systems.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-50-sm">
+        <h3 class="text-style-2 fs-30 fs-18-sm white">Technology Partner Categories</h3>
+        <div class="mt-50 mt-30-sm">
+          <div class="row">
+            <div class="col-md-4 col-4">
+              <div>
+                <img src="images/home/tech-cat-1.png" alt="tech-1" class="w-40p w-70p-sm" loading="lazy">
+              </div>
+            </div>
+            <div class="col-md-4 col-4">
+              <div>
+                <img src="images/home/tech-cat-2.png" alt="tech-2" class="w-40p w-70p-sm" loading="lazy">
+              </div>
+            </div>
+            <div class="col-md-4 col-4">
+              <div>
+                <img src="images/home/tech-cat-3.png" alt="tech-3" class="w-40p w-70p-sm" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-50 py-30-sm">
+  <div class="container">
+    <div>
+      <img src="images/home/home-partner.png" alt="home-partner" class="w-100p" loading="lazy">
+    </div>
+    <div class="text-center">
+      <div class="mt-50 mt-30-sm">
+        <a href="" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
+          <div class="d-flex align-items-center border-bottom-1 w-fit m-auto">
+            <div class="fs-25 blue-4 text-style-1 fs-22-sm">All Partners</div>
+            <div class="ml-3">
+              <img class="" width="20" src="images/home/home-arrow.png" alt="arrow">
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="mt-10em mt-5em-sm">
+        <div class="bg-style-6">
+          <div class="-mt-12p">
+            <img class="w-100p" src="images/home/home-img-4.png" alt="home-img-4" loading="lazy">
+          </div>
+          <div class="mt-50 mt-30-sm">
+            <h3 class="text-style-2 fs-30 fs-22-sm black">List Your Solution</h3>
+          </div>
+          <div class="mt-30">
+            <p class="text-style-4 black fs-16 fs-12-sm">
+              For prospective biometric device manufacturers, software providers, or system integrators.
+              Explore how to become a MOSIP Technology Partner, the certification and compliance initiatives offered by MOSIP, and
+              benefits of joining our growing ecosystem.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-50 mt-30-sm">
+        <button class="btn btn-style-2 fs-14">
+          LIST YOUR SOLUTIONS
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-50 py-30-sm">
+  <div class="py-50 py-30-sm bg-grey-2">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-2 col-4">
+          <div>
+            <img class="w-100p" src="images/home/mosipn-logo-home.png" alt="mosipn-logo-home" loading="lazy">
+          </div>
+        </div>
+        <div class="col-md-10 col-8">
+          <div class="text-style-4 black fs-18 fs-12-sm">
+            MOSIP is a not-for-profit, university-incubated project built as a core component of global Digital Public
+            Infrastructure. The platform enables inclusive, trustworthy ID-led digital transformation.<br>
+            <br>
+            Funded by the Gates’ Foundation, NORAD, Pratiksha Trust, and Tata Trusts, MOSIP is currently in various stages of
+            adoption in 20 countries across Africa, Asia Pacific, and Latin America.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
