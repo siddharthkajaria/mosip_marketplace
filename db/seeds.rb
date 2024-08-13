@@ -159,3 +159,32 @@ MosipComplianceStatus.all.each do |c|
     c.code = c.name.parameterize()
     c.save!
 end
+
+
+
+# Ftm_certification
+
+cert = ["FIPS 140-2", "Level2"]
+cert.each do |c|
+    ProductFtmCertification.create!(
+        name: c,
+        code: c.parameterize()
+    )
+end
+
+# Specification Version
+
+ver = ["V-1.0.0","V-2.0.0"]
+ver.each do |v|
+    ProductSpecificationVersion.create!(
+        name:v,
+        code:v.parameterize()
+    )
+end
+
+# assigning ftm and ver to pdt
+Product.all.each do |p|
+    p.product_ftm_certification_id = ["1", "2"].sample()
+    p.product_specification_version_id = ["1", "2"].sample()
+    p.save!
+end

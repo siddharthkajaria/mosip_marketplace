@@ -1,0 +1,1 @@
+json.partial! "product_specification_versions/product_specification_version", product_specification_version: @product_specification_version

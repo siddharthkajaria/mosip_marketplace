@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>System integrators</h1>
+
+<div id="system_integrators">
+  <% @system_integrators.each do |system_integrator| %>
+    <%= render system_integrator %>
+    <p>
+      <%= link_to "Show this system integrator", system_integrator %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New system integrator", new_system_integrator_path %>

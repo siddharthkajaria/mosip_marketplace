@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Product specification versions</h1>
+
+<div id="product_specification_versions">
+  <% @product_specification_versions.each do |product_specification_version| %>
+    <%= render product_specification_version %>
+    <p>
+      <%= link_to "Show this product specification version", product_specification_version %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New product specification version", new_product_specification_version_path %>

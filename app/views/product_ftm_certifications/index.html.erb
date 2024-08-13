@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Product ftm certifications</h1>
+
+<div id="product_ftm_certifications">
+  <% @product_ftm_certifications.each do |product_ftm_certification| %>
+    <%= render product_ftm_certification %>
+    <p>
+      <%= link_to "Show this product ftm certification", product_ftm_certification %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New product ftm certification", new_product_ftm_certification_path %>

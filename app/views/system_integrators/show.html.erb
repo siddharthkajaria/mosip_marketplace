@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @system_integrator %>
+
+<div>
+  <%= link_to "Edit this system integrator", edit_system_integrator_path(@system_integrator) %> |
+  <%= link_to "Back to system integrators", system_integrators_path %>
+
+  <%= button_to "Destroy this system integrator", @system_integrator, method: :delete %>
+</div>

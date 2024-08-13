@@ -3,7 +3,9 @@
 # Table name: manufacturers
 #
 #  id           :bigint           not null, primary key
-#  address      :text(65535)
+#  address1     :text(65535)
+#  address2     :text(65535)
+#  address3     :text(65535)
 #  desc         :text(65535)
 #  email_one    :string(255)
 #  email_three  :string(255)
@@ -18,4 +20,5 @@
 #  updated_at   :datetime         not null
 #
 class Manufacturer < ApplicationRecord
+    has_many :products
 end

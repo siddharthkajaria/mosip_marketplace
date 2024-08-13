@@ -1,0 +1,2 @@
+module ProductSpecificationVersionsHelper
+end

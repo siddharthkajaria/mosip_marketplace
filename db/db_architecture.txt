@@ -11,6 +11,7 @@ rails generate scaffold Product name:string short_description:text manufacturer:
 rails generate scaffold ProductImage image_data:text position:integer status:boolean product:references
 rails generate migration AddMosipComplianceIntegrationAndCertifiedToProducts mosip_compliance:string mosip_integration:string certified:boolean
 
+
 rails g migration AddAditionalFeatureToProduct aditional_feature:text
 rails generate scaffold Manufacturer name:string email_one:string email_two:string email_three:string phone_one:string phone_two:string phone_three:string address:text desc:text website_link:string image_data:text
 
@@ -27,3 +28,9 @@ rails g migration AddQuestionToEnquiry question:text
 rails generate scaffold PartnerCategory name:string desc:text image_data:text
 rails generate scaffold Partner name:string desc:text image_data:text position:integer url:text
 rails g migration AddPartnerCategoryIdToPartner partner_category:references
+
+rails generate scaffold si_partnership name:string desc:text code:string status:boolean
+rails generate scaffold system_integrator name:string desc:text image_data:text partnership_validity:date si_partnership:references
+
+rails generate scaffold product_ftm_certification name:string desc:text code:string status:boolean
+rails generate scaffold product_specification_version name:string desc:text code:string status:boolean

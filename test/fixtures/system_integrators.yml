@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  desc: MyText
+  image_data: MyText
+  partnership_validity: 2024-08-13
+  si_partnership: one
+
+two:
+  name: MyString
+  desc: MyText
+  image_data: MyText
+  partnership_validity: 2024-08-13
+  si_partnership: two

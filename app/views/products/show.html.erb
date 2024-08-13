@@ -216,11 +216,11 @@
                     </tr>
                   <% end %>
 
-                  <% if @product.ftm_certification.present? %>
+                  <% if @product.product_ftm_certification.present? %>
                     <tr>
                       <td>FTM Certification</td>
                       <td>:</td>
-                      <td><%= @product.ftm_certification %></td>
+                      <td><%= @product.product_ftm_certification.name %></td>
                     </tr>
                   <% end %>
 
@@ -468,7 +468,9 @@
                 </div>
                 <div class="mt-30 mt-15-sm">
                   <div class="text-style-4 fs-14-sm">
-                    <%= @product.manufacturer.address %>
+                    <%= @product.manufacturer.address1 %> <br/>
+                    <%= @product.manufacturer.address2 %> <br/>
+                    <%= @product.manufacturer.address3 %> 
                   </div>
                 </div>
               </div>

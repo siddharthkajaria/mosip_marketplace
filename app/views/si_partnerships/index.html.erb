@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Si partnerships</h1>
+
+<div id="si_partnerships">
+  <% @si_partnerships.each do |si_partnership| %>
+    <%= render si_partnership %>
+    <p>
+      <%= link_to "Show this si partnership", si_partnership %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New si partnership", new_si_partnership_path %>

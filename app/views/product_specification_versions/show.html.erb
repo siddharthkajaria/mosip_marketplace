@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @product_specification_version %>
+
+<div>
+  <%= link_to "Edit this product specification version", edit_product_specification_version_path(@product_specification_version) %> |
+  <%= link_to "Back to product specification versions", product_specification_versions_path %>
+
+  <%= button_to "Destroy this product specification version", @product_specification_version, method: :delete %>
+</div>

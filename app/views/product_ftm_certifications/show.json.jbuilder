@@ -1,0 +1,1 @@
+json.partial! "product_ftm_certifications/product_ftm_certification", product_ftm_certification: @product_ftm_certification

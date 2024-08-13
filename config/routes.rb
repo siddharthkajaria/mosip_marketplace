@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :product_specification_versions
+  resources :product_ftm_certifications
+  resources :system_integrators
+  resources :si_partnerships
   resources :product_images
   resources :partners
   resources :partner_categories

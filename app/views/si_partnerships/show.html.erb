@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @si_partnership %>
+
+<div>
+  <%= link_to "Edit this si partnership", edit_si_partnership_path(@si_partnership) %> |
+  <%= link_to "Back to si partnerships", si_partnerships_path %>
+
+  <%= button_to "Destroy this si partnership", @si_partnership, method: :delete %>
+</div>
