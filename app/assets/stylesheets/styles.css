@@ -197,6 +197,10 @@
   margin-left: 15%;
 }
 
+.ml-50 {
+  margin-left: 50px;
+}
+
 .mr-15 {
   margin-right: 15px;
 }
@@ -223,6 +227,10 @@
 
 .p-20 {
   padding: 20px;
+}
+
+.p-30 {
+  padding: 30px;
 }
 
 /* bg */
@@ -371,6 +379,10 @@
 
 .w-90p {
   width: 90%;
+}
+
+.w-80p {
+  width: 80%;
 }
 
 .w-75p {
@@ -834,6 +846,10 @@ input:focus {
 
   .-mt-70-sm {
     margin-top: -70px;
+  }
+
+  .ml-0-sm {
+    margin-left: 0px;
   }
 
   .mt-80-sm {

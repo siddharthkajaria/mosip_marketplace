@@ -412,34 +412,38 @@ $(document).ready(function () {
   
   // height-functionality
 
+  // Function to set equal heights for elements with a given class name
   function setEqualHeight(className) {
     var elements = $('.' + className);
     var maxHeight = 0;
 
     elements.each(function () {
-      maxHeight = Math.max(maxHeight, $(this).height());
+      maxHeight = Math.max(maxHeight, $(this).outerHeight());
     });
 
     elements.height(maxHeight);
   }
 
-  // Function to handle resizing and apply equal heights if screen width > 800px
+  // Function to handle resizing and apply equal heights if screen width > 767px
   function handleResize() {
     if ($(window).width() > 767) {
       setEqualHeight('solution-1');
       setEqualHeight('partner-h1');
       setEqualHeight('partner-h2');
     } else {
-      // Reset heights to 'auto' when screen width is 800px or less
+      // Reset heights to 'auto' when screen width is 767px or less
       $('.solution-1, .partner-h1, .partner-h2').css('height', 'auto');
     }
   }
 
-  // Initial call to set heights based on screen width
-  handleResize();
+  // Ensure that heights are set only after the window has fully loaded
+  $(window).on('load', function () {
+    handleResize();
 
-  // Re-run height adjustment on window resize
-  $(window).resize(handleResize);
+    // Re-run height adjustment on window resize
+    $(window).resize(handleResize);
+  });
+
 });
 
 
