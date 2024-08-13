@@ -49,12 +49,12 @@
 class Product < ApplicationRecord
   belongs_to :manufacturer
   belongs_to :category
-  belongs_to :mosip_compliance_status
-  belongs_to :product_ftm_certification
-  belongs_to :product_specification_version
+  belongs_to :mosip_compliance_status, optional: true
+  belongs_to :product_ftm_certification, optional: true
+  belongs_to :product_specification_version, optional: true
 
   has_and_belongs_to_many :biometrics
-
+  require 'roo'
 
   has_many :product_images, dependent: :destroy
   accepts_nested_attributes_for :product_images, allow_destroy: true
@@ -148,6 +148,77 @@ class Product < ApplicationRecord
     
     
     return filtered_pdts
+  end
+
+  def self.import_from_excel
+    file_path = 'downloads/pdt_demo.xlsx'
+    spreadsheet = Roo::Spreadsheet.open(file_path)
+    header = spreadsheet.row(1).map(&:strip) # Remove any leading/trailing spaces from headers
+    uploader = ImageUploader.new(:store)
+
+    (2..spreadsheet.last_row).each do |i|
+      row_data = spreadsheet.row(i)
+      row = Hash[header.zip(row_data).map { |h, v| [h.strip, v] }]
+
+      manufacturer = Manufacturer.find_by(name: row['manufacturer'])
+      category = Category.find_by(name: row['category'])
+      ftm_certification = ProductFtmCertification.find_by(name: row['ftm_certification'])
+      spec_version = ProductSpecificationVersion.find_by(name: row['product_specification_version'])
+
+      begin
+        product = Product.find_or_initialize_by(name: row['name'])
+        product.short_description = row['short_description']
+        product.manufacturer = manufacturer if manufacturer
+        product.category = category if category
+        product.model = row['model']
+        
+        product.additional_components = row['additional_components']
+        product.macp_certification_link = row['macp_certification_link']
+        product.sbi_version = row['sbi_version']
+        product.global_certifications = row['global_certifications']
+        product.ftm_chip_make_and_model = row['ftm_chip_make_and_model']
+        product.firmware_version = row['firmware_version']
+        product.software_version = row['software_version']
+        product.full_specifications = row['full_specifications']
+        product.usage = row['usage']
+        product.print_software_version = row['print_software_version']
+        product.integration_methodology = row['integration_methodology']
+        product.mosip_compliance = row['mosip_compliance']
+        product.mosip_integration = row['mosip_integration']
+        product.certified = row['certified'].to_s.downcase
+        product.additional_feature = row['additional_feature']
+        product.product_ftm_certification = ftm_certification if ftm_certification
+        product.product_specification_version = spec_version if spec_version
+
+        product.save!
+
+        if row['image'].present?
+          row['image'].split(',').each_with_index do |i,index|
+            file = File.open("public/images/product/"+i)
+            if file.present?
+                uploaded_file = uploader.upload(file)
+                p = product.product_images.create!(
+                        image_data: uploaded_file.to_json,
+                        position:index+1
+                    )
+                p.image_derivatives! 
+                p.save! 
+            end
+          end
+        end
+
+        if row['supported_biometric_modalities'].present?
+          row['supported_biometric_modalities'].split(',').each do |bio|
+            product.biometrics << Biometric.find_by(name: bio)
+            product.save!
+          end
+        end
+
+        
+      rescue => e
+        Rails.logger.error "Row #{i}: #{e.message}"
+      end
+    end
   end
 
   def self.ransackable_attributes(auth_object = nil)
