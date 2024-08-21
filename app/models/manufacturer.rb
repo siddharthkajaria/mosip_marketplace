@@ -25,6 +25,14 @@ class Manufacturer < ApplicationRecord
     include ManufacturerImageUploader::Attachment(:image)
     require 'roo'
 
+    def self.fetch_all_manufacturers query=nil
+      if query.present?
+          return Manufacturer.where("name LIKE ?", "#{query}%")
+      else
+          return Manufacturer.all
+      end
+  end
+
     def get_image_url
         images=Hash.new 
         images['available']=self.image.present?
@@ -41,8 +49,7 @@ class Manufacturer < ApplicationRecord
 
     
 
-    def self.import_from_excel
-        file_path = 'downloads/test_manu.xlsx'
+    def self.import_from_excel file_path = 'downloads/test_manu.xlsx'
         spreadsheet = Roo::Spreadsheet.open(file_path)
         header = spreadsheet.row(1)
 

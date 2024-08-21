@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.create!(email:"test@tailwebs.com", password: "qwer1234")
+
 manu_names = ["Aratek Biometrics Co.,Ltd","Gilles Leroux Industrie","Image Match Design Inc."]
 manu_names.each do |manu|
     Manufacturer.create(

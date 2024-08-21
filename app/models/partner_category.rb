@@ -14,6 +14,15 @@ class PartnerCategory < ApplicationRecord
 
     include PartnerCategoryImageUploader::Attachment(:image)
 
+
+    def self.fetch_all_category query=nil
+        if query.present?
+            return PartnerCategory.where("name LIKE ?", "#{query}%")
+        else
+            return PartnerCategory.all
+        end
+    end
+    
     def get_image_url
         images=Hash.new 
         images['available']=self.image.present?

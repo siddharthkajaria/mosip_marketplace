@@ -1,0 +1,124 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0"><%= @manufacturer.name %> Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<%= admin_manufacturers_path %>">Manufacturers</a></li>
+                    <li class="breadcrumb-item active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <div class="btn-group mr-3">
+                        <a href="<%= admin_manufacturers_path %>" class="btn btn-primary mr-3">Back to Manufacturers</a>
+
+                        <a href="<%= edit_admin_manufacturer_path(@manufacturer) %>" class="btn btn-primary mr-3">
+                            <i class="fa fa-edit">&nbsp;</i>Edit Manufacturer
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Name</th>
+                                    <td><%= @manufacturer.name %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email One</th>
+                                    <td><%= @manufacturer.email_one %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email Two</th>
+                                    <td><%= @manufacturer.email_two %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Email Three</th>
+                                    <td><%= @manufacturer.email_three %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone One</th>
+                                    <td><%= @manufacturer.phone_one %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone Two</th>
+                                    <td><%= @manufacturer.phone_two %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Phone Three</th>
+                                    <td><%= @manufacturer.phone_three %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address 1</th>
+                                    <td><%= @manufacturer.address1 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address 2</th>
+                                    <td><%= @manufacturer.address2 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Address 3</th>
+                                    <td><%= @manufacturer.address3 %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td><%= @manufacturer.desc.html_safe %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Website Link</th>
+                                    <td>
+                                        <% if @manufacturer.website_link.present? %>
+                                            <a href="<%= @manufacturer.website_link %>" target="_blank"><%= @manufacturer.website_link %></a>
+                                        <% else %>
+                                            N/A
+                                        <% end %>
+                                    </td>
+                                </tr>
+                                <% if @manufacturer.image_data.present? %>
+                                    <tr>
+                                        <th scope="row">Image</th>
+                                        <% if @manufacturer.image_data.present? %>
+                                          <td><%= image_tag @manufacturer.image_url, style: "max-width: 200px; max-height: 200px;" %></td>
+                                        <% else %>
+                                          <td></td>
+                                        <% end %>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal container for Ekko Lightbox -->
+<div id="ekko-lightbox-container"></div>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Ekko Lightbox for all elements with data-toggle="lightbox"
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                showArrows: false, // Hide navigation arrows
+            });
+        });
+    });
+</script>

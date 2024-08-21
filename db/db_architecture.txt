@@ -34,3 +34,4 @@ rails generate scaffold system_integrator name:string desc:text image_data:text 
 
 rails generate scaffold product_ftm_certification name:string desc:text code:string status:boolean
 rails generate scaffold product_specification_version name:string desc:text code:string status:boolean
+

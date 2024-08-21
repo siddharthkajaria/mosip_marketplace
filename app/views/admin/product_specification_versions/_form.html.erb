@@ -1,0 +1,33 @@
+<%= form_with(model: [:admin, @product_specification_version], html: { class: 'form-horizontal' }) do |form| %>
+  <% if @product_specification_version.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@product_specification_version.errors.count, "error") %> prohibited this product specification version from being saved:</h2>
+      <ul>
+        <% @product_specification_version.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <div class="form-group row">
+      <%= form.label :name, "Name*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: 'form-control', placeholder: "Enter name", required: "required" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :desc, "Description", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :desc, class: 'form-control', placeholder: "Enter description" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <%= form.submit nil, class: 'btn btn-primary' %>
+    <a href="<%= admin_product_specification_versions_path %>" class="btn btn-default">Back</a>
+  </div>
+<% end %>

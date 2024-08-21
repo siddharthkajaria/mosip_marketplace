@@ -12,4 +12,12 @@
 #
 class ProductSpecificationVersion < ApplicationRecord
     has_many :products
+
+    def self.fetch_all_version query=nil
+        if query.present?
+            return ProductSpecificationVersion.where("name LIKE ?", "#{query}%")
+        else
+            return ProductSpecificationVersion.all
+        end
+    end
 end

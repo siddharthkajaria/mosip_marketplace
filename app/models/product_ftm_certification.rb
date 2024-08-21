@@ -12,4 +12,12 @@
 #
 class ProductFtmCertification < ApplicationRecord
     has_many :products
+
+    def self.fetch_all_certification query=nil
+        if query.present?
+            return ProductFtmCertification.where("name LIKE ?", "#{query}%")
+        else
+            return ProductFtmCertification.all
+        end
+    end
 end

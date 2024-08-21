@@ -21,5 +21,28 @@
 #  fk_rails_...  (partner_category_id => partner_categories.id)
 #
 class Partner < ApplicationRecord
-    belongs_to :partner_categories
+    belongs_to :partner_category
+    include PartnerImageUploader::Attachment(:image)
+
+    def self.fetch_all_partner query=nil
+        if query.present?
+            return Partner.where("name LIKE ?", "#{query}%")
+        else
+            return Partner.all
+        end
+    end
+
+    def get_image_url
+        images=Hash.new 
+        images['available']=self.image.present?
+          if images['available']
+            images['thumb']=self.image(:small).url
+            images['medium']=self.image(:medium).url
+          else 
+            images['thumb']=self.image_url
+            images['medium']=self.image_url
+          end
+          images['original']=self.image_url
+        return images
+    end
 end

@@ -12,4 +12,12 @@
 #
 class Category < ApplicationRecord
     has_many :products
+
+    def self.fetch_all_category query=nil
+        if query.present?
+            return Category.where("name LIKE ?", "#{query}%")
+        else
+            return Category.all
+        end
+    end
 end

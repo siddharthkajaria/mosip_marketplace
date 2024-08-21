@@ -1,0 +1,39 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0"><%= @product_ftm_certification.name %> Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Product FTM Certifications</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <a href="<%= admin_product_ftm_certifications_path %>" class="btn btn-primary">Back to Product FTM Certifications</a>
+                    <a href="<%= edit_admin_product_ftm_certification_path(@product_ftm_certification) %>" class="btn btn-primary mr-3">
+                        <i class="fa fa-edit">&nbsp;</i>Edit Product FTM Certification
+                    </a>
+                </div>
+
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4">Name</dt>
+                            <dd class="col-sm-8"><%= @product_ftm_certification.name %></dd>
+
+                            <dt class="col-sm-4">Description</dt>
+                            <dd class="col-sm-8"><%= @product_ftm_certification.desc %></dd>
+
+                            <dt class="col-sm

@@ -1,0 +1,137 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0"><%= @product.name %> Details</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+          <li class="breadcrumb-item active">Products</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-4">
+          <a href="<%= admin_products_path %>" class="btn btn-primary">Back to Products</a>
+          <a href="<%= edit_admin_product_path(@product) %>" class="btn btn-primary mr-3">
+            <i class="fa fa-edit">&nbsp;</i>Edit Product
+          </a>
+        </div>
+
+        <div class="card card-primary">
+          <div class="card-body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td><%= @product.name %></td>
+                </tr>
+                <tr>
+                  <th>Short Description</th>
+                  <% if @product.short_description.present? %>
+                    <td><%= @product.short_description.html_safe %></td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <th>Model</th>
+                  <td><%= @product.model %></td>
+                </tr>
+                <tr>
+                  <th>Manufacturer</th>
+                  <td><%= @product.manufacturer.name %></td>
+                </tr>
+                <tr>
+                  <th>Supported Biometric Modalities</th>
+                  <td><%= @product.biometrics.map(&:name).join(', ') %></td>
+                </tr>
+                
+                <tr>
+                  <th>Firmware Version</th>
+                  <td><%= @product.firmware_version %></td>
+                </tr>
+                <tr>
+                  <th>FTM Chip Make and Model</th>
+                  <td><%= @product.ftm_chip_make_and_model %></td>
+                </tr>
+                <tr>
+                  <th>Full Specifications</th>
+                  <td><%= @product.full_specifications %></td>
+                </tr>
+                <tr>
+                  <th>Global Certifications</th>
+                  <td><%= @product.global_certifications %></td>
+                </tr>
+                <tr>
+                  <th>Integration Methodology</th>
+                  <td><%= @product.integration_methodology %></td>
+                </tr>
+                <tr>
+                  <th>MACP Certification Link</th>
+                  <td><%= @product.macp_certification_link %></td>
+                </tr>
+                <tr>
+                  <th>SBI Version</th>
+                  <td><%= @product.sbi_version %></td>
+                </tr>
+                <tr>
+                  <th>MOSIP Compliance</th>
+                  <td><%= @product.mosip_compliance %></td>
+                </tr>
+                <tr>
+                  <th>MOSIP Integration</th>
+                  <td><%= @product.mosip_integration %></td>
+                </tr>
+                <tr>
+                  <th>Additional Components</th>
+                  <td><%= @product.additional_components %></td>
+                </tr>
+                <tr>
+                  <th>Additional Features</th>
+                  <% if @product.additional_feature.present? %>
+                    <td><%= @product.additional_feature.html_safe %></td>
+                  <% end %>
+                </tr>
+                <tr>
+                  <th>Certified</th>
+                  <td><%= @product.certified ? 'Yes' : 'No' %></td>
+                </tr>
+                <tr>
+                  <th>Usage</th>
+                  <td><%= @product.usage %></td>
+                </tr>
+                <tr>
+                  <th>Print Software Version</th>
+                  <td><%= @product.print_software_version %></td>
+                </tr>
+                
+                <tr>
+                  <th>Product FTM Certification</th>
+                  <td><%= @product.product_ftm_certification&.name %></td>
+                </tr>
+                <tr>
+                  <th>Product Specification Version</th>
+                  <td><%= @product.product_specification_version&.name %></td>
+                </tr>
+
+                <tr>
+                  <th>Images</th>
+                  <td><%= @product.product_images.map { |image| image_tag(image.image_url, style: "max-width: 200px; max-height: 200px;") }.join('   ').html_safe %></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

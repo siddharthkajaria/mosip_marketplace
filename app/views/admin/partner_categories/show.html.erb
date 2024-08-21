@@ -1,0 +1,73 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0"><%= @partner_category.name %> Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<%= admin_partner_categories_path %>">Partner Categories</a></li>
+                    <li class="breadcrumb-item active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <div class="btn-group mr-3">
+                        <a href="<%= admin_partner_categories_path %>" class="btn btn-primary mr-3">Back to Partner Categories</a>
+                        <a href="<%= edit_admin_partner_category_path(@partner_category) %>" class="btn btn-primary mr-3">
+                            <i class="fa fa-edit">&nbsp;</i>Edit Partner Category
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Name</th>
+                                    <td><%= @partner_category.name %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td><%= @partner_category.desc.html_safe %></td>
+                                </tr>
+                                <% if @partner_category.image_data.present? %>
+                                    <tr>
+                                        <th scope="row">Image</th>
+                                        <td><%= image_tag @partner_category.image_url, style: "max-width: 200px; max-height: 200px;" %></td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal container for Ekko Lightbox -->
+<div id="ekko-lightbox-container"></div>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Ekko Lightbox for all elements with data-toggle="lightbox"
+        $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+            event.preventDefault();
+            $(this).ekkoLightbox({
+                showArrows: false, // Hide navigation arrows
+            });
+        });
+    });
+</script>

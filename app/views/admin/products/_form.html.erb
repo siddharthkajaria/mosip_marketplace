@@ -1,0 +1,229 @@
+<%= form_with(model: [:admin, @product], html: { class: 'form-horizontal', multipart: true }) do |form| %>
+  <% if @product.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h4>
+      <ul>
+        <% @product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <div class="form-group row">
+      <%= form.label :name, "Name*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: 'form-control', placeholder: "Enter name", required: true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :category_id, "Category*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" }, { class: 'form-control' } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :manufacturer_id, "Manufacturer*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.collection_select :manufacturer_id, Manufacturer.all, :id, :name, { prompt: "Select Manufacturer" }, { class: 'form-control' } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :firmware_version, "Firmware Version", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :firmware_version, class: 'form-control', placeholder: "Enter Firmware Version" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :model, "Model", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :model, class: 'form-control', placeholder: "Enter Model" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :ftm_chip_make_and_model, "FTM chip make and model", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :ftm_chip_make_and_model, class: 'form-control', placeholder: "Enter Model" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :full_specifications, "Full Specifications", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :full_specifications, class: 'form-control', placeholder: "Enter Full Specifications", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :global_certifications, "Global Certifications", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :global_certifications, class: 'form-control', placeholder: "Enter Global Certifications", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :integration_methodology, "Integration Methodology", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :integration_methodology, class: 'form-control', placeholder: "Enter Integration Methodology", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :macp_certification_link, "MACP Certification Link", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :macp_certification_link, class: 'form-control', placeholder: "Enter MACP Certification Link" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :print_software_version, "Print Software Version", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :print_software_version, class: 'form-control', placeholder: "Enter Print Software Version" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :sbi_version, "SBI Version", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :sbi_version, class: 'form-control', placeholder: "Enter SBI Version" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :short_description, "Short Description", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :short_description, class: 'form-control', placeholder: "Enter Short Description", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :software_version, "Software Version", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :software_version, class: 'form-control', placeholder: "Enter Software Version" %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :usage, "Usage", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :usage, class: 'form-control', placeholder: "Enter Usage", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :additional_components, "Additional Components", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :additional_components, class: 'form-control', placeholder: "Enter Additional Components", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :additional_feature, "Additional Feature", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :additional_feature, class: 'form-control', placeholder: "Enter Additional Feature", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :certified, "Certified", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <div class="form-check">
+          <%= form.check_box :certified, class: 'form-check-input' %>
+          <%= form.label :certified, "Certified", class: 'form-check-label' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :product_ftm_certification_id, "FTM Certification ", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.collection_select :product_ftm_certification_id, ProductFtmCertification.all, :id, :name, { prompt: "Select Category" }, { class: 'form-control' } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label :product_specification_version_id, "Specification Version", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.collection_select :product_specification_version_id, ProductSpecificationVersion.all, :id, :name, { prompt: "Select Category" }, { class: 'form-control' } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "Biometrics*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.collection_select :biometric_ids, Biometric.all, :id, :name, { include_blank: true }, { multiple: true, class: 'form-control select2', data: { placeholder: 'Select Biometrics' } } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "MOSIP Compliance*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.select :mosip_compliance, 
+            options_for_select([['Compliance in Progress', 'Compliance in Progress'], ['Compliant', 'Compliant']], @product.mosip_compliance), 
+            { include_blank: 'Select Compliance' }, 
+            { class: 'form-control' } %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= form.label "MOSIP Integration*", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.select :mosip_integration, 
+            options_for_select([['Integration in Progress', 'Integration in Progress'], ['Integrated', 'Integrated']], @product.mosip_integration), 
+            { include_blank: 'Select Integration' }, 
+            { class: 'form-control' } %>
+      </div>
+    </div>
+
+
+
+    <div class="form-group row">
+      <%= form.label :product_images, "Images", class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10" id="file-fields-container">
+        <% @product.product_images.each_with_index do |image, index| %>
+          <div class="input-group mb-3">
+            <%= form.fields_for :product_images, image, child_index: index do |image_fields| %>
+              <%= image_fields.file_field :image, class: 'form-control' %>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-danger" onclick="removeFileField(this)">Remove</button>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-sm-10 offset-sm-2">
+        <button type="button" id="add-file-field" class="btn btn-primary">Add Image</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <a href="<%= admin_products_path %>" class="btn btn-secondary">Back</a>
+  </div>
+<% end %>
+
+<script>
+  document.getElementById('add-file-field').addEventListener('click', function() {
+    const container = document.getElementById('file-fields-container');
+    const index = container.children.length;
+    const fileFieldHtml = `
+      <div class="input-group mb-3">
+        <input type="file" name="product[product_images_attributes][${index}][image]" class="form-control">
+        <div class="input-group-append">
+          <button type="button" class="btn btn-danger" onclick="removeFileField(this)">Remove</button>
+        </div>
+      </div>`;
+    container.insertAdjacentHTML('beforeend', fileFieldHtml);
+  });
+
+  function removeFileField(button) {
+    button.closest('.input-group').remove();
+  }
+</script>

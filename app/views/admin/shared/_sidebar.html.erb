@@ -20,10 +20,59 @@
 
       <li class="nav-item">
         <a href="<%= admin_dashboard_path %>" class="nav-link <% if controller.controller_name == 'dashboard' %> active <% end %>">
-          <i class="nav-icon fas fa-tachometer-alt"></i>
-          <p>Dashboard</p>
+          <i class="fas fa-solid fa-vr-cardboard"></i>
+          <p style="padding:5px;">Dashboard</p>
         </a>
       </li>
+      <li class="nav-item">
+        <a href="<%= admin_categories_path %>" class="nav-link <% if controller.controller_name == 'categories' %> active <% end %>">
+          <i class="fas fa-solid fa-layer-group"></i>
+          <p style="padding:5px;">Category</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="<%= admin_manufacturers_path %>" class="nav-link <% if controller.controller_name == 'manufacturers' %> active <% end %>">
+          <i class="fas fa-solid fa-cogs"></i>
+          <p style="padding:5px;">Manufacturer</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<%= admin_product_ftm_certifications_path %>" class="nav-link <% if controller.controller_name == 'ftm_certifications' %> active <% end %>">
+          <i class="fas fa-solid fa-certificate"></i>
+          <p style="padding:5px;">FTM Certification</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<%= admin_product_specification_versions_path %>" class="nav-link <% if controller.controller_name == 'ftm_certifications' %> active <% end %>">
+          <i class="fas fa-solid fa-key"></i>
+          <p style="padding:5px;">Specification Version</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<%= admin_products_path %>" class="nav-link <% if controller.controller_name == 'products' %> active <% end %>">
+          <i class="fas fa-solid fa-store"></i>
+          <p style="padding:5px;">Products</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<%= admin_partner_categories_path %>" class="nav-link <% if controller.controller_name == 'partner_categories' %> active <% end %>">
+          <i class="fas fa-solid fa-hat-cowboy-side"></i>
+          <p style="padding:5px;">Partner Category</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a href="<%= admin_partners_path %>" class="nav-link <% if controller.controller_name == 'partners' %> active <% end %>">
+          <i class="fas fa-solid fa-handshake"></i>
+          <p style="padding:5px;">Partners</p>
+        </a>
+      </li>
+
+      
 
       <%# Category list demo %>
       <%# <li class="nav-item">

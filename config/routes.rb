@@ -25,6 +25,19 @@ Rails.application.routes.draw do
 
   # Admin sidebar manus
   namespace :admin do
+    resources :product_ftm_certifications
+    resources :product_specification_versions
+    resources :partner_categories
+    resources :partners
+    resources :products
+    resources :manufacturers do
+      collection do
+        get 'download_sample_excel'
+        post 'upload_excel'
+      end
+    end
+
+    resources :categories
     get '/admin/dashboard' => 'admin/dashboard#index'
   end
 end

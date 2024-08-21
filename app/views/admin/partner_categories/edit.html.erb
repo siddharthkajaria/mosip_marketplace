@@ -1,0 +1,32 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1 class="m-0">Edit Partner Category</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+                <li class="breadcrumb-item active">Edit Partner Category</li>
+              </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row>
+            <div class="col-12">
+                <div class="card card-primary">
+                    <div class="card-header p-0 pt-1">
+                    </div>
+                    <%= render "form", partner_category: @partner_category %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

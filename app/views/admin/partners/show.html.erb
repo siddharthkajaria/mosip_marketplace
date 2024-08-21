@@ -1,0 +1,72 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0"><%= @partner.name %> Details</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="<%= admin_partners_path %>">Partners</a></li>
+                    <li class="breadcrumb-item active">Details</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <div class="btn-group mr-3">
+                        <a href="<%= admin_partners_path %>" class="btn btn-primary mr-3">Back to Partners</a>
+                        <a href="<%= edit_admin_partner_path(@partner) %>" class="btn btn-primary mr-3">
+                            <i class="fa fa-edit">&nbsp;</i>Edit Partner
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Name</th>
+                                    <td><%= @partner.name %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Position</th>
+                                    <td><%= @partner.position %></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">URL</th>
+                                    <td>
+                                        <% if @partner.url.present? %>
+                                            <a href="<%= @partner.url %>" target="_blank"><%= @partner.url %></a>
+                                        <% else %>
+                                            N/A
+                                        <% end %>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Description</th>
+                                    <td><%= @partner.desc.html_safe %></td>
+                                </tr>
+                                <% if @partner.image_data.present? %>
+                                    <tr>
+                                        <th scope="row">Image</th>
+                                        <td><%= image_tag @partner.image_url, style: "max-width: 200px; max-height: 200px;" %></td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

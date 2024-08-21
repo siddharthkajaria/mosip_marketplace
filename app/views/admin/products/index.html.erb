@@ -1,0 +1,130 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Products</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+          <li class="breadcrumb-item active">Products</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header p-0 pt-1">
+            <!-- Add any additional tabs or header content if needed -->
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="mb-3">
+                  <a href="<%= new_admin_product_path %>" class="btn btn-primary mr-3">
+                    <i class="fa fa-plus">&nbsp;</i>Create Product
+                  </a>
+                </div>
+              </div>
+              <div class="col-sm-9">
+                <div class="mb-3 input-group" style="justify-content: end;">
+                  <%= form_tag(admin_products_path, method: :get, class: 'd-flex justify-content-end') do %>
+                    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Products', title: "Search by Name" %>
+                    <%= submit_tag 'Search', class: 'btn btn-primary btn-height ml-2' %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped" id="products_table">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Manufacturer</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @products.each do |product| %>
+                    <tr>
+                      <td><%= product.name %></td>
+                      <td><%= product.manufacturer.name %></td>
+                      <td><%= product.category.name %></td>
+                      <td>
+                        <%= link_to admin_product_path(product), class: 'btn btn-success mr-3' do %>
+                          <i class="fa fa-eye"></i>
+                        <% end %>
+                        <%= link_to edit_admin_product_path(product), class: 'btn btn-primary mr-3' do %>
+                          <i class="fa fa-edit"></i>
+                        <% end %>
+                        <button class="btn btn-danger mr-3 delete-product" data-id="<%= product.id %>">
+                          <i class="fa fa-trash"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModelLabel">Delete <i class="fa fa-trash"></i></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><b>NOTE:</b> Once you delete this record, it will be permanently removed from the system and will no longer be visible on this screen.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger confirm-delete">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  $(document).ready(function() {
+    let productId;
+
+    $('.delete-product').click(function () {
+      productId = $(this).data('id');
+      $('#deleteModel').modal('show');
+    });
+
+    $('.confirm-delete').click(function () {
+      $('#deleteModel').modal('hide');
+      var csrfToken = $('meta[name=csrf-token]').attr('content');
+
+      $.ajax({
+        url: '/admin/products/' + productId,
+        headers: {
+          'X-CSRF-Token': csrfToken
+        },
+        method: 'DELETE',
+        success: function() {
+          location.reload();
+        }
+      });
+    });
+  });
+</script>

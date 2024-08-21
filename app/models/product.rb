@@ -229,6 +229,13 @@ class Product < ApplicationRecord
     %w[category]
   end
 
+  def self.fetch_all_product query=nil
+      if query.present?
+          return Product.where("name LIKE ?", "#{query}%")
+      else
+          return Product.all
+      end
+  end
   
   
 end

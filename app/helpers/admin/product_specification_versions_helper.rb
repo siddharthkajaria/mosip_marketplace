@@ -1,0 +1,2 @@
+module Admin::ProductSpecificationVersionsHelper
+end

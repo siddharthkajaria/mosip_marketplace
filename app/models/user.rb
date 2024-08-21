@@ -10,7 +10,7 @@
 #  reset_password_token   :string(255)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  role_id                :bigint           not null
+#  role_id                :bigint
 #
 # Indexes
 #
