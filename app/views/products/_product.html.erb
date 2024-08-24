@@ -66,7 +66,7 @@
                           <div class="mt-10 text-style-2 fs-18"><%= product.name%></div>
                           <div class="text-style-3 fs-12-sm mt-10">
                             <% if product.short_description.present? %>
-                              <%= product.short_description.html_safe %>
+                              <td><%= truncate(product.short_description, length: 200, separator: ' ', omission: '...').html_safe %></td>
                             <% end %>
                           </div>
                           <div class="mt-20">
