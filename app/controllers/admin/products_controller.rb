@@ -41,6 +41,26 @@ class Admin::ProductsController < Admin::AdminbaseController
     def destroy
       @product.destroy
     end
+
+    def download_sample_excel
+      filepath = Rails.root.join('downloads', 'pdt_demo.xlsx')
+      send_file(filepath, filename: 'sample_product.xlsx', type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    end
+  
+    def upload_excel
+      file = params[:file]
+  
+      if file.present?
+        Product.import_from_excel file
+        flash[:success] = "File uploaded successfully."
+      else
+        flash[:error] = "Please choose a file to upload."
+      end
+  
+      respond_to do |format|
+        format.js
+      end
+    end
   
     private
   

@@ -90,6 +90,9 @@ class Product < ApplicationRecord
   end
 
   def self.filtered_product params, products
+    
+    # binding.irb
+    
     if products.present?
       all_products = products
     else
@@ -145,16 +148,27 @@ class Product < ApplicationRecord
         filtered_pdts = all_products.where(manufacturer_id: manufacturer_ids)
       end
     end
+
+    if params[:mosip_version].present?
+      mosip_versions = params[:mosip_version].uniq
+      if filtered_pdts.present?
+        filtered_pdts = filtered_pdts.where(software_version: mosip_versions)
+      else
+        filtered_pdts = all_products.where(software_version: mosip_versions)
+      end
+    end
     
     
     return filtered_pdts
   end
 
-  def self.import_from_excel
-    file_path = 'downloads/pdt_demo.xlsx'
+  def self.import_from_excel file_path = 'downloads/pdt_demo.xlsx'
+    # file_path = 'downloads/pdt_new.xlsx'
     spreadsheet = Roo::Spreadsheet.open(file_path)
     header = spreadsheet.row(1).map(&:strip) # Remove any leading/trailing spaces from headers
     uploader = ImageUploader.new(:store)
+
+    base_url = 'https://marketplace.mosip.io/wp-content/'
 
     (2..spreadsheet.last_row).each do |i|
       row_data = spreadsheet.row(i)
@@ -166,8 +180,8 @@ class Product < ApplicationRecord
       spec_version = ProductSpecificationVersion.find_by(name: row['product_specification_version'])
 
       begin
-        product = Product.find_or_initialize_by(name: row['name'])
-        product.short_description = row['short_description']
+        product = Product.find_or_initialize_by(name: row['name']) if row['category'] != "System Intergrator"
+        product.short_description = row['short_description'] if row['short_description'] != nil
         product.manufacturer = manufacturer if manufacturer
         product.category = category if category
         product.model = row['model']
@@ -193,16 +207,25 @@ class Product < ApplicationRecord
         product.save!
 
         if row['image'].present?
-          row['image'].split(',').each_with_index do |i,index|
-            file = File.open("public/images/product/"+i)
-            if file.present?
+          deserialized_images = PHP.unserialize(row['image']) # Deserialize the image field
+  
+          deserialized_images.each_with_index do |image_data, index|
+            file_path = image_data['prod_gallery'].gsub(base_url, '') # Remove the base URL
+            begin
+
+              file = File.open(Rails.root.join('public/images/product', file_path)) # Open the file
+    
+              if file.present?
                 uploaded_file = uploader.upload(file)
                 p = product.product_images.create!(
-                        image_data: uploaded_file.to_json,
-                        position:index+1
-                    )
-                p.image_derivatives! 
-                p.save! 
+                  image_data: uploaded_file.to_json,
+                  position: index + 1
+                )
+                p.image_derivatives!
+                p.save!
+              end
+            rescue Errno::ENOENT => e
+              Rails.logger.error "File not found: #{full_file_path} - #{e.message}"
             end
           end
         end

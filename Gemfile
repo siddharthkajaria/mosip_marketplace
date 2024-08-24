@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 gem "shrine", "~> 3.5"
 gem 'will_paginate', '~> 4.0'
 gem 'ransack'
+gem 'php-serialize', '~> 1.1'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
