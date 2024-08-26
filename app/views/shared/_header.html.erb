@@ -10,12 +10,12 @@
           </div>
           <div class="ml-auto">
             <ul class="nav navbar-nav zoom">
-
+           
               <li class="nav-item">
-                <a class="nav-link <%= 'active' if current_page?(root_path) %>" href="<%= root_path%>">HOME</a>
+                <a class="nav-link <% if controller.controller_name == 'homes' %> active <% end %>" href="<%= root_path%>">HOME</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<%= categories_path %>">SOLUTIONS</a>
+                <a class="nav-link <% if controller.controller_name == 'categories' %> active <% end %>" href="<%= categories_path %>">SOLUTIONS</a>
               </li>
 
               <!-- <li class="nav-item dropdown">
@@ -32,15 +32,15 @@
               </li> -->
 
               <li class="nav-item">
-                <a class="nav-link" href="<%= partner_categories_path %>">LIST YOUR SOLUTIONS</a>
+                <a class="nav-link <% if controller.controller_name == 'partner_categories' %> active <% end %> " href="<%= partner_categories_path %>">LIST YOUR SOLUTIONS</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="<%= enquiries_path %>">CONTACT US</a>
+                <a class="nav-link <% if controller.controller_name == 'enquiries' %> active <% end %>" href="<%= enquiries_path %>">CONTACT US</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href=""><i class="fas fa-search"></i></i></a>
+                <a class="nav-link " href=""><i class="fas fa-search"></i></i></a>
               </li>
             </ul>
           </div>
