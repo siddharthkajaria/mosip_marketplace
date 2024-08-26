@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    per_page = 1
+    per_page = 12
 
     if params[:category_code]
       @category = Category.find_by(code: params[:category_code])

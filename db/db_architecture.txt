@@ -23,6 +23,7 @@ rails generate scaffold Biometric name:string desc:text code:string
 
 rails generate scaffold Enquiry name:string email:string phone_number:string enquiry_type:string
 rails g migration AddQuestionToEnquiry question:text
+rails g migration AddDesignationOrganisationToEnquiry designation:string organisation:string subject:string
 
 
 rails generate scaffold PartnerCategory name:string desc:text image_data:text

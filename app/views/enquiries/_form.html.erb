@@ -1,42 +1,145 @@
-<%= form_with(model: enquiry) do |form| %>
+<%= form_with(model: enquiry, remote: true, html: { class: 'needs-validation form-style-1', id: 'enquiry_form', novalidate: true }) do |form| %>
   <% if enquiry.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(enquiry.errors.count, "error") %> prohibited this enquiry from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(enquiry.errors.count, "error") %> prohibited this enquiry from being saved:</h4>
       <ul>
-        <% enquiry.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% enquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <!-- Name -->
+  <div class="form-group">
+    <%= form.label :name, "Name*", for: "name" %>
+    <%= form.text_field :name, class: "form-control", id: "name", placeholder: "Enter your name", required: true %>
   </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <!-- Email -->
+  <div class="form-group">
+    <%= form.label :email, "Email*", for: "email" %>
+    <%= form.email_field :email, class: "form-control", id: "email", placeholder: "Enter your email", required: true %>
   </div>
 
-  <div>
-    <%= form.label :phone_number, style: "display: block" %>
-    <%= form.text_field :phone_number %>
+  <!-- Designation and Organisation (in the same line) -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <%= form.label :designation, "Designation", for: "designation" %>
+      <%= form.text_field :designation, class: "form-control", id: "designation", placeholder: "Enter your designation" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label :organisation, "Organisation*", for: "organisation" %>
+      <%= form.text_field :organisation, class: "form-control", id: "organisation", placeholder: "Enter your organisation", required: true %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :question, style: "display: block" %>
-    <%= form.text_area :question %>
+  <!-- Enquiry Type -->
+  <div class="form-group">
+    <%= form.label :enquiry_type, "Categories*", for: "enquiry_type" %>
+    <%= form.select :enquiry_type, ["Countries", "Prospective Partners", "Current Partners", "Other"], {}, class: 'form-control', id: "enquiry_type", prompt: 'Select Enquiry Type', required: true %>
   </div>
 
-  <div>
-    <%= form.label :enquiry_type, style: "display: block" %>
-    <%= form.select :enquiry_type, ["General", "Partner"], {}, class: 'form-control', id: 'enquiry_type_select', prompt: 'Status' %>
+  <!-- Hidden Text Field for "Other" Option -->
+  <div class="form-group" id="other_enquiry_type_field" style="display: none;">
+    <%= form.label :other_enquiry_type, "Please specify", for: "other_enquiry_type" %>
+    <%= form.text_field :other_enquiry_type, class: "form-control", placeholder: "Enter details", id: "other_enquiry_type" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <!-- Subject -->
+  <div class="form-group">
+    <%= form.label :subject, "Subject*", for: "subject" %>
+    <%= form.text_field :subject, class: "form-control", id: "subject", placeholder: "Enter the subject", required: true %>
+  </div>
+
+  <!-- Question/Message -->
+  <div class="form-group">
+    <%= form.label :question, "Message*", for: "message" %>
+    <%= form.text_area :question, class: "form-control", id: "message", rows: 5, placeholder: "Enter your message", required: true %>
+  </div>
+
+  <!-- Submit button aligned to the right -->
+  <div class="form-group text-right mb-0">
+    <%= form.submit 'SEND', class: "btn btn-style-3", id: "send_button" %>
   </div>
 <% end %>
+
+
+<script>
+
+$(document).ready(function() {
+  var enquiryTypeSelect = $("#enquiry_type");
+  var otherEnquiryTypeField = $("#other_enquiry_type_field");
+  var emailField = $("#email");
+
+  enquiryTypeSelect.on("change", function() {
+    if ($(this).val() === "Other") {
+      otherEnquiryTypeField.show();
+    } else {
+      otherEnquiryTypeField.hide();
+    }
+  });
+
+  // Handle the form submission with AJAX
+  $("#enquiry_form").on("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Check if all required fields are filled
+    var isValid = true;
+    var requiredFields = ["#name", "#email", "#organisation", "#enquiry_type", "#subject", "#message"];
+
+    requiredFields.forEach(function(selector) {
+      var field = $(selector);
+      if (field.val().trim() === "") {
+        isValid = false;
+        field.addClass("is-invalid");
+      } else {
+        field.removeClass("is-invalid");
+      }
+    });
+
+    // Email format validation using a simple regex
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(emailField.val().trim())) {
+      isValid = false;
+      emailField.addClass("is-invalid");
+      alert("Please enter a valid email address.");
+    } else {
+      emailField.removeClass("is-invalid");
+    }
+
+    if (!isValid) {
+      alert("Please fill in all required fields.");
+      return; // Do not proceed if the form is not valid
+    }
+
+    $.ajax({
+      url: $(this).attr("action"), // Form action URL
+      method: $(this).attr("method"), // Form method (POST)
+      data: $(this).serialize(), // Serialize the form data
+      dataType: "json", // Expect JSON response
+      success: function(data) {
+        if (data.success) {
+          // Clear the form fields
+          $("#enquiry_form")[0].reset();
+          
+          // Hide the "Other" enquiry type field if visible
+          otherEnquiryTypeField.hide();
+
+          // Show success alert
+          alert(data.message);
+        } else {
+          // Show error messages
+          alert('There was an error submitting the enquiry: ' + data.errors.join(', '));
+        }
+      },
+      error: function(xhr, status, error) {
+        console.error('Error:', error);
+        alert('An error occurred while submitting the form. Please try again.');
+      }
+    });
+  });
+});
+
+
+</script>

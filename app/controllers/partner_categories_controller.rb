@@ -3,6 +3,7 @@ class PartnerCategoriesController < ApplicationController
 
   # GET /partner_categories or /partner_categories.json
   def index
+    @enquiry = Enquiry.new
     @partner_categories = PartnerCategory.all
   end
 

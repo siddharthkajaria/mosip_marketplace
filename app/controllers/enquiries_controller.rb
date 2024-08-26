@@ -3,6 +3,7 @@ class EnquiriesController < ApplicationController
 
   # GET /enquiries or /enquiries.json
   def index
+    @enquiry = Enquiry.new
     @enquiries = Enquiry.all
   end
 
@@ -23,13 +24,15 @@ class EnquiriesController < ApplicationController
   def create
     @enquiry = Enquiry.new(enquiry_params)
 
-    respond_to do |format|
-      if @enquiry.save
-        format.html { redirect_to enquiry_url(@enquiry), notice: "Enquiry was successfully created." }
-        format.json { render :show, status: :created, location: @enquiry }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @enquiry.errors, status: :unprocessable_entity }
+    if @enquiry.save
+      respond_to do |format|
+        format.html { redirect_to new_enquiry_path, notice: 'Enquiry was successfully created.' }
+        format.json { render json: { success: true, message: 'Enquiry submitted successfully!' } }
+      end
+    else
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: { success: false, errors: @enquiry.errors.full_messages }, status: :unprocessable_entity }
       end
     end
   end
@@ -65,6 +68,6 @@ class EnquiriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def enquiry_params
-      params.require(:enquiry).permit(:name, :email, :phone_number, :enquiry_type, :question)
+      params.require(:enquiry).permit(:name, :email, :enquiry_type, :question, :designation, :organisation, :subject)
     end
 end

@@ -1,16 +1,54 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/header" %>
 
-<h1>Contact Us</h1>
+<div class="zoom">
+  
 
-<p>We’re happy to answer any questions you may have and help you determine which of our services best fit your needs.</p>
+  <section class="bg-image-2 bg-img-style-1 mb-15em">
+    <div class="py-50 py-30-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mt-50 mt-30-sm text-center-sm">
+              <div class="text-style-2 fs-80 fs-35-sm white" style="line-height: 0.9;">
+                Write <br> to us!
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <a href="mailto:info@mosip.io" class="">
+                  <div class="text-style-2 yellow fs-18">
+                    info@mosip.io
+                  </div>
+                </a>
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <div class="text-style-3 fs-16 fs-10-sm white">
+                  26/C, Electronic City, Hosur <br> Road, Bangalore - 560100
+                </div>
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <a href="tel:+918041407777">
+                  <div class="text-style-3 fs-16 fs-10-sm white">
+                    +91 8041407777
+                  </div>
+                </a>
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <div class="text-style-3 fs-16 fs-10-sm white">
+                  Visit <span><a href="www.mosip.io"><spam class="text-style-2 yellow fs-16">www.mosip.io</span></a></span> for more details
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-20-sm">
+            <div class="position-absolute-md position-relative-sm">
+              <%= render "enquiries/form", enquiry: @enquiry %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<div id="enquiries">
-  <% @enquiries.each do |enquiry| %>
-    <%= render enquiry %>
-    <p>
-      <%= link_to "Show this enquiry", enquiry %>
-    </p>
-  <% end %>
+
 </div>
 
-<%= link_to "New enquiry", new_enquiry_path %>
+<%= render "shared/footer" %>
