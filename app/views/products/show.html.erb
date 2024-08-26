@@ -3,69 +3,64 @@
 <%= render "shared/breadcrumbs" %>
 
 
-  <section class="mt-50 mt-20-sm container zoom">
-    <div class="row">
-
-
-
-    
-      <div class="col-lg-6 col-md-12">
-        <div class="border-grey-1 br-60 br-30-sm">
-          <div class="bg-style-1">
-            <div class="h-400px h-200px-sm">
-              <% if @product.product_images.active.order(:position).first.present? %>
-                <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1" class="w-100 h-100 br-60 br-30-sm object-contain">
-              <% else %>
-                <img id="main-product-image" src="public/images/meeting_default.png" alt="product-1" class="w-100 h-100 br-60 br-30-sm object-contain">
-              <% end %>
-            </div>
-          </div>
-          <div class="bg-style-2">
-            <div class="d-flex align-items-center justify-content-end">
-
-              <% if @product.mosip_compliance.present? %>
-                <% if MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>
-                  <div class="w-80px h-30px ml-3">
-                    <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
-                  </div>
+  <section class="mt-50 mt-20-sm zoom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md-12">
+          <div class="border-grey-1 br-35 br-30-sm">
+            <div class="bg-style-1">
+              <div class="h-400px h-200px-sm">
+                <% if @product.product_images.active.order(:position).first.present? %>
+                  <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1" class="w-100 h-100 br-35 br-30-sm object-contain">
+                <% else %>
+                  <img id="main-product-image" src="public/images/meeting_default.png" alt="product-1" class="w-100 h-100 br-35 br-30-sm object-contain">
                 <% end %>
-              <% end %>
-
-              <% if @product.mosip_integration.present? %>
-                <% if MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).image_url %>
-                  <div class="w-80px h-30px ml-3">
-                    <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
-                  </div>
-                <% end %>
-              <% end %>
-              
-
-              
-            </div>
-          </div>
-        </div>
-        <div class="mt-30 mt-15-sm">
-          <div class="d-flex justify-content-center">
-            <% @product.product_images.active.order(:position).each do |img| %>
-              <div class="bg-style-3 mx-20 mx-5-sm cursor-1">
-                <div class="w-80px h-70px">
-                  <img src="<%= img.image_url%>" alt="product-1" class="thumbnail w-100 h-100 br-10 object-contain">
-                </div>
               </div>
-            <% end %>
-            
+            </div>
+            <div class="bg-style-2">
+              <div class="d-flex align-items-center justify-content-end">
+
+                <% if @product.mosip_compliance.present? %>
+                  <% if MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>
+                    <div class="w-80px h-30px ml-3">
+                      <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
+                    </div>
+                  <% end %>
+                <% end %>
+
+                <% if @product.mosip_integration.present? %>
+                  <% if MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).image_url %>
+                    <div class="w-80px h-30px ml-3">
+                      <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_integration.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
+                    </div>
+                  <% end %>
+                <% end %>
+                
+
+                
+              </div>
+            </div>
           </div>
+          
+            <div class="d-flex flex-wrap justify-content-center">
+              <% @product.product_images.active.order(:position).each do |img| %>
+                <div class="bg-style-3 mx-20 mx-5-sm cursor-1 mt-30 mt-15-sm">
+                  <div class="w-80px h-70px">
+                    <img src="<%= img.image_url%>" alt="product-1" class="thumbnail w-100 h-100 br-10 object-contain">
+                  </div>
+                </div>
+              <% end %>
+              
+            </div>
+          
         </div>
-      </div>
 
-
-
-
-      <div class="col-lg-6 col-md-12">
-        <div class="mt-20">
-          <div class="text-style-1 fs-18-sm"><%= @product.manufacturer.name %></div>
-          <div class="mt-10 text-style-2 fs-24-sm"><%= @product.name %></div>
-          <div class="mt-10 text-style-3 fs-12-sm"><%= @product.short_description.html_safe %></div>
+        <div class="col-lg-6 col-md-12">
+          <div class="mt-20">
+            <div class="text-style-1 fs-18-sm"><%= @product.manufacturer.name %></div>
+            <div class="mt-10 text-style-2 fs-24-sm"><%= @product.name %></div>
+            <div class="mt-10 text-style-3 fs-12-sm"><%= @product.short_description.html_safe %></div>
+          </div>
         </div>
       </div>
     </div>
