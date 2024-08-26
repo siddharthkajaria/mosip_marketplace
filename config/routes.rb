@@ -29,7 +29,12 @@ Rails.application.routes.draw do
     resources :product_specification_versions
     resources :partner_categories
     resources :partners
-    resources :products
+    resources :products do
+      collection do
+        get 'download_sample_excel'
+        post 'upload_excel'
+      end
+    end
     resources :manufacturers do
       collection do
         get 'download_sample_excel'

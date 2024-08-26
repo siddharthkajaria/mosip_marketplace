@@ -19,7 +19,7 @@
                                 <% end %>
                               </div>
                               <div class="text-right mt-1 position-3">
-                                <img src="/images/product-main/info-1.png" width="20" height="20" alt="info" title="info" class="">
+                                <img src="/images/product-main/info-1.png" width="20" height="20" alt="info" title="<%= ERB::Util.html_escape(strip_tags(product.short_description)) %>" class="">
                               </div>
                             </div>
                             <div class="border-top-1 p-1">
@@ -65,7 +65,9 @@
                           <div class="text-style-1 fs-14"><%= product.manufacturer.name%></div>
                           <div class="mt-10 text-style-2 fs-18"><%= product.name%></div>
                           <div class="text-style-3 fs-12-sm mt-10">
-                            <%= product.short_description%>
+                            <% if product.short_description.present? %>
+                              <td><%= truncate(product.short_description, length: 200, separator: ' ', omission: '...').html_safe %></td>
+                            <% end %>
                           </div>
                           <div class="mt-20">
                             <div class="d-flex justify-content-between align-items-center">

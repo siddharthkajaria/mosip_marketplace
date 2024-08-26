@@ -44,8 +44,10 @@ class ProductsController < ApplicationController
     # binding.irb 
     # if params[:q].present?
       @q = @products.ransack(params[:q])
-      @products = @q.result(distinct: true)
+      @products = @q.result(distinct: true).paginate(page: params[:page], per_page: per_page)
     # end
+
+    add_breadcrumb(@category.name)
 
     respond_to do |format|
       format.html # if someone requests HTML format

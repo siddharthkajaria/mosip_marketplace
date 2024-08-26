@@ -33,14 +33,53 @@
                   </a>
                 </div>
               </div>
+
+
+
               <div class="col-sm-9">
-                <div class="mb-3 input-group" style="justify-content: end;">
-                  <%= form_tag(admin_products_path, method: :get, class: 'd-flex justify-content-end') do %>
-                    <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Products', title: "Search by Name" %>
-                    <%= submit_tag 'Search', class: 'btn btn-primary btn-height ml-2' %>
-                  <% end %>
+                <div class="row">
+
+                  <div class="col-sm-9">
+                      <div class="mb-3 input-group" style="justify-content: end;">
+                        <div class="mb-4">
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="collapse" data-target="#excel-options" aria-expanded="false" aria-controls="excel-options">
+                              Excel Options
+                            </button>
+                          </div>
+
+                          <div id="excel-options" class="collapse mt-2" style="max-width: 400px;">
+                            <div class="btn-group-vertical">
+                              <%= link_to 'Download Sample Excel', download_sample_excel_admin_products_path, class: 'btn btn-outline-primary mb-3' %>
+
+                              <%= form_with url: upload_excel_admin_products_path, method: :post, local: false, html: { id: 'upload-excel-form', multipart: true, class: 'd-flex flex-column' } do %>
+                                <div class="input-group mb-3">
+                                  <input type="file" name="file" id="file" class="form-control" style="flex: 1; max-width: 300px;">
+                                  <div class="input-group-append">
+                                    <%= submit_tag "Upload Excel", class: 'btn btn-outline-primary' %>
+                                  </div>
+                                </div>
+                              <% end %>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                      <div class="mb-3 input-group" style="justify-content: end;">
+                      <%= form_tag(admin_products_path, method: :get, class: 'd-flex justify-content-end') do %>
+                        <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Products', title: "Search by Name" %>
+                        <%= submit_tag 'Search', class: 'btn btn-primary btn-height ml-2' %>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
+                  
               </div>
+
+              
             </div>
 
             <div class="table-responsive">
@@ -123,6 +162,27 @@
         method: 'DELETE',
         success: function() {
           location.reload();
+        }
+      });
+    });
+
+    $(document).on('submit', '#upload-excel-form', function(e) {
+      e.preventDefault();
+      
+      var formData = new FormData(this);
+
+      $.ajax({
+        url: $(this).attr('action'),
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(response) {
+          alert('File uploaded successfully');
+          // You can also add code here to update the UI after a successful upload.
+        },
+        error: function(response) {
+          alert('There was an error uploading the file.');
         }
       });
     });
