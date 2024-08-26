@@ -317,7 +317,7 @@
     </div>
   </section>
 
-  <section class="py-50 py-30-sm">
+  <section class="mt-50 mt-30-sm">
     <div class="py-50 py-30-sm bg-grey-2">
       <div class="container">
         <div class="text-center text-style-4 fs-16 black">
@@ -334,4 +334,113 @@
     </div>
   </section>
 
+  <section class="bg-image-2 bg-img-style-1 mb-15em">
+    <div class="py-50 py-30-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mt-50 mt-30-sm text-center-sm">
+              <div class="text-style-2 fs-80 fs-35-sm white" style="line-height: 0.9;">
+                Write <br> to us!
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <a href="mailto:info@mosip.io" class="">
+                  <div class="text-style-2 yellow fs-18">
+                    info@mosip.io
+                  </div>
+                </a>
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <div class="text-style-3 fs-16 fs-10-sm white">
+                  26/C, Electronic City, Hosur <br> Road, Bangalore - 560100
+                </div>
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <a href="tel:+918041407777">
+                  <div class="text-style-3 fs-16 fs-10-sm white">
+                    +91 8041407777
+                  </div>
+                </a>
+              </div>
+              <div class="mt-30 mt-20-sm">
+                <div class="text-style-3 fs-16 fs-10-sm white">
+                  Visit <span><a href="www.mosip.io"><spam class="text-style-2 yellow fs-16">www.mosip.io</span></a></span> for more details
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mt-20-sm">
+            <div class="position-absolute-md position-relative-sm">
+              <form class="form-style-1">
+                <!-- Name -->
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+            
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+            
+                <!-- Designation and Organisation (in the same line) -->
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="designation">Designation</label>
+                    <input type="text" class="form-control" id="designation" placeholder="Enter your designation">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="organisation">Organisation</label>
+                    <input type="text" class="form-control" id="organisation" placeholder="Enter your organisation">
+                  </div>
+                </div>
+            
+                <!-- Categories with checkboxes -->
+                <div class="form-group">
+                  <label>Categories</label><br>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="category1">
+                    <label class="form-check-label" for="category1">Category 1</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="category2">
+                    <label class="form-check-label" for="category2">Category 2</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="category3">
+                    <label class="form-check-label" for="category3">Category 3</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="category4">
+                    <label class="form-check-label" for="category4">Category 4</label>
+                  </div>
+                </div>
+            
+                <!-- Subject -->
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" id="subject" placeholder="Enter the subject">
+                </div>
+            
+                <!-- Message -->
+                <div class="form-group">
+                  <textarea class="form-control" id="message" rows="5" placeholder="Message"></textarea>
+                </div>
+            
+                <!-- Send button on the right side -->
+                <div class="form-group text-right mb-0">
+                  <button type="submit" class="btn btn-style-3">SEND</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
 </div>
+
+<%= render "shared/footer" %>
