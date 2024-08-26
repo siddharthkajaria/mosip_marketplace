@@ -1,12 +1,27 @@
 <div class="container mt-30 mt-80-sm mt-80-md">
   <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item"><a href="#">Biometric Devices</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Iris</li>
-    </ol>
+    <ul class="breadcrumb">
+      <li class="mr-2"><a href="<%= root_path %>">Home /</a></li>
+
+      <% @breadcrumbs.each do |breadcrumb| %>
+        <% if breadcrumb[:path].nil? %>
+          <li class="active">
+            <%= breadcrumb[:label] %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to breadcrumb[:label], breadcrumb[:path] %>
+          </li>
+        <% end %>
+      <% end %>
+
+    </ul>
   </nav>
 </div>
+
+
+
+
 
 <style>
   .breadcrumb {
