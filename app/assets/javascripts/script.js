@@ -430,9 +430,13 @@ $(document).ready(function () {
       setEqualHeight('solution-1');
       setEqualHeight('partner-h1');
       setEqualHeight('partner-h2');
+      setEqualHeight('product-1');
+      setEqualHeight('product-2');
+      setEqualHeight('product-3');
+      setEqualHeight('product-4');
     } else {
       // Reset heights to 'auto' when screen width is 767px or less
-      $('.solution-1, .partner-h1, .partner-h2').css('height', 'auto');
+      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4').css('height', 'auto');
     }
   }
 
