@@ -54,7 +54,8 @@ class Manufacturer < ApplicationRecord
         header = spreadsheet.row(1)
 
         uploader = ManufacturerImageUploader.new(:store)
-      
+        base_url = 'https://marketplace.mosip.io/wp-content/'
+        
         (2..spreadsheet.last_row).each do |i|
           row = Hash[[header, spreadsheet.row(i)].transpose]
                   
@@ -71,12 +72,22 @@ class Manufacturer < ApplicationRecord
             manufacturer.address3 = row['address_line_3']
             manufacturer.desc = row['desc']
             manufacturer.website_link = row['website_link']
+            
             if row['image'].present?
-                file = File.open("public/images/manufacturer/"+row['image'])
-                if file.present?
+
+                file_path = row['image'].gsub(base_url, '') # Remove the base URL
+                begin
+    
+                  file = File.open(Rails.root.join('public/images/product', file_path)) # Open the file
+        
+                  if file.present?
                     uploaded_file = uploader.upload(file)
                     manufacturer.image_data = uploaded_file.to_json
                     manufacturer.image_derivatives!
+                  end
+                  
+                rescue Errno::ENOENT => e
+                  Rails.logger.error "File not found: #{full_file_path} - #{e.message}"
                 end
             end
             manufacturer.save!

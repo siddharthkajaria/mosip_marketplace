@@ -3,7 +3,33 @@ class SystemIntegratorsController < ApplicationController
 
   # GET /system_integrators or /system_integrators.json
   def index
+    per_page = 12
+    @si_partnerships = SiPartnership.all
     @system_integrators = SystemIntegrator.all
+
+    # Check if the request contains any filter parameters
+    filter_params = [:si_partnerships]
+    filter_applied = params.slice(*filter_params).present?
+
+    if filter_applied
+      @system_integrators = SystemIntegrator.filtered_system_integrators(params, @system_integrators)
+    end
+
+    if params[:search_query].present?
+      search_query = params[:search_query]
+      
+      @system_integrators = @system_integrators
+                            .where("system_integrators.name LIKE ? OR system_integrators.desc LIKE ?", 
+                                   "%#{search_query}%", "%#{search_query}%")
+    end
+
+    @q = @system_integrators.ransack(params[:q])
+    @system_integrators = @q.result(distinct: true).paginate(page: params[:page], per_page: per_page)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /system_integrators/1 or /system_integrators/1.json

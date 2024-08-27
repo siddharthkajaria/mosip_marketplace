@@ -1,14 +1,46 @@
-<p style="color: green"><%= notice %></p>
+<%= render "shared/header" %>
 
-<h1>System integrators</h1>
+<section class="container">
+  <!-- Icons for Grid and List View -->
+  <div class="text-right">
+    <span class="cursor-1 fs-25"><i class="fas fa-th active-icon" id="grid-view-icon"></i></span>
+    <span class="cursor-1 ml-2 fs-25"><i class="fas fa-list inactive-icon" id="list-view-icon"></i></span>
+  </div>
 
-<div id="system_integrators">
-  <% @system_integrators.each do |system_integrator| %>
-    <%= render system_integrator %>
-    <p>
-      <%= link_to "Show this system integrator", system_integrator %>
-    </p>
-  <% end %>
-</div>
+  <!-- Header with Dropdown and Search Input -->
+  <div class="row mt-10">
+    <div class="col-md-6">
+      <h2 class="text-style-2">System Integrators</h2>
+    </div>
+    <div class="col-md-3">
+      <%= render 'sort' %>
+    </div>
+    <div class="col-md-3 mt-15-sm">
+      <div class="d-flex align-items-center border-grey-2 br-10 p-2">
+        <div class="pr-2 border-right-1 d-flex align-items-center">
+          <img src="/images/product-main/search-1.png" width="20" height="20" alt="search" title="search">
+        </div>
+        <div class="w-100p pl-2">
+          <input type="text" id="search-input" class="form-control border-none p-0" placeholder="Search Here" aria-label="Search Here" aria-describedby="search">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<%= link_to "New system integrator", new_system_integrator_path %>
+<section class="d-flex mt-20">
+  <!-- Grid/List View Section -->
+  <div class="w-75p w-60p-md w-100p-sm prod">
+    <%= render 'system_integrators/system_integrator', system_integrators: @system_integrators %>
+  </div>
+  <!-- Filter Section -->
+  <%= render 'filter', :locals => {:uniq_pdt_category => @uniq_pdt_category, :uniq_pdt_names => @uniq_pdt_names, :category => @category} %>
+</section>
+
+<section>
+  <%= render "shared/pagination", products: @system_integrators  %>
+</section>
+
+<section>
+  <%= render "shared/footer" %>
+</section>

@@ -448,7 +448,115 @@ $(document).ready(function () {
     $(window).resize(handleResize);
   });
 
-});
 
+  // ============ Si Integrator Filter =================
 
+  $(document).ready(function () {
+    // Handle filter change
+    $('.filter-checkbox').on('change', function () {
+      var selectedFilters = getSelectedFilters();
+      updateURL(selectedFilters);
+      fetchFilteredProducts(selectedFilters);
+    });
   
+    // Toggle sidebar
+    $('#toggleOpen').on('click', function () {
+      $('.sticky-sidebar').removeClass('d-none');
+      $('#toggleOpen').addClass('d-none');
+      $('#toggleClose').removeClass('d-none');
+    });
+  
+    $('#toggleClose').on('click', function () {
+      $('.sticky-sidebar').addClass('d-none');
+      $('#toggleOpen').removeClass('d-none');
+      $('#toggleClose').addClass('d-none');
+    });
+  
+    // Get selected filters
+    function getSelectedFilters() {
+      var selectedFilters = {};
+      $('.filter-checkbox').each(function () {
+        if ($(this).is(':checked')) {
+          var name = $(this).attr('name');
+          if (!selectedFilters[name]) {
+            selectedFilters[name] = [];
+          }
+          selectedFilters[name].push($(this).val());
+        }
+      });
+      return selectedFilters;
+    }
+  
+    var url = (window.location.pathname + window.location.search);
+  
+    // Update URL with selected filters
+    function updateURL(filters) {
+      var queryString = $.param(filters);
+      var newUrl = queryString ? url + '?' + queryString : url;
+      history.replaceState(null, '', newUrl);
+    }
+  
+    // Fetch filtered products
+    function fetchFilteredProducts(filters, url = window.location.pathname + window.location.search) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        data: filters,
+        dataType: 'script',
+        success: function (data) {
+          // Successfully loaded filtered products
+        },
+        error: function (xhr, status, error) {
+          console.error('Error fetching filtered products:', error);
+        }
+      });
+    }
+  
+    // Handle SI Partnership filter select all functionality
+    $('#siFilterSelectAll').on('click', function () {
+      var isChecked = $(this).is(':checked');
+      $('#filterCollapseSix .custom-control-input').not(this).prop('checked', isChecked);
+      var selectedFilters = getSelectedFilters();
+      updateURL(selectedFilters);
+      fetchFilteredProducts(selectedFilters);
+    });
+  
+    // Handle search within SI Partnership filter
+    $('#siFilterSearch').on('input', function () {
+      var searchText = $(this).val().toLowerCase();
+      $('#filterCollapseSix .custom-control').each(function () {
+        var optionText = $(this).text().toLowerCase();
+        if (optionText.includes(searchText)) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+  
+    // Search script
+    const searchInput = document.getElementById('search-input');
+  
+    if (searchInput) {
+      searchInput.addEventListener('input', function () {
+        const query = searchInput.value;
+        $.ajax({
+          url: window.location.pathname + window.location.search,
+          type: 'GET',
+          data: { search_query: query },
+          dataType: 'script',
+          success: function (data) {
+            // Successfully loaded filtered products
+          },
+          error: function (xhr, status, error) {
+            console.error('Error fetching filtered products:', error);
+          }
+        });
+      });
+    }
+  });
+  
+
+  // ==============Si filter End==========
+
+});

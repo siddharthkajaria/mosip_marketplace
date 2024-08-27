@@ -15,6 +15,13 @@
   color: #2C2C2C;
 }
 
+.text-style-2-valid {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px!important;
+  color: #2C2C2C;
+}
+
 .text-style-3 {
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -789,6 +796,11 @@ input:focus {
 
 .scrollable-options {
   max-height: 100px;
+  overflow-y: auto;
+}
+
+.scrollable-options-1 {
+  max-height: 400px;
   overflow-y: auto;
 }
 
