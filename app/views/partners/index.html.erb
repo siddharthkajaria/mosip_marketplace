@@ -5,202 +5,80 @@
     <div class="partner-tab">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="partner1-tab" data-toggle="tab" href="#partner1" role="tab" aria-controls="partner1"
-            aria-selected="true">Partner 1</a>
+          <a class="nav-link active" id="mosip-compliant-tab" data-toggle="tab" href="#mosip-compliant" role="tab" aria-controls="mosip-compliant" aria-selected="true">MOSIP Compliant</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="partner2-tab" data-toggle="tab" href="#partner2" role="tab" aria-controls="partner2"
-            aria-selected="false">Partner 2</a>
+          <a class="nav-link" id="mosip-integrated-tab" data-toggle="tab" href="#mosip-integrated" role="tab" aria-controls="mosip-integrated" aria-selected="false">MOSIP Integrated</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="partner3-tab" data-toggle="tab" href="#partner3" role="tab" aria-controls="partner3"
-            aria-selected="false">Partner 3</a>
+          <a class="nav-link" id="mosip-si-partner-tab" data-toggle="tab" href="#mosip-si-partner" role="tab" aria-controls="mosip-si-partner" aria-selected="false">MOSIP SI Partner</a>
         </li>
       </ul>
 
       <div class="tab-content mt-20" id="myTabContent">
-        <div class="tab-pane fade show active" id="partner1" role="tabpanel" aria-labelledby="partner1-tab">
+        <!-- MOSIP Compliant Tab -->
+        <div class="tab-pane fade show active" id="mosip-compliant" role="tabpanel" aria-labelledby="mosip-compliant-tab">
           <div class="row">
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-1.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-2.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-3.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-4.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-5.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-6.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-7.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-8.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-7.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-8.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-9.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-10.png" class="w-80p">
-              </div>
-            </div>
+            <% @mosip_compliant_products.each do |product| %>
+              <% if product.manufacturer.website_link.present? %>
+                <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
+                  <div class="m-auto">
+                    <%= link_to product.manufacturer.website_link, target: "_blank" do %>
+                      <% if product.manufacturer.image_url.present? %>
+                        <%= image_tag product.manufacturer.image_url, class: "w-80p" %>
+                      <% else %>
+                        <%= product.manufacturer.name %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
-        <div class="tab-pane fade" id="partner2" role="tabpanel" aria-labelledby="partner2-tab">
+
+        <!-- MOSIP Integrated Tab -->
+        <div class="tab-pane fade" id="mosip-integrated" role="tabpanel" aria-labelledby="mosip-integrated-tab">
           <div class="row">
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-11.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-12.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-13.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-14.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-15.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-16.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-17.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-18.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-19.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-20.png" class="w-80p">
-              </div>
-            </div>
+            <% @mosip_integrated_products.each do |product| %>
+              <% if product.manufacturer.website_link.present? %>
+                <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
+                  <div class="m-auto">
+                    <%= link_to product.manufacturer.website_link, target: "_blank" do %>
+                      <% if product.manufacturer.image_url.present? %>
+                        <%= image_tag product.manufacturer.image_url, class: "w-80p" %>
+                      <% else %>
+                        <%= product.manufacturer.name %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
-        <div class="tab-pane fade" id="partner3" role="tabpanel" aria-labelledby="partner3-tab">
+
+        <!-- MOSIP SI Partner Tab -->
+        <div class="tab-pane fade" id="mosip-si-partner" role="tabpanel" aria-labelledby="mosip-si-partner-tab">
           <div class="row">
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-21.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-22.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-23.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-24.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-25.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-26.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-27.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-28.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-29.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-30.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-31.png" class="w-80p">
-              </div>
-            </div>
-            <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-              <div class="m-auto">
-                <img src="/images/partner/part-32.png" class="w-80p">
-              </div>
-            </div>
+            <% @mosip_si_partners.each do |si_partner| %>
+              <% if si_partner.website_link.present? %>
+                <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
+                  <div class="m-auto">
+                    <%= link_to si_partner.website_link, target: "_blank" do %>
+                      <% if si_partner.image_url.present? %>
+                        <%= image_tag si_partner.image_url, class: "w-80p" %>
+                      <% else %>
+                        <%= si_partner.name %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
+
       </div>
     </div>
   </div>

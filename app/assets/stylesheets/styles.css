@@ -1149,4 +1149,13 @@ input:focus {
   }
 }
 
+.link-hover-effect {
+  color: #FFD700; /* Set the default text color */
+  text-decoration: none; /* Remove default underline */
+  transition: color 0.3s ease; /* Smooth transition effect */
+}
 
+.link-hover-effect:hover {
+  color: #FFA500; /* Color change on hover */
+  text-decoration: underline; /* Underline on hover */
+}

@@ -3,7 +3,15 @@ class PartnersController < ApplicationController
 
   # GET /partners or /partners.json
   def index
-    @partners = Partner.all
+    # @partners = Partner.all
+    # Fetch products that are MOSIP Compliant
+    @mosip_compliant_products = Product.includes(:manufacturer).where(mosip_compliance: "Compliant")
+
+    # Fetch products that are MOSIP Integrated
+    @mosip_integrated_products = Product.includes(:manufacturer).where(mosip_integration: "Integrated")
+
+    # Fetch all SI Partnerships (assuming you have a separate model or association for this)
+    @mosip_si_partners = SiPartnership.all # Adjust the condition based on your model
   end
 
   # GET /partners/1 or /partners/1.json
