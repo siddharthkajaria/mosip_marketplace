@@ -1,4 +1,4 @@
-<div class="container mt-5 mb-5">
+<!-- <div class="container mt-5 mb-5">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
       <li class="page-item"><a class="page-link active" href="#">1</a></li>
@@ -16,18 +16,95 @@
       </li>
     </ul>
   </nav>
-</div>
+</div> -->
 
 <div class="card-footer clearfix">
   <div class="pagination pagination-sm m-0 float-right">
-    <%= will_paginate products, class: 'pagination' %>
+    <%= will_paginate products, previous_label: 'Previous' , next_label: 'Next' %>
   </div>
-</div> 
-
+</div>
 
 
 
 <style>
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  border-top: none;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  justify-content: center;
+  display: inline;
+  list-style: none;
+  padding-left: 0;
+}
+
+.pagination .previous_page,
+.pagination .next_page,
+.pagination .current,
+.pagination a {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0 5px; /* Add margin for spacing between items */
+}
+
+.pagination .previous_page,
+.pagination .next_page,
+.pagination a {
+  border-radius: 50px;
+  padding: 5px 12px;
+  background-color: transparent;
+  color: #222222;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  border: none;
+  text-decoration: none;
+}
+
+.pagination .current {
+  border-radius: 50px;
+  background-color: #222222;
+  color: #ffffff;
+  padding: 5px 12px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+}
+
+.pagination .previous_page.disabled,
+.pagination .next_page.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.pagination .next_page,
+.pagination .previous_page {
+  border: 2px solid #222222;
+  border-radius: 20px;
+  padding: 5px 20px;
+  color: #222222;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+  margin: 0 5px; /* Add margin for spacing */
+}
+
+.pagination .next_page.after,
+.pagination .previous_page.after {
+  background-color: #222222;
+  color: #ffffff;
+}
+
+
+
+</style>
+
+
+<!-- <style>
   .page-item {
     padding-left: 10px;
     padding-right: 10px;
@@ -64,4 +141,4 @@
   }
 
 
-</style>
+</style> -->

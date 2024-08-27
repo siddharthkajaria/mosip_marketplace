@@ -286,6 +286,7 @@
   padding: 40px;
   border-radius: 35px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Montserrat", sans-serif;
 }
 
 .bg-blue-style {
@@ -601,10 +602,31 @@ input:focus {
   background-color: #e5e5e5;
   border: none;
   border-radius: 20px;
+  padding: 20px;
 }
 
 .form-style-1 #message::-webkit-input-placeholder {
   color: #383838 !important;
+}
+
+.partner-tab .nav-tabs {
+  border-bottom: none;
+}
+
+.partner-tab .nav-tabs .nav-link.active{
+  border: none;
+  color: #004DAF;
+}
+
+.partner-tab .nav-tabs .nav-link{
+  color: #2C2C2C;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  border: none;
+}
+
+.partner-tab .nav-tabs .nav-link:hover{
+  border: none;
 }
 
 .accordion-1 .card {
