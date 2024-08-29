@@ -7,7 +7,7 @@
             <% system_integrators.each do |integrator| %>
               <div class="col-lg-4 mt-30">
                 <%= link_to system_integrator_path(integrator) do %>
-                  <div class="border-grey-3 br-35 cursor-1">
+                  <div class="border-grey-3 br-20 cursor-1">
                     <div class="bg-style-4 position-relative">
                       <div class="product-1">
                         <% if integrator.image_data.present? %>
@@ -40,7 +40,7 @@
             <%= link_to system_integrator_path(integrator), class: 'text-decoration-none' do %>
               <div class="row mt-30">
                 <div class="col-lg-4"> 
-                  <div class="border-grey-3 br-35 cursor-1 bg-grey-1 p-20">
+                  <div class="border-grey-3 br-20 cursor-1 bg-grey-1 p-20">
                     <% if integrator.image_data.present? %>
                       <img src="<%= integrator.image_url %>" class="w-100 h-200px object-contain" alt="integrator-img">
                     <% else %>

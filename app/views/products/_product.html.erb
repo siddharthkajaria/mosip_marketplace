@@ -9,7 +9,7 @@
                     
                       <div class="col-lg-4 mt-30">
                         <%= link_to product_path(product) do %>
-                          <div class="border-grey-3 br-35 cursor-1 cursor-1">
+                          <div class="border-grey-3 br-20 cursor-1 cursor-1">
                             <div class="bg-style-4 position-relative">
                               <div class="product-1">
                                 <% if product.product_images.active.order(:position).first.present? %>
@@ -52,7 +52,7 @@
                   <%= link_to product_path(product), class: 'text-decoration-none' do %>
                     <div class="row mt-30">
                       <div class="col-lg-4"> 
-                        <div class="border-grey-3 br-35 cursor-1 p-20">
+                        <div class="border-grey-3 br-20 cursor-1 p-20">
                           <% if product.product_images.active.order(:position).first.present? %>
                             <img src="<%= product.product_images.active.order(:position).first.image_url %>" class="w-100 h-200px object-contain" alt="product-img">
                           <% else %>

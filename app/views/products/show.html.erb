@@ -4,13 +4,13 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-md-12">
-          <div class="border-grey-1 br-35 br-30-sm">
+          <div class="border-grey-1 br-20 br-30-sm">
             <div class="bg-style-1">
               <div class="h-400px h-200px-sm">
                 <% if @product.product_images.active.order(:position).first.present? %>
-                  <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1" class="w-100 h-100 br-35 br-30-sm object-contain">
+                  <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1" class="w-100 h-100 br-20 br-30-sm object-contain">
                 <% else %>
-                  <img id="main-product-image" src="public/images/meeting_default.png" alt="product-1" class="w-100 h-100 br-35 br-30-sm object-contain">
+                  <img id="main-product-image" src="public/images/meeting_default.png" alt="product-1" class="w-100 h-100 br-20 br-30-sm object-contain">
                 <% end %>
               </div>
             </div>

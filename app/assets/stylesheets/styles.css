@@ -252,7 +252,7 @@
 /* bg */
 
 .bg-style-1 {
-  border-radius: 35px;
+  border-radius: 20px;
   /* padding: 20px 20px 0px 20px; */
   background-color: #ffffff;
 }
@@ -260,7 +260,7 @@
 .bg-style-2 {
   background: #01A2FD0A 4%;
   padding: 15px 50px;
-  border-radius: 0px 0px 35px 35px;
+  border-radius: 0px 0px 20px 20px;
 }
 
 .bg-style-3 {
@@ -272,33 +272,33 @@
 
 .bg-style-4 {
   background-color: #ffffff;
-  border-radius: 35px 35px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
   padding: 15px;
 }
 
 .bg-style-5 {
   background-color: #ffffff;
-  border-radius: 0px 0px 35px 35px;
+  border-radius: 0px 0px 20px 20px;
   padding: 15px;
 }
 
 .bg-style-6 {
   background-color: #FFC500;
   padding: 50px 80px;
-  border-radius: 35px;
+  border-radius: 20px;
 }
 
 .form-style-1 {
   background-color: #ffffff;
   padding: 40px;
-  border-radius: 35px;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
   font-family: "Montserrat", sans-serif;
 }
 
 .bg-blue-style {
   background: linear-gradient(180deg, #054DC3 0%, #083880 100%);
-  border-radius: 35px;
+  border-radius: 20px;
   padding: 30px;
 }
 
@@ -464,7 +464,7 @@
 .btn-style-1 {
   background-color: #01A2FD;
   color: #ffffff;
-  border-radius: 35px !important;
+  border-radius: 20px !important;
   padding: 10px 20px !important;
   font-weight: 700 !important;
   font-size: 10px !important;
@@ -474,7 +474,7 @@
 .btn-style-2 {
   background-color: #01A2FD;
   color: #ffffff;
-  border-radius: 35px !important;
+  border-radius: 20px !important;
   padding: 15px 30px !important;
   font-weight: 700 !important;
   font-size: 14px !important;
@@ -485,7 +485,7 @@
   background: #ffffff;
   border: 1px solid #004DAF !important;
   color: #004DAF;
-  border-radius: 35px !important;
+  border-radius: 20px !important;
   padding: 5px 40px !important;
   font-weight: 700 !important;
   font-size: 14px !important;
@@ -494,12 +494,8 @@
 
 /* border-radius */
 
-.br-30 {
-  border-radius: 30px;
-}
-
-.br-35 {
-  border-radius: 35px;
+.br-20 {
+  border-radius: 20px;
 }
 
 .br-10 {
@@ -581,6 +577,19 @@ a:hover {
   text-decoration: none !important;
 }
 
+.grid-view .col-lg-4{
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.partner-tab img {
+  filter: grayscale(100%);
+}
+
+.partner-tab img:hover {
+  filter: grayscale(0%);
+}
+
 input:focus {
   box-shadow: none !important;
 }
@@ -610,6 +619,7 @@ input:focus {
   border: none;
   border-radius: 20px;
   padding: 20px;
+  resize: none;
 }
 
 .form-style-1 #message::-webkit-input-placeholder {
@@ -991,11 +1001,11 @@ input:focus {
   }
 
   .bg-style-1 {
-    border-radius: 30px;
+    border-radius: 20px;
   }
 
   .bg-style-2 {
-    border-radius: 0px 0px 30px 30px;
+    border-radius: 0px 0px 20px 20px;
     padding: 10px 30px;
   }
   

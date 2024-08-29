@@ -41,7 +41,14 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link " href=""><i class="fas fa-search"></i></i></a>
+                <div class="search-container">
+                  <a class="nav-link" href="javascript:void(0);" id="search-icon">
+                    <i class="fas fa-search"></i>
+                  </a>
+                  <div class="search-box d-none">
+                    <input type="text" class="form-control" placeholder="Search...">
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
@@ -52,14 +59,25 @@
 </section>
 
 <section class="d-none-lg d-block-md d-block-sm">
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top d-flex">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top d-flex justify-content-start">
     <a href="" class="navbar-brand w-15p-md w-35p-sm">  
       <img src="/images/header/marketplace-logo.png" class="w-100" />
     </a>
+    <div class="d-flex ml-auto mr-3">
+      <a class="nav-link" href="javascript:void(0);" id="mobile-search-icon">
+        <i class="fas fa-search fs-20"></i>
+      </a>
+      <div class="search-container">
+        <div class="search-box d-none">
+          <input type="text" class="form-control" placeholder="Search...">
+        </div>
+      </div>
+    </div>
     <button type="button" class="navbar-toggler" aria-label="navbar-toggler-icon" data-toggle="collapse"
       data-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div class="collapse navbar-collapse justify-content-between" id="nav">
       <ul class="navbar-nav">
 
@@ -249,6 +267,36 @@
     transition: width 0.3s, height 0.3s;
     /* Add a smooth transition */
   }
+
+  .search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-container {
+  position: relative;
+}
+
+.search-box {
+  position: absolute;
+  top: 100%; /* Positions the search box below the icon */
+  right: 0;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 10px;
+  z-index: 9999;
+}
+
+.search-box input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+}
+
 </style>
 
 <script>
@@ -273,5 +321,33 @@
       logoReduced = false; // Reset the flag
     }
   });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const searchIcon = document.getElementById('search-icon');
+    const mobileSearchIcon = document.getElementById('mobile-search-icon');
+    const searchBox = document.querySelectorAll('.search-box');
+
+    // Toggle search box for web view
+    searchIcon.addEventListener('click', () => {
+      searchBox[0].classList.toggle('d-none');
+    });
+
+    // Toggle search box for mobile view
+    mobileSearchIcon.addEventListener('click', () => {
+      searchBox[1].classList.toggle('d-none');
+    });
+
+    // Close the search box when clicking outside of it
+    document.addEventListener('click', (event) => {
+      if (!searchIcon.contains(event.target) && !searchBox[0].contains(event.target)) {
+        searchBox[0].classList.add('d-none');
+      }
+      if (!mobileSearchIcon.contains(event.target) && !searchBox[1].contains(event.target)) {
+        searchBox[1].classList.add('d-none');
+      }
+    });
+  });
+
+
 
 </script>
