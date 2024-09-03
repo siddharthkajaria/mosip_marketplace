@@ -31,9 +31,10 @@
   <div class="container">
     <div class="py-80 py-30-sm">
       <div class="row align-items-end">
+        <!-- First Column: Logo and Description -->
         <div class="col-md-5">
-          <div class="">
-            <img src="/images/header/marketplace-logo.png" class="w-40p" />
+          <div>
+            <img src="/images/header/marketplace-logo.png" class="w-40p" alt="MOSIP Marketplace Logo" />
           </div>
           <div class="mt-20">
             <div class="text-style-1 blue-4 lh-normal fs-16 fs-12-sm">
@@ -41,52 +42,54 @@
             </div>
           </div>
         </div>
+        <!-- Second Column: Explore Solutions Links -->
         <div class="col-md-4 mt-50-sm">
           <div class="text-style-1 blue-4 lh-normal fs-16 fs-14-sm">
             Explore Solutions
           </div>
           <div class="mt-20 mt-10-sm">
-            <a href="">
+            <a href="<%= partner_categories_path %>" title="Initiatives for Technology Partners">
               <div class="text-style-4 fs-16 fs-14-sm grey-1">
                 Initiatives for Technology Partners
               </div>
             </a>
           </div>
           <div class="mt-10 mt-10-sm">
-            <a href="">
+            <a href="<%= partners_path %>" title="All Partners">
               <div class="text-style-4 fs-16 fs-14-sm grey-1">
                 All Partners
               </div>
             </a>
           </div>
           <div class="mt-10 mt-10-sm">
-            <a href="">
+            <a href="/" title="MOSIP Marketplace Policy">
               <div class="text-style-4 fs-16 fs-14-sm grey-1">
                 MOSIP Marketplace Policy
               </div>
             </a>
           </div>
         </div>
+        <!-- Third Column: Quick Links -->
         <div class="col-md-3 mt-50-sm">
           <div class="text-style-1 blue-4 lh-normal fs-16 fs-14-sm">
             Quick Links 
           </div>
           <div class="mt-20 mt-10-sm">
-            <a href="">
+            <a href="https://mosip.io/#1" title="About MOSIP">
               <div class="text-style-4 fs-16 fs-14-sm grey-1">
                 About MOSIP
               </div>
             </a>
           </div>
           <div class="mt-10 mt-10-sm">
-            <a href="">
+            <a href="https://mosip.io/mosip16.9" title="MOSIP 16.9">
               <div class="text-style-4 fs-16 fs-14-sm grey-1">
-                mosip16.9
+                MOSIP 16.9
               </div>
             </a>
           </div>
           <div class="mt-10 mt-10-sm">
-            <a href="">
+            <a href="<%= enquiries_path %>" title="Contact Us">
               <div class="text-style-4 fs-16 fs-14-sm grey-1">
                 Contact Us
               </div>
@@ -95,5 +98,6 @@
         </div>
       </div>
     </div>
+    
   </div>
 </section>

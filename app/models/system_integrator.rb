@@ -51,6 +51,9 @@ class SystemIntegrator < ApplicationRecord
       row = Hash[header.zip(row_data).map { |h, v| [h.strip, v] }]
 
       manufacturer = SiPartnership.find_by(name: row['manufacturer'])
+      if !manufacturer.present?
+        manufacturer = SiPartnership.create!(name:row['manufacturer'])
+      end
 
       begin
         product = SystemIntegrator.find_or_initialize_by(name: row['name'])

@@ -393,18 +393,34 @@
   </section>
 
   <section class="bg-grey-1 my-30 py-30 my-20-sm py-20-sm">
-    <div class="container">
-      <div>
-        <h2 class="text-style-2 fs-24-sm">About <span class="blue-1"><%= @product.manufacturer.name %></span></h2>
-      </div>
-      <div class="mt-30 mt-15-sm">
-        <div class="text-style-3 fs-12-sm">
-          <%= @product.manufacturer.desc.html_safe %>
+  <div class="container">
+    <% if @product.manufacturer.present? %>
+      <% if @product.manufacturer.name.present? %>
+        <div>
+          <h2 class="text-style-2 fs-24-sm">
+            About <span class="blue-1"><%= @product.manufacturer.name %></span>
+          </h2>
         </div>
-      </div>
-      <div class="mt-30 mt-15-sm">
-        <div class="text-style-3 black fs-12-sm">Visit <a href="<%= @product.manufacturer.website_link %>" target="_blank"><span class="blue-1"><%= @product.manufacturer.website_link %></span></a> to know more!</div>
-      </div>
+      <% end %>
+
+      <% if @product.manufacturer.desc.present? %>
+        <div class="mt-30 mt-15-sm">
+          <div class="text-style-3 fs-12-sm">
+            <%= @product.manufacturer.desc.html_safe %>
+          </div>
+        </div>
+      <% end %>
+
+      <% if @product.manufacturer.website_link.present? %>
+        <div class="mt-30 mt-15-sm">
+          <div class="text-style-3 black fs-12-sm">
+            Visit <a href="<%= @product.manufacturer.website_link %>" target="_blank">
+              <span class="blue-1"><%= @product.manufacturer.website_link %></span>
+            </a> to know more!
+          </div>
+        </div>
+      <% end %>
+
       <div class="mt-30 mt-15-sm">
         <div class="bg-blue-style text-center">
           <div class="text-style-2 yellow fs-24-sm">
@@ -417,54 +433,68 @@
                   <img src="/images/product/con-envelope.png" width="25" height="25" alt="con-envelope">
                 </div>
                 <div class="mt-30 mt-15-sm">
-                  <a href="mailto:">
-                    <h5 class="text-style-4 fs-14-sm">
-                      <%= @product.manufacturer.email_one %>
-                    </h5>
-                  </a>
-                  <a href="mailto:">
-                    <h5 class="text-style-4 fs-14-sm">
-                      <%= @product.manufacturer.email_two %>
-                    </h5>
-                  </a>
-                  <a href="mailto:">
-                    <h5 class="text-style-4 fs-14-sm">
-                      <%= @product.manufacturer.email_three %>
-                    </h5>
-                  </a>
+                  <% if @product.manufacturer.email_one.present? %>
+                    <a href="mailto:<%= @product.manufacturer.email_one %>">
+                      <h5 class="text-style-4 fs-14-sm"><%= @product.manufacturer.email_one %></h5>
+                    </a>
+                  <% end %>
+
+                  <% if @product.manufacturer.email_two.present? %>
+                    <a href="mailto:<%= @product.manufacturer.email_two %>">
+                      <h5 class="text-style-4 fs-14-sm"><%= @product.manufacturer.email_two %></h5>
+                    </a>
+                  <% end %>
+
+                  <% if @product.manufacturer.email_three.present? %>
+                    <a href="mailto:<%= @product.manufacturer.email_three %>">
+                      <h5 class="text-style-4 fs-14-sm"><%= @product.manufacturer.email_three %></h5>
+                    </a>
+                  <% end %>
                 </div>
               </div>
+
               <div class="col-lg-4 col-md-12 mt-20-md mt-20-sm">
                 <div>
                   <img src="/images/product/con-phone-call.png" width="25" height="25" alt="con-envelope">
                 </div>
                 <div class="mt-30 mt-15-sm">
-                  <a href="tell:+91 7565272827">
-                    <h5 class="text-style-4 fs-14-sm">
-                      <%= @product.manufacturer.phone_one %>
-                    </h5>
-                  </a>
-                  <a href="tell:+91 7565272827">
-                    <h5 class="text-style-4 fs-14-sm">
-                      <%= @product.manufacturer.phone_two %>
-                    </h5>
-                  </a>
-                  <a href="tell:+91 7565272827">
-                    <h5 class="text-style-4 fs-14-sm">
-                      <%= @product.manufacturer.phone_three %>
-                    </h5>
-                  </a>
+                  <% if @product.manufacturer.phone_one.present? %>
+                    <a href="tel:<%= @product.manufacturer.phone_one %>">
+                      <h5 class="text-style-4 fs-14-sm"><%= @product.manufacturer.phone_one %></h5>
+                    </a>
+                  <% end %>
+
+                  <% if @product.manufacturer.phone_two.present? %>
+                    <a href="tel:<%= @product.manufacturer.phone_two %>">
+                      <h5 class="text-style-4 fs-14-sm"><%= @product.manufacturer.phone_two %></h5>
+                    </a>
+                  <% end %>
+
+                  <% if @product.manufacturer.phone_three.present? %>
+                    <a href="tel:<%= @product.manufacturer.phone_three %>">
+                      <h5 class="text-style-4 fs-14-sm"><%= @product.manufacturer.phone_three %></h5>
+                    </a>
+                  <% end %>
                 </div>
               </div>
+
               <div class="col-lg-4 col-md-12 mt-20-md mt-20-sm">
                 <div>
                   <img src="/images/product/con-marker.png" width="25" height="25" alt="con-envelope">
                 </div>
                 <div class="mt-30 mt-15-sm">
                   <div class="text-style-4 fs-14-sm">
-                    <%= @product.manufacturer.address1 %> <br/>
-                    <%= @product.manufacturer.address2 %> <br/>
-                    <%= @product.manufacturer.address3 %> 
+                    <% if @product.manufacturer.address1.present? %>
+                      <%= @product.manufacturer.address1 %> <br/>
+                    <% end %>
+
+                    <% if @product.manufacturer.address2.present? %>
+                      <%= @product.manufacturer.address2 %> <br/>
+                    <% end %>
+
+                    <% if @product.manufacturer.address3.present? %>
+                      <%= @product.manufacturer.address3 %>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -472,8 +502,10 @@
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    <% end %>
+  </div>
+</section>
+
 
 <style>
   

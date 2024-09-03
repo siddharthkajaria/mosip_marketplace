@@ -175,6 +175,9 @@ class Product < ApplicationRecord
       row = Hash[header.zip(row_data).map { |h, v| [h.strip, v] }]
 
       manufacturer = Manufacturer.find_by(name: row['manufacturer'])
+      if !manufacturer.present?
+        manufacturer = Manufacturer.create!(name:row['manufacturer'])
+      end
       category = Category.find_by(name: row['category'])
       ftm_certification = ProductFtmCertification.find_by(name: row['ftm_certification'])
       spec_version = ProductSpecificationVersion.find_by(name: row['product_specification_version'])
