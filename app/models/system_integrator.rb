@@ -84,7 +84,7 @@ class SystemIntegrator < ApplicationRecord
           end
         end
 
-        
+        product.save!
       rescue => e
         Rails.logger.error "Row #{i}: #{e.message}"
       end
