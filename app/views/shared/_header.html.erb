@@ -40,14 +40,12 @@
                 <a class="nav-link <% if controller.controller_name == 'enquiries' %> active <% end %>" href="<%= enquiries_path %>">CONTACT US</a>
               </li>
 
-              <li class="nav-item">
-                <div class="search-container">
-                  <a class="nav-link" href="javascript:void(0);" id="search-icon">
-                    <i class="fas fa-search"></i>
-                  </a>
-                  <div class="search-box d-none">
-                    <input type="text" class="form-control" placeholder="Search...">
-                  </div>
+              <li class="nav-item search-container">
+                <a class="nav-link" href="javascript:void(0);" id="search-icon">
+                  <i class="fas fa-search"></i>
+                </a>
+                <div class="search-box">
+                  <input type="text" class="form-control" placeholder="Search...">
                 </div>
               </li>
             </ul>
@@ -239,8 +237,6 @@
 
   /* Style the dropdown arrow */
 
-
-
   .nav-item.dropdown .dropdown-toggle::after {
     display: inline-block;
     width: 8px;
@@ -268,34 +264,60 @@
     /* Add a smooth transition */
   }
 
+  /* Flex container for the navbar items */
+  .navbar .nav {
+    display: flex;
+    align-items: center;
+    transition: margin-left 0.3s ease;
+  }
+
+  /* Flex container for navbar items */
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+    position: relative; /* Make the position relative for positioning elements inside */
+  }
+
+  /* Styles for individual nav items */
+  .nav-item {
+    transition: transform 0.3s ease;
+  }
+
   .search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Prevent overflow */
+    flex-direction: row-reverse; /* Aligns input to the left of the icon */
+    transition: width 0.3s ease; /* Smooth transition */
+  }
 
-.search-container {
-  position: relative;
-}
+  .search-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    width: 0; /* Initially hidden */
+    overflow: hidden; /* Prevent text overflow */
+    transition: width 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+  }
 
-.search-box {
-  position: absolute;
-  top: 100%; /* Positions the search box below the icon */
-  right: 0;
-  width: 200px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  padding: 10px;
-  z-index: 9999;
-}
+  .search-box input {
+    width: 180px; /* Width of the input when fully visible */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
 
-.search-box input {
-  width: 100%;
-  border: 1px solid #ccc;
-  padding: 5px;
-  border-radius: 4px;
-}
+  /* When the search is active */
+  .navbar-nav.show-search .search-box {
+    width: 180px; /* Expand the width */
+  }
+
+  /* .navbar-nav.show-search .nav-item:not(.search-container) {
+    transform: translateX(-200px);
+  } */
 
 </style>
 
@@ -324,29 +346,24 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const searchIcon = document.getElementById('search-icon');
-    const mobileSearchIcon = document.getElementById('mobile-search-icon');
-    const searchBox = document.querySelectorAll('.search-box');
+    const searchBox = document.querySelector('.search-box');
+    const navbarNav = document.querySelector('.navbar-nav');
 
-    // Toggle search box for web view
-    searchIcon.addEventListener('click', () => {
-      searchBox[0].classList.toggle('d-none');
-    });
-
-    // Toggle search box for mobile view
-    mobileSearchIcon.addEventListener('click', () => {
-      searchBox[1].classList.toggle('d-none');
+    // Toggle search box visibility and movement of nav items
+    searchIcon.addEventListener('click', (event) => {
+      event.stopPropagation(); // Prevent the event from bubbling up
+      navbarNav.classList.toggle('show-search');
     });
 
     // Close the search box when clicking outside of it
     document.addEventListener('click', (event) => {
-      if (!searchIcon.contains(event.target) && !searchBox[0].contains(event.target)) {
-        searchBox[0].classList.add('d-none');
-      }
-      if (!mobileSearchIcon.contains(event.target) && !searchBox[1].contains(event.target)) {
-        searchBox[1].classList.add('d-none');
+      if (!searchIcon.contains(event.target) && !searchBox.contains(event.target)) {
+        navbarNav.classList.remove('show-search');
       }
     });
   });
+
+
 
 
 
