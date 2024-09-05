@@ -37,6 +37,10 @@
               </li>
 
               <li class="nav-item">
+                <a class="nav-link <% if controller.controller_name == 'partners' %> active <% end %> " href="<%= partners_path %>">PARTNERS</a>
+              </li>
+
+              <li class="nav-item">
                 <a class="nav-link <% if controller.controller_name == 'enquiries' %> active <% end %>" href="<%= enquiries_path %>">CONTACT US</a>
               </li>
 
