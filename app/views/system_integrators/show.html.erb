@@ -47,75 +47,91 @@
 
       <% if @system_integrator.si_partnership.website_link.present? %>
         <div class="mt-30 mt-15-sm">
-          <div class="text-style-3 black fs-12-sm">
-            Visit <a href="<%= @system_integrator.si_partnership.website_link %>" target="_blank">
-              <span class="blue-1"><%= @system_integrator.si_partnership.website_link %></span>
-            </a> to know more!
-          </div>
+          <div class="text-style-3 black fs-12-sm">Visit <a href="<%= @system_integrator.si_partnership.website_link %>" target="_blank"><span class="blue-1"><%= @system_integrator.si_partnership.website_link %></span></a> to know more!</div>
         </div>
       <% end %>
 
-      <% if @system_integrator.si_partnership.email_one.present? || @system_integrator.si_partnership.phone_one.present? || @system_integrator.si_partnership.address1.present? %>
-        <div class="mt-30 mt-15-sm">
-          <div class="bg-blue-style text-center">
-            <div class="text-style-2 yellow fs-24-sm">
-              Contact with Us
-            </div>
-            <div class="mt-30 mt-15-sm">
-              <div class="row">
-                <% if @system_integrator.si_partnership.email_one.present? %>
-                  <div class="col-lg-4 col-md-12 mt-20-md">
-                    <div>
-                      <img src="/images/product/con-envelope.png" width="25" height="25" alt="con-envelope">
-                    </div>
-                    <div class="mt-30 mt-15-sm">
+      <div class="mt-30 mt-15-sm">
+        <div class="bg-blue-style text-center">
+          <div class="text-style-2 yellow fs-24-sm">
+            Contact with Us
+          </div>
+          <div class="mt-30 mt-15-sm">
+            <div class="row">
+              <% if @system_integrator.si_partnership.email_one.present? || @system_integrator.si_partnership.email_two.present? || @system_integrator.si_partnership.email_three.present? %>
+                <div class="col-lg-4 col-md-12 mt-20-md">
+                  <div>
+                    <img src="/images/product/con-envelope.png" width="25" height="25" alt="con-envelope">
+                  </div>
+                  <div class="mt-30 mt-15-sm">
+                    <% if @system_integrator.si_partnership.email_one.present? %>
                       <a href="mailto:<%= @system_integrator.si_partnership.email_one %>">
-                        <h5 class="text-style-4 fs-14-sm">
-                          <%= @system_integrator.si_partnership.email_one %>
-                        </h5>
+                        <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.email_one %></h5>
                       </a>
-                    </div>
+                    <% end %>
+                    <% if @system_integrator.si_partnership.email_two.present? %>
+                      <a href="mailto:<%= @system_integrator.si_partnership.email_two %>">
+                        <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.email_two %></h5>
+                      </a>
+                    <% end %>
+                    <% if @system_integrator.si_partnership.email_three.present? %>
+                      <a href="mailto:<%= @system_integrator.si_partnership.email_three %>">
+                        <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.email_three %></h5>
+                      </a>
+                    <% end %>
                   </div>
-                <% end %>
+                </div>
+              <% end %>
 
-                <% if @system_integrator.si_partnership.phone_one.present? %>
-                  <div class="col-lg-4 col-md-12 mt-20-md">
-                    <div>
-                      <img src="/images/product/con-phone-call.png" width="25" height="25" alt="con-phone-call">
-                    </div>
-                    <div class="mt-30 mt-15-sm">
+              <% if @system_integrator.si_partnership.phone_one.present? || @system_integrator.si_partnership.phone_two.present? || @system_integrator.si_partnership.phone_three.present? %>
+                <div class="col-lg-4 col-md-12 mt-20-md">
+                  <div>
+                    <img src="/images/product/con-phone-call.png" width="25" height="25" alt="con-phone-call">
+                  </div>
+                  <div class="mt-30 mt-15-sm">
+                    <% if @system_integrator.si_partnership.phone_one.present? %>
                       <a href="tel:<%= @system_integrator.si_partnership.phone_one %>">
-                        <h5 class="text-style-4 fs-14-sm">
-                          <%= @system_integrator.si_partnership.phone_one %>
-                        </h5>
+                        <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.phone_one %></h5>
                       </a>
-                    </div>
+                    <% end %>
+                    <% if @system_integrator.si_partnership.phone_two.present? %>
+                      <a href="tel:<%= @system_integrator.si_partnership.phone_two %>">
+                        <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.phone_two %></h5>
+                      </a>
+                    <% end %>
+                    <% if @system_integrator.si_partnership.phone_three.present? %>
+                      <a href="tel:<%= @system_integrator.si_partnership.phone_three %>">
+                        <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.phone_three %></h5>
+                      </a>
+                    <% end %>
                   </div>
-                <% end %>
+                </div>
+              <% end %>
 
-                <% if @system_integrator.si_partnership.address1.present? %>
-                  <div class="col-lg-4 col-md-12 mt-20-md">
-                    <div>
-                      <img src="/images/product/con-marker.png" width="25" height="25" alt="con-marker">
-                    </div>
-                    <div class="mt-30 mt-15-sm">
-                      <div class="text-style-4 fs-14-sm">
+              <% if @system_integrator.si_partnership.address1.present? || @system_integrator.si_partnership.address2.present? || @system_integrator.si_partnership.address3.present? %>
+                <div class="col-lg-4 col-md-12 mt-20-md">
+                  <div>
+                    <img src="/images/product/con-marker.png" width="25" height="25" alt="con-marker">
+                  </div>
+                  <div class="mt-30 mt-15-sm">
+                    <div class="text-style-4 fs-14-sm">
+                      <% if @system_integrator.si_partnership.address1.present? %>
                         <%= @system_integrator.si_partnership.address1 %> <br/>
-                        <% if @system_integrator.si_partnership.address2.present? %>
-                          <%= @system_integrator.si_partnership.address2 %> <br/>
-                        <% end %>
-                        <% if @system_integrator.si_partnership.address3.present? %>
-                          <%= @system_integrator.si_partnership.address3 %>
-                        <% end %>
-                      </div>
+                      <% end %>
+                      <% if @system_integrator.si_partnership.address2.present? %>
+                        <%= @system_integrator.si_partnership.address2 %> <br/>
+                      <% end %>
+                      <% if @system_integrator.si_partnership.address3.present? %>
+                        <%= @system_integrator.si_partnership.address3 %>
+                      <% end %>
                     </div>
                   </div>
-                <% end %>
-              </div>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
   </div>
 </section>
