@@ -381,6 +381,26 @@ $(document).ready(function () {
     }
   });
 
+  // partner-owl-carousel
+
+  $('.partners-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: false,
+    dots: false,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 1
+      },
+      1000: {
+        items: 2.5
+      }
+    }
+  });
+
   // zoom-functionality
 
   var zoomFactor = 1.2;
@@ -434,9 +454,10 @@ $(document).ready(function () {
       setEqualHeight('product-2');
       setEqualHeight('product-3');
       setEqualHeight('product-4');
+      setEqualHeight('partner-h3');
     } else {
       // Reset heights to 'auto' when screen width is 767px or less
-      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4').css('height', 'auto');
+      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4, .partner-h3').css('height', 'auto');
     }
   }
 
