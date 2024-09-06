@@ -454,12 +454,13 @@ $(document).ready(function () {
       setEqualHeight('product-2');
       setEqualHeight('product-3');
       setEqualHeight('product-4');
+      setEqualHeight('product-5');
       setEqualHeight('partner-h3');
       setEqualHeight('partner-h4');
       setEqualHeight('img-h1');
     } else {
       // Reset heights to 'auto' when screen width is 767px or less
-      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4, .partner-h3, .img-h1, .partner-h4').css('height', 'auto');
+      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4, product-5, .partner-h3, .img-h1, .partner-h4').css('height', 'auto');
     }
   }
 
