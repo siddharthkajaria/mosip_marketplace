@@ -939,7 +939,7 @@ input:focus {
 }
 
 .scrollable-options {
-  max-height: 100px;
+  max-height: 170px;
   overflow-y: auto;
 }
 

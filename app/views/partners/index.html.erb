@@ -6,7 +6,7 @@
 
       <div class="tab-content mt-20" id="myTabContent">
         <div class="tab-pane fade show active" id="mosip-compliant" role="tabpanel" aria-labelledby="mosip-compliant-tab">
-          <div class="row">
+          <div class="row align-items-center">
             <% @partners.each do |partner| %>
                 <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
                   <div class="m-auto">
@@ -27,3 +27,5 @@
     </div>
   </div>
 </section>
+
+<%= render "shared/footer" %>
