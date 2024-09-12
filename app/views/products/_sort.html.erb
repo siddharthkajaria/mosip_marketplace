@@ -1,9 +1,8 @@
-<%= search_form_for @q, url: request.path, method: :get, html: { id: 'sort-form' } do |f| %>
-
-  <div class="select2-1">
-    <%= f.select :s, options_for_select([
-        ['Sort By Name (Ascending)', 'name asc'],
-        ['Sort By Name (Descending)', 'name desc']
-      ], selected: params.dig(:q, :s)), { include_blank: 'Select Sorting' }, { class: 'form-control select2', onchange: 'this.form.submit();' } %>
-  </div>
-<% end %>
+<!-- Sort Dropdown -->
+<div class="sort-options select2-1">
+  <select id="sort-options" class="form-control select2">
+    <option value="">Sort by</option>
+    <option value="name_asc">Name (A-Z)</option>
+    <option value="name_desc">Name (Z-A)</option>
+  </select>
+</div>

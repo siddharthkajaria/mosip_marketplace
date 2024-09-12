@@ -44,7 +44,6 @@
                       </div>
                   <% end %>
 
-
                 </div>
               </div>
               <div id="list-view" class="list-view" style="display: none;">
@@ -66,7 +65,7 @@
                           <div class="mt-10 text-style-2 fs-18"><%= product.name%></div>
                           <div class="text-style-3 fs-12-sm mt-10">
                             <% if product.short_description.present? %>
-                              <td><%= truncate(product.short_description, length: 200, separator: ' ', omission: '...').html_safe %></td>
+                              <td><%= truncate(product.short_description, :length => 230, :omission => "..." , :escape => false) %></td>
                             <% end %>
                           </div>
                           <div class="mt-20">
@@ -97,6 +96,9 @@
               </div>
             </div>
           </div>
+          <section>
+            <%= render "shared/pagination", products: @products  %>
+          </section>
         </div>
       </div>
     

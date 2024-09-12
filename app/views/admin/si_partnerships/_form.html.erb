@@ -1,0 +1,132 @@
+<%= form_with(model: [:admin, @si_partnership], local: true, html: { class: 'form-horizontal' }) do |form| %>
+  <% if @si_partnership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@si_partnership.errors.count, "error") %> prohibited this SI Partnership from being saved:</h2>
+      <ul>
+        <% @si_partnership.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <!-- Name -->
+    <div class="form-group row">
+      <%= form.label :name, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+      </div>
+    </div>
+
+    <!-- Email One -->
+    <div class="form-group row">
+      <%= form.label :email_one, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.email_field :email_one, class: 'form-control', placeholder: "Enter email one" %>
+      </div>
+    </div>
+
+    <!-- Email Two -->
+    <div class="form-group row">
+      <%= form.label :email_two, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.email_field :email_two, class: 'form-control', placeholder: "Enter email two" %>
+      </div>
+    </div>
+
+    <!-- Email Three -->
+    <div class="form-group row">
+      <%= form.label :email_three, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.email_field :email_three, class: 'form-control', placeholder: "Enter email three" %>
+      </div>
+    </div>
+
+    <!-- Phone One -->
+    <div class="form-group row">
+      <%= form.label :phone_one, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.telephone_field :phone_one, class: 'form-control', placeholder: "Enter phone one" %>
+      </div>
+    </div>
+
+    <!-- Phone Two -->
+    <div class="form-group row">
+      <%= form.label :phone_two, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.telephone_field :phone_two, class: 'form-control', placeholder: "Enter phone two" %>
+      </div>
+    </div>
+
+    <!-- Phone Three -->
+    <div class="form-group row">
+      <%= form.label :phone_three, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.telephone_field :phone_three, class: 'form-control', placeholder: "Enter phone three" %>
+      </div>
+    </div>
+
+    <!-- Address 1 -->
+    <div class="form-group row">
+      <%= form.label :address1, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :address1, class: 'form-control', placeholder: "Enter address 1", rows: 3 %>
+      </div>
+    </div>
+
+    <!-- Address 2 -->
+    <div class="form-group row">
+      <%= form.label :address2, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :address2, class: 'form-control', placeholder: "Enter address 2", rows: 3 %>
+      </div>
+    </div>
+
+    <!-- Address 3 -->
+    <div class="form-group row">
+      <%= form.label :address3, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :address3, class: 'form-control', placeholder: "Enter address 3", rows: 3 %>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group row">
+      <%= form.label :desc, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :desc, class: 'form-control', placeholder: "Enter description", rows: 3 %>
+      </div>
+    </div>
+
+    <!-- Website Link -->
+    <div class="form-group row">
+      <%= form.label :website_link, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.url_field :website_link, class: 'form-control', placeholder: "Enter website link" %>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="card-body">
+      <div class="custom-file">
+        <%= form.file_field :image, class: 'custom-file-input', id: 'exampleInputFile', onchange: 'updateFileName(this)' %>
+        <label class="custom-file-label" for="exampleInputFile" id="fileInputLabel">Choose file</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer">
+    <%= form.submit class: 'btn btn-primary' %>
+    <a href="<%= admin_si_partnerships_path %>" class="btn btn-default">Back</a>
+  </div>
+<% end %>
+
+<script>
+  // Update the label text with the selected file name
+  function updateFileName(input) {
+    const fileName = input.files[0].name;
+    document.getElementById('fileInputLabel').innerText = fileName;
+  }
+</script>

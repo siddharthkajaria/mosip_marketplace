@@ -50,6 +50,7 @@ class SiPartnership < ApplicationRecord
             partner.address3 = row['address_line_3']
             partner.desc = row['desc']
             partner.website_link = row['website_link']
+            partner.save!
             if row['image'].present?
 
                 file_path = row['image'].gsub(base_url, '') # Remove the base URL

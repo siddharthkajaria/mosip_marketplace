@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0"><%= @si_partnership.name %> Details</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+          <li class="breadcrumb-item active">SI Partnerships</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-4">
+          <a href="<%= admin_si_partnerships_path %>" class="btn btn-primary">Back to SI Partnerships</a>
+          <a href="<%= edit_admin_si_partnership_path(@si_partnership) %>" class="btn btn-primary mr-3">
+            <i class="fa fa-edit">&nbsp;</i>Edit SI Partnership
+          </a>
+        </div>
+
+        <div class="card card-primary">
+          <div class="card-body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td><%= @si_partnership.name %></td>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <td><%= @si_partnership.desc.html_safe %></td>
+                </tr>
+                <tr>
+                  <th>Code</th>
+                  <td><%= @si_partnership.code %></td>
+                </tr>
+                <tr>
+                  <th>Status</th>
+                  <td><%= @si_partnership.status ? 'Active' : 'Inactive' %></td>
+                </tr>
+                <tr>
+                  <th>Address 1</th>
+                  <td><%= @si_partnership.address1 %></td>
+                </tr>
+                <tr>
+                  <th>Address 2</th>
+                  <td><%= @si_partnership.address2 %></td>
+                </tr>
+                <tr>
+                  <th>Address 3</th>
+                  <td><%= @si_partnership.address3 %></td>
+                </tr>
+                <tr>
+                  <th>Email One</th>
+                  <td><%= @si_partnership.email_one %></td>
+                </tr>
+                <tr>
+                  <th>Email Two</th>
+                  <td><%= @si_partnership.email_two %></td>
+                </tr>
+                <tr>
+                  <th>Email Three</th>
+                  <td><%= @si_partnership.email_three %></td>
+                </tr>
+                <tr>
+                  <th>Phone One</th>
+                  <td><%= @si_partnership.phone_one %></td>
+                </tr>
+                <tr>
+                  <th>Phone Two</th>
+                  <td><%= @si_partnership.phone_two %></td>
+                </tr>
+                <tr>
+                  <th>Phone Three</th>
+                  <td><%= @si_partnership.phone_three %></td>
+                </tr>
+                <tr>
+                  <th>Website Link</th>
+                  <td><a href="<%= @si_partnership.website_link %>"><%= @si_partnership.website_link %></a></td>
+                </tr>
+                <tr>
+                  <th>Image</th>
+                  <td><%= image_tag @si_partnership.image_url, style: "max-width: 200px; max-height: 200px;" if @si_partnership.image_data.present? %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
