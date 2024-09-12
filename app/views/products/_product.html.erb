@@ -28,13 +28,29 @@
                                 <div class="mt-10 text-style-2 fs-18 product-3"><%= product.name%></div>
                                   <% if product.mosip_compliance.present? || product.mosip_integration.present? %>
                                     <div class="d-flex align-items-center product-4 mt-10">
-                                      <% [product.mosip_compliance, product.mosip_integration].each do |status| %>
+                                      <!--<% [product.mosip_compliance, product.mosip_integration].each do |status| %>
                                         <% if status.present? && (mosip_status = MosipComplianceStatus.find_by_code(status.parameterize)).present? && MosipComplianceStatus.find_by_code(status.parameterize).image_url %>
                                           <div class="w-80px h-30px mr-3 img-h1">
                                             <img src="<%= mosip_status.image_url %>" alt="<%= status.parameterize %>" class="w-100 object-contain">
                                           </div>
+                                          <% end %>
+                                        <% end %>-->
+
+                                        <% if product.mosip_compliance.present? %>
+                                          <% if product.mosip_compliance == "Compliant" %>
+                                            <% if MosipComplianceStatus.find_by_code(product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(product.mosip_compliance.parameterize()).image_url %>
+                                              <div class="w-80px h-30px mr-3 img-h1">
+                                                <img src="<%= MosipComplianceStatus.find_by_code(product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
+                                              </div>
+                                            <% end %>
+                                          <% else %>
+                                              <div class="h-30px mr-3 img-h1 mt-2">
+                                                <strong><p style="color:black!important;"><%= product.mosip_compliance %></p></strong>
+                                              </div>
+                                          <% end %>
                                         <% end %>
-                                      <% end %>
+
+                                      
                                     </div>
                                   <% end %>
                                 </div>
@@ -73,10 +89,16 @@
                               <div class="d-flex align-items-center">
                                 
                                 <% if product.mosip_compliance_status.present? %>
-                                  <% if product.mosip_compliance_status.image_data.present? %>
-                                    <div class="w-80px h-30px">
-                                      <img src="<%= product.mosip_compliance_status.image_url %>" alt="compliant-a" class="w-100 object-contain">
-                                    </div>
+                                  <% if @product.mosip_compliance == "Compliant" %>
+                                    <% if product.mosip_compliance_status.image_data.present? %>
+                                      <div class="w-80px h-30px">
+                                        <img src="<%= product.mosip_compliance_status.image_url %>" alt="compliant-a" class="w-100 object-contain">
+                                      </div>
+                                    <% end %>
+                                  <% else %>
+                                      <div class="h-30px ml-3">
+                                        <strong><%= simple_format(@product.mosip_compliance) %></strong>
+                                      </div>
                                   <% end %>
                                 <% end %>
 

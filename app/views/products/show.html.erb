@@ -18,10 +18,16 @@
               <div class="d-flex align-items-center justify-content-end">
 
                 <% if @product.mosip_compliance.present? %>
-                  <% if MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>
-                    <div class="w-80px h-30px ml-3">
-                      <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
-                    </div>
+                  <% if @product.mosip_compliance == "Compliant" %>
+                    <% if MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>
+                      <div class="w-80px h-30px ml-3">
+                        <img src="<%= MosipComplianceStatus.find_by_code(@product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
+                      </div>
+                    <% end %>
+                  <% else %>
+                      <div class="h-30px ml-3">
+                        <strong><%= simple_format(@product.mosip_compliance) %></strong>
+                      </div>
                   <% end %>
                 <% end %>
 
