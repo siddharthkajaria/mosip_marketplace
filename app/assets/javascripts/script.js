@@ -594,39 +594,21 @@ $(document).ready(function () {
 
 // ==================scrolling-section=============
 
-  const images = [
-    "images/partner/part-1.png",
-    "images/partner/part-2.png",
-    "images/partner/part-3.png",
-    "images/partner/part-4.png",
-    "images/partner/part-5.png",
-    "images/partner/part-6.png"
-  ];
+  // Randomize images
+  var images = $('.image-marquee img').toArray();
+  images.sort(function () { return 0.5 - Math.random(); });
+  $('.image-marquee').empty().append(images);
 
-  // Shuffle the images array
-  const shuffledImages = images.sort(() => Math.random() - 0.5);
-
-  const imageContainer = document.getElementById("imageContainer");
-
-  // Clear previous images (if any)
-  imageContainer.innerHTML = '';
-
-  // Function to add images to the container
-  function addImages(images) {
-    images.forEach(src => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.alt = "home-partner";
-      img.loading = "lazy";
-      imageContainer.appendChild(img);
-    });
-  }
-
-  // Add the randomized images to the container
-  addImages(shuffledImages);
-
-  // Duplicate the randomized images to create a seamless loop
-  addImages(shuffledImages);
+  // Initialize the marquee plugin
+  $('.image-marquee').marquee({
+    // Set the duration of the scrolling animation
+    duration: 50000,  // Adjust the duration to control speed (in milliseconds)
+    gap: 0,  // Gap between images in pixels
+    duplicated: true,  // Set to true for continuous looping
+    startVisible: true, // Start immediately visible without delay
+    pauseOnHover: false,  // Disable pause on hover
+    direction: 'left'  // Direction of scrolling
+  });
 
 
 
