@@ -240,6 +240,10 @@
   margin-left: 50px;
 }
 
+.ml--10 {
+  margin-left: -10px;
+}
+
 .mr-15 {
   margin-right: 15px;
 }
@@ -272,6 +276,11 @@
 .py-80 {
   padding-top: 80px;
   padding-bottom: 80px;
+}
+
+.py-7em {
+  padding-top: 7em;
+  padding-bottom: 7em;
 }
 
 .pl-5px {
@@ -565,6 +574,10 @@
   height: 60vh;
 }
 
+.h-70vh {
+  height: 70vh;
+}
+
 /* button-styles */
 
 .btn-style-1 {
@@ -653,12 +666,20 @@
   bottom: 0%;
 }
 
+.top--20em {
+  top: -20em;
+}
+
 .top--9em {
   top: -9em;
 }
 
 .top--7p {
   top: -7%;
+}
+
+.top--9p {
+  top: -9%;
 }
 
 .top-70 {
@@ -681,6 +702,10 @@
 }
 
 /* other-css */
+
+.align-items-center-lg {
+  align-items: center;
+}
 
 .d-flex-lg{
   display: flex;
@@ -811,19 +836,28 @@ input:focus {
   width: 100%;
   overflow: hidden;
   position: relative;
+  white-space: nowrap;
+  /* Prevent line break */
 }
 
 .scrolling-content {
-  display: flex;
-  animation: scroll-animation 20s linear infinite;
+  display: inline-flex;
+    /* Use inline-flex for horizontal scrolling */
+  animation: scroll-animation 50s linear infinite;
+    /* Infinite scroll animation */
 }
 
 .scrolling-content img {
-  height: 100px;
+  height: 75px;
   /* Adjust height as needed */
   flex-shrink: 0;
   /* Prevent images from shrinking */
-  margin: 0px 20px 0px 20px;
+  margin: 0px 50px 0px 50px;
+  filter: grayscale(100%);
+}
+
+.scrolling-content img:hover {
+  filter: grayscale(0%);
 }
 
 @keyframes scroll-animation {
@@ -1146,6 +1180,10 @@ input:focus {
     display: block !important;
   }
 
+  .align-items-baseline-sm {
+    align-items: baseline;
+  }
+
   .toggle-icon {
     display: block !important;
   }
@@ -1278,6 +1316,23 @@ input:focus {
     padding-right: 80px;
   }
 
+  .pr-100-sm {
+    padding-right: 100px;
+  }
+
+  .scrolling-content img{
+    margin: 0px 25px 0px 25px;
+    height: 50px;
+  }
+
+  .fs-40-sm {
+    font-size: 40px;
+  }
+
+  .fs-30-sm {
+    font-size: 30px;
+  }
+
   .fs-35-sm {
     font-size: 35px;
   }
@@ -1294,6 +1349,10 @@ input:focus {
     font-size: 24px;
   }
 
+  .fs-16-sm {
+    font-size: 16px;
+  }
+
   .fs-14-sm {
     font-size: 14px;
   }
@@ -1304,6 +1363,10 @@ input:focus {
 
   .fs-10-sm {
     font-size: 10px;
+  }
+
+  .top--10em-sm {
+    top: -10em;
   }
 
   .accordion-1 .card-body{
