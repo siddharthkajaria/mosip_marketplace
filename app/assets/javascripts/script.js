@@ -590,6 +590,30 @@ $(document).ready(function () {
   // ==============Si filter End==========
 
 
+
+
+// ==================scrolling-section=============
+
+  // Randomize images
+  var images = $('.image-marquee img').toArray();
+  images.sort(function () { return 0.5 - Math.random(); });
+  $('.image-marquee').empty().append(images);
+
+  // Initialize the marquee plugin
+  $('.image-marquee').marquee({
+    // Set the duration of the scrolling animation
+    duration: 50000,  // Adjust the duration to control speed (in milliseconds)
+    gap: 0,  // Gap between images in pixels
+    duplicated: true,  // Set to true for continuous looping
+    startVisible: true, // Start immediately visible without delay
+    pauseOnHover: false,  // Disable pause on hover
+    direction: 'left'  // Direction of scrolling
+  });
+
+
+
+  // ==================scrolling-section end=============
+
   // ------------Sorting  product js--------------
   $(document).on('change', '#sort-options', function() {
       // Get the selected sort option

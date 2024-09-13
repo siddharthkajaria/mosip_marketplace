@@ -848,42 +848,30 @@ input:focus {
   color: #383838 !important;
 }
 
-.scrolling-container {
+.image-marquee {
   width: 100%;
+  /* Full width of the container */
   overflow: hidden;
-  position: relative;
+  /* Hide overflowing content */
   white-space: nowrap;
-  /* Prevent line break */
+  /* Prevent images from wrapping */
 }
 
-.scrolling-content {
-  display: inline-flex;
-    /* Use inline-flex for horizontal scrolling */
-  animation: scroll-animation 50s linear infinite;
-    /* Infinite scroll animation */
-}
-
-.scrolling-content img {
+.image-marquee img {
+  display: inline-block;
   height: 75px;
   /* Adjust height as needed */
-  flex-shrink: 0;
-  /* Prevent images from shrinking */
-  margin: 0px 50px 0px 50px;
+  margin-right: 50px;
+  /* Spacing between images */
   filter: grayscale(100%);
 }
 
-.scrolling-content img:hover {
+.image-marquee img:hover {
   filter: grayscale(0%);
 }
 
-@keyframes scroll-animation {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-100%);
-  }
+.js-marquee {
+  margin-right: 0px !important;
 }
 
 .partner-tab .nav-tabs {
