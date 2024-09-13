@@ -32,12 +32,16 @@
 
 <section class="bg-grey-1 my-30 py-30 my-20-sm py-20-sm">
   <div class="container">
-    <% if @system_integrator.si_partnership.present? %>
+    <% if present?(@system_integrator.si_partnership) %>
       <div>
-        <h2 class="text-style-2 fs-24-sm">About <span class="blue-1"><%= @system_integrator.si_partnership.name %></span></h2>
+        <% if present?(@system_integrator.si_partnership.name) %>
+          <h2 class="text-style-2 fs-24-sm">
+            About <span class="blue-1"><%= @system_integrator.si_partnership.name %></span>
+          </h2>
+        <% end %>
       </div>
 
-      <% if @system_integrator.si_partnership.desc.present? %>
+      <% if present?(@system_integrator.si_partnership.desc) %>
         <div class="mt-30 mt-15-sm">
           <div class="text-style-3 fs-12-sm">
             <%= @system_integrator.si_partnership.desc.html_safe %>
@@ -45,9 +49,13 @@
         </div>
       <% end %>
 
-      <% if @system_integrator.si_partnership.website_link.present? %>
+      <% if present?(@system_integrator.si_partnership.website_link) %>
         <div class="mt-30 mt-15-sm">
-          <div class="text-style-3 black fs-12-sm">Visit <a href="<%= @system_integrator.si_partnership.website_link %>" target="_blank"><span class="blue-1"><%= @system_integrator.si_partnership.website_link %></span></a> to know more!</div>
+          <div class="text-style-3 black fs-12-sm">
+            Visit <a href="<%= @system_integrator.si_partnership.website_link %>" target="_blank">
+              <span class="blue-1"><%= @system_integrator.si_partnership.website_link %></span>
+            </a> to know more!
+          </div>
         </div>
       <% end %>
 
@@ -58,23 +66,25 @@
           </div>
           <div class="mt-30 mt-15-sm">
             <div class="row">
-              <% if @system_integrator.si_partnership.email_one.present? || @system_integrator.si_partnership.email_two.present? || @system_integrator.si_partnership.email_three.present? %>
+              <% if present?(@system_integrator.si_partnership.email_one) || present?(@system_integrator.si_partnership.email_two) || present?(@system_integrator.si_partnership.email_three) %>
                 <div class="col-lg-4 col-md-12 mt-20-md">
                   <div>
                     <img src="/images/product/con-envelope.png" width="25" height="25" alt="con-envelope">
                   </div>
                   <div class="mt-30 mt-15-sm">
-                    <% if @system_integrator.si_partnership.email_one.present? %>
+                    <% if present?(@system_integrator.si_partnership.email_one) %>
                       <a href="mailto:<%= @system_integrator.si_partnership.email_one %>">
                         <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.email_one %></h5>
                       </a>
                     <% end %>
-                    <% if @system_integrator.si_partnership.email_two.present? %>
+
+                    <% if present?(@system_integrator.si_partnership.email_two) %>
                       <a href="mailto:<%= @system_integrator.si_partnership.email_two %>">
                         <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.email_two %></h5>
                       </a>
                     <% end %>
-                    <% if @system_integrator.si_partnership.email_three.present? %>
+
+                    <% if present?(@system_integrator.si_partnership.email_three) %>
                       <a href="mailto:<%= @system_integrator.si_partnership.email_three %>">
                         <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.email_three %></h5>
                       </a>
@@ -83,23 +93,25 @@
                 </div>
               <% end %>
 
-              <% if @system_integrator.si_partnership.phone_one.present? || @system_integrator.si_partnership.phone_two.present? || @system_integrator.si_partnership.phone_three.present? %>
+              <% if present?(@system_integrator.si_partnership.phone_one) || present?(@system_integrator.si_partnership.phone_two) || present?(@system_integrator.si_partnership.phone_three) %>
                 <div class="col-lg-4 col-md-12 mt-20-md">
                   <div>
                     <img src="/images/product/con-phone-call.png" width="25" height="25" alt="con-phone-call">
                   </div>
                   <div class="mt-30 mt-15-sm">
-                    <% if @system_integrator.si_partnership.phone_one.present? %>
+                    <% if present?(@system_integrator.si_partnership.phone_one) %>
                       <a href="tel:<%= @system_integrator.si_partnership.phone_one %>">
                         <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.phone_one %></h5>
                       </a>
                     <% end %>
-                    <% if @system_integrator.si_partnership.phone_two.present? %>
+
+                    <% if present?(@system_integrator.si_partnership.phone_two) %>
                       <a href="tel:<%= @system_integrator.si_partnership.phone_two %>">
                         <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.phone_two %></h5>
                       </a>
                     <% end %>
-                    <% if @system_integrator.si_partnership.phone_three.present? %>
+
+                    <% if present?(@system_integrator.si_partnership.phone_three) %>
                       <a href="tel:<%= @system_integrator.si_partnership.phone_three %>">
                         <h5 class="text-style-4 fs-14-sm"><%= @system_integrator.si_partnership.phone_three %></h5>
                       </a>
@@ -108,20 +120,22 @@
                 </div>
               <% end %>
 
-              <% if @system_integrator.si_partnership.address1.present? || @system_integrator.si_partnership.address2.present? || @system_integrator.si_partnership.address3.present? %>
+              <% if present?(@system_integrator.si_partnership.address1) || present?(@system_integrator.si_partnership.address2) || present?(@system_integrator.si_partnership.address3) %>
                 <div class="col-lg-4 col-md-12 mt-20-md">
                   <div>
                     <img src="/images/product/con-marker.png" width="25" height="25" alt="con-marker">
                   </div>
                   <div class="mt-30 mt-15-sm">
                     <div class="text-style-4 fs-14-sm">
-                      <% if @system_integrator.si_partnership.address1.present? %>
+                      <% if present?(@system_integrator.si_partnership.address1) %>
                         <%= @system_integrator.si_partnership.address1 %> <br/>
                       <% end %>
-                      <% if @system_integrator.si_partnership.address2.present? %>
+
+                      <% if present?(@system_integrator.si_partnership.address2) %>
                         <%= @system_integrator.si_partnership.address2 %> <br/>
                       <% end %>
-                      <% if @system_integrator.si_partnership.address3.present? %>
+
+                      <% if present?(@system_integrator.si_partnership.address3) %>
                         <%= @system_integrator.si_partnership.address3 %>
                       <% end %>
                     </div>

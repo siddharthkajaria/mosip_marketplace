@@ -10,19 +10,16 @@
             <% @partners.each do |partner| %>
                 <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
                   <div class="m-auto">
-                    <%= link_to partner.url, target: "_blank" do %>
                       <% if partner.image_url.present? %>
                         <%= image_tag partner.image_url, class: "w-80p" %>
                       <% else %>
                         <%= partner.name %>
                       <% end %>
-                    <% end %>
                   </div>
                 </div>
             <% end %>
           </div>
         </div>
-
       </div>
     </div>
   </div>
