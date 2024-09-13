@@ -89,7 +89,7 @@
                               <div class="d-flex align-items-center">
                                 
                                 <% if product.mosip_compliance_status.present? %>
-                                  <% if @product.mosip_compliance == "Compliant" %>
+                                  <% if product.mosip_compliance == "Compliant" %>
                                     <% if product.mosip_compliance_status.image_data.present? %>
                                       <div class="w-80px h-30px">
                                         <img src="<%= product.mosip_compliance_status.image_url %>" alt="compliant-a" class="w-100 object-contain">
@@ -97,7 +97,7 @@
                                     <% end %>
                                   <% else %>
                                       <div class="h-30px ml-3">
-                                        <strong><%= simple_format(@product.mosip_compliance) %></strong>
+                                        <strong><%= simple_format(product.mosip_compliance) %></strong>
                                       </div>
                                   <% end %>
                                 <% end %>

@@ -590,11 +590,10 @@ $(document).ready(function () {
   // ==============Si filter End==========
 
 
-});
+
 
 // ==================scrolling-section=============
 
-document.addEventListener("DOMContentLoaded", function () {
   const images = [
     "images/partner/part-1.png",
     "images/partner/part-2.png",
@@ -604,21 +603,32 @@ document.addEventListener("DOMContentLoaded", function () {
     "images/partner/part-6.png"
   ];
 
-  // Randomize the images
-  const shuffledImages = images
-    .concat(images) // Duplicate images for continuous scrolling effect
-    .sort(() => Math.random() - 0.5); // Shuffle the images
+  // Shuffle the images array
+  const shuffledImages = images.sort(() => Math.random() - 0.5);
 
   const imageContainer = document.getElementById("imageContainer");
 
-  // Add the images to the container
-  shuffledImages.forEach(src => {
-    const img = document.createElement("img");
-    img.src = src;
-    img.alt = "home-partner";
-    img.loading = "lazy";
-    imageContainer.appendChild(img);
-  });
+  // Clear previous images (if any)
+  imageContainer.innerHTML = '';
+
+  // Function to add images to the container
+  function addImages(images) {
+    images.forEach(src => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = "home-partner";
+      img.loading = "lazy";
+      imageContainer.appendChild(img);
+    });
+  }
+
+  // Add the randomized images to the container
+  addImages(shuffledImages);
+
+  // Duplicate the randomized images to create a seamless loop
+  addImages(shuffledImages);
+
+
 
   // ==================scrolling-section end=============
 
