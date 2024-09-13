@@ -31,9 +31,7 @@ class Admin::ProductsController < Admin::AdminbaseController
     end
   
     def update
-      
-      binding.irb
-      
+            
       if @product.update(product_params)
         redirect_to admin_product_path(@product), notice: 'Product was successfully updated.'
       else
