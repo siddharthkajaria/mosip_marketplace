@@ -222,6 +222,14 @@
   margin-bottom: 15em;
 }
 
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
+
 .mx-20 {
   margin-left: 20px;
   margin-right: 20px;
@@ -399,6 +407,10 @@
 
 .bg-blue-4 {
   background-color: #01A2FD;
+}
+
+.bg-orange {
+  background-color: #E77605;
 }
 
 .bg-black {
@@ -680,6 +692,10 @@
 
 .top--9p {
   top: -9%;
+}
+
+.top-60 {
+  top: 60px;
 }
 
 .top-70 {
@@ -1193,7 +1209,7 @@ input:focus {
   }
 
   .w-35p-sm {
-    width: 35%;
+    width: 35% !important;
   }
 
   .w-70p-sm {
@@ -1323,6 +1339,11 @@ input:focus {
   .scrolling-content img{
     margin: 0px 25px 0px 25px;
     height: 50px;
+  }
+
+  .solution-card .col-md-3 {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   .fs-40-sm {
