@@ -859,7 +859,7 @@ input:focus {
 
 .image-marquee img {
   display: inline-block;
-  height: 75px;
+  height: 60px;
   /* Adjust height as needed */
   margin-right: 50px;
   /* Spacing between images */

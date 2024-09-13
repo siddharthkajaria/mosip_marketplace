@@ -252,19 +252,16 @@
 <section class="py-50 py-30-sm">
   
   <div class="image-marquee">
-    <img src="images/partner/part-1.png" alt="home-partner">
-    <img src="images/partner/part-2.png" alt="home-partner">
-    <img src="images/partner/part-3.png" alt="home-partner">
-    <img src="images/partner/part-4.png" alt="home-partner">
-    <img src="images/partner/part-5.png" alt="home-partner">
-    <img src="images/partner/part-6.png" alt="home-partner">
+    <% Partner.all.sample(20).each do |p| %>
+      <img src=<%= p.image_url%> alt="home-partner">
+    <% end %>
   </div>
   
 
   <div class="container">
     <div class="text-center">
       <div class="mt-50 mt-30-sm">
-        <a href="<%= partners_path %>" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions">
+        <a href="<%= partners_path %>" class="blue-4 text-style-1 text-decor-none" aria-label="All Solutions" title="All Solutions" style="text-align: -webkit-center;">
           <div class="d-flex align-items-center border-bottom-1 w-fit">
             <div class="fs-25 blue-4 text-style-1 fs-22-sm">All Partners</div>
             <div class="ml-3">
