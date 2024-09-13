@@ -26,6 +26,8 @@ class SystemIntegratorsController < ApplicationController
     @q = @system_integrators.ransack(params[:q])
     @system_integrators = @q.result(distinct: true).paginate(page: params[:page], per_page: per_page)
 
+    add_breadcrumb("System Integrator")
+
     respond_to do |format|
       format.html
       format.js
