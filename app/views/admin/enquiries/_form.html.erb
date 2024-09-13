@@ -1,0 +1,75 @@
+<%= form_with(model: [:admin, enquiry], local: true, html: { class: 'form-horizontal' }) do |form| %>
+  <% if enquiry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(enquiry.errors.count, "error") %> prohibited this enquiry from being saved:</h2>
+      <ul>
+        <% enquiry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <!-- Name -->
+    <div class="form-group row">
+      <%= form.label :name, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group row">
+      <%= form.label :email, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.email_field :email, class: 'form-control', placeholder: "Enter email" %>
+      </div>
+    </div>
+
+    <!-- Designation -->
+    <div class="form-group row">
+      <%= form.label :designation, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :designation, class: 'form-control', placeholder: "Enter designation" %>
+      </div>
+    </div>
+
+    <!-- Enquiry Type -->
+    <div class="form-group row">
+      <%= form.label :enquiry_type, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :enquiry_type, class: 'form-control', placeholder: "Enter enquiry type" %>
+      </div>
+    </div>
+
+    <!-- Organisation -->
+    <div class="form-group row">
+      <%= form.label :organisation, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :organisation, class: 'form-control', placeholder: "Enter organisation" %>
+      </div>
+    </div>
+
+    <!-- Subject -->
+    <div class="form-group row">
+      <%= form.label :subject, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :subject, class: 'form-control', placeholder: "Enter subject" %>
+      </div>
+    </div>
+
+    <!-- Question -->
+    <div class="form-group row">
+      <%= form.label :question, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :question, class: 'form-control', placeholder: "Enter question", rows: 3 %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <%= form.submit class: 'btn btn-primary' %>
+    <a href="<%= admin_enquiries_path %>" class="btn btn-default">Back</a>
+  </div>
+<% end %>

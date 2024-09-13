@@ -41,13 +41,27 @@ class ProductsController < ApplicationController
       .where("products.name LIKE ? OR products.model LIKE ? OR products.short_description LIKE ?", 
              "%#{search_query}%", "%#{search_query}%", "%#{search_query}%")
         end
+
+    #  sorting
+    if params[:sort_option].present?
+      if (params[:sort_option] == 'name_asc')
+        @products = @products.order(name: :asc)
+      end
+      if (params[:sort_option] == 'name_desc')
+        @products = @products.order(name: :desc)
+      end
+    end
+
+
     # binding.irb 
     # if params[:q].present?
       @q = @products.ransack(params[:q])
       @products = @q.result(distinct: true).paginate(page: params[:page], per_page: per_page)
     # end
 
-    add_breadcrumb(@category.name)
+    # binding.irb
+
+    add_breadcrumb(@category&.name)
 
     respond_to do |format|
       format.html # if someone requests HTML format

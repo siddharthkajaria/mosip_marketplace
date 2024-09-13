@@ -303,9 +303,14 @@ $(document).ready(function () {
         selectedFilters[name].push($(this).val());
       }
     });
+
+    
+
     return selectedFilters;
   }
 
+  
+  
   var url = (window.location.pathname + window.location.search)
 
   // Update URL with selected filters
@@ -517,7 +522,7 @@ $(document).ready(function () {
     // Update URL with selected filters
     function updateURL(filters) {
       var queryString = $.param(filters);
-      var newUrl = queryString ? url + '?' + queryString : url;
+      var newUrl = queryString ? url + '&' + queryString : url;
       history.replaceState(null, '', newUrl);
     }
   
@@ -587,7 +592,7 @@ $(document).ready(function () {
 
 });
 
-// scrolling-section
+// ==================scrolling-section=============
 
 document.addEventListener("DOMContentLoaded", function () {
   const images = [
@@ -614,4 +619,38 @@ document.addEventListener("DOMContentLoaded", function () {
     img.loading = "lazy";
     imageContainer.appendChild(img);
   });
+
+  // ==================scrolling-section end=============
+
+  // ------------Sorting  product js--------------
+  $(document).on('change', '#sort-options', function() {
+      // Get the selected sort option
+      var sortOption = $(this).val();
+    
+      // Get the current URL parameters and parse them
+      var currentParams = new URLSearchParams(window.location.search);
+      
+      // Add/Update the sort_option in the URL parameters
+      if (sortOption) {
+        currentParams.set('sort_option', sortOption);
+      } else {
+        currentParams.delete('sort_option');  // If no option is selected, remove the sort_option
+      }
+    
+      // Perform an AJAX GET request
+      $.ajax({
+        url: window.location.pathname + '?' + currentParams.toString(),  // Preserve current params and append sort_option
+        type: 'GET',
+        dataType: 'script',  // Rails will respond with a JS template
+        success: function() {
+          console.log('Sorted products successfully fetched');
+        },
+        error: function(xhr, status, error) {
+          console.error('Error fetching sorted products:', error);
+        }
+      });
+    });
+  
+  // -------------End Sorting-------------------------
+
 });

@@ -56,7 +56,7 @@
                     <% end %>
                     <div class="text-style-3 fs-12-sm mt-10">
                       <% if integrator.desc.present? %>
-                        <%= truncate(sanitize(integrator.desc), length: 200, separator: '</p>', escape: false) %>
+                        <%= truncate(integrator.desc, :length => 230, :omission => "..." , :escape => false) %>
                       <% end %>
                     </div>
                     <div class="mt-20">

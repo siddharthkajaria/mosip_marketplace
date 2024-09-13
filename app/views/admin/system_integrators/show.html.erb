@@ -1,0 +1,61 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0"><%= @system_integrator.name %> Details</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="<%= admin_system_integrators_path %>">System Integrators</a></li>
+          <li class="breadcrumb-item active">Details</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="mb-4">
+          <a href="<%= admin_system_integrators_path %>" class="btn btn-primary">Back to System Integrators</a>
+          <a href="<%= edit_admin_system_integrator_path(@system_integrator) %>" class="btn btn-primary mr-3">
+            <i class="fa fa-edit">&nbsp;</i>Edit System Integrator
+          </a>
+        </div>
+        <div class="card card-primary">
+          <div class="card-body">
+            <table class="table table-bordered">
+              <tbody>
+                <tr>
+                  <th>Name</th>
+                  <td><%= @system_integrator.name %></td>
+                </tr>
+                <tr>
+                  <th>Description</th>
+                  <td><%= @system_integrator.desc %></td>
+                </tr>
+                <tr>
+                  <th>Partnership Validity</th>
+                  <td><%= @system_integrator.partnership_validity %></td>
+                </tr>
+                <tr>
+                  <th>Image</th>
+                  <td><%= image_tag @system_integrator.image_url, style: "max-width: 200px; max-height: 200px;" if @system_integrator.image_data.present? %></td>
+                </tr>
+                <tr>
+                  <th>SI Partnership Name</th>
+                  <td><%= @system_integrator.si_partnership.name %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

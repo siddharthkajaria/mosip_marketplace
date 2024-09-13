@@ -1,0 +1,33 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0"><%= @enquiry.new_record? ? 'Create Enquiry' : 'Edit Enquiry' %></h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="<%= admin_dashboard_path %>">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="<%= admin_enquiries_path %>">Enquiries</a></li>
+          <li class="breadcrumb-item active"><%= @enquiry.new_record? ? 'New' : 'Edit' %></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header p-0 pt-1">
+            <!-- Add any additional header content if needed -->
+          </div>
+          <%= render 'form', enquiry: @enquiry %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

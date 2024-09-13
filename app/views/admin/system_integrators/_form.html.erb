@@ -1,0 +1,70 @@
+<%= form_with(model: [:admin, @system_integrator], local: true, html: { class: 'form-horizontal' }) do |form| %>
+  <% if @system_integrator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@system_integrator.errors.count, "error") %> prohibited this system integrator from being saved:</h2>
+      <ul>
+        <% @system_integrator.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card-body">
+    <!-- Name -->
+    <div class="form-group row">
+      <%= form.label :name, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_field :name, class: 'form-control', placeholder: "Enter name" %>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group row">
+      <%= form.label :desc, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.text_area :desc, class: 'form-control', placeholder: "Enter description", rows: 3 %>
+      </div>
+    </div>
+
+    <!-- Partnership Validity -->
+    <div class="form-group row">
+      <%= form.label :partnership_validity, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.date_field :partnership_validity, class: 'form-control' %>
+      </div>
+    </div>
+
+    <!-- SI Partnership -->
+    <div class="form-group row">
+      <%= form.label :si_partnership_id, class: 'col-sm-2 col-form-label' %>
+      <div class="col-sm-10">
+        <%= form.collection_select :si_partnership_id, SiPartnership.all, :id, :name, { prompt: 'Select System Integrator' }, class: 'form-control' %>
+      </div>
+    </div>
+
+
+    <div class="card-body">
+      <div class="custom-file">
+        <%= form.file_field :image, class: 'custom-file-input', id: 'exampleInputFile', onchange: 'updateFileName(this)' %>
+        <label class="custom-file-label" for="exampleInputFile" id="fileInputLabel">Choose file</label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer">
+    <%= form.submit class: 'btn btn-primary' %>
+    <a href="<%= admin_system_integrators_path %>" class="btn btn-default">Back</a>
+  </div>
+<% end %>
+
+
+
+<script>
+  // Update the label text with the selected file name
+  function updateFileName(input) {
+    const fileName = input.files[0].name;
+    document.getElementById('fileInputLabel').innerText = fileName;
+  }
+</script>

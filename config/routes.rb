@@ -25,10 +25,24 @@ Rails.application.routes.draw do
 
   # Admin sidebar manus
   namespace :admin do
+    get 'enquiries/index'
+    get 'enquiries/show'
+    get 'enquiries/new'
+    get 'enquiries/edit'
+    get 'enquiries/destroy'
+    get 'system_integrators/index'
+    get 'system_integrators/show'
+    get 'system_integrators/new'
+    get 'system_integrators/edit'
+    get 'system_integrators/destroy'
+    resources :si_partnerships
     resources :product_ftm_certifications
     resources :product_specification_versions
     resources :partner_categories
     resources :partners
+    resources :si_partnerships
+    resources :system_integrators
+    resources :enquiries
     resources :products do
       collection do
         get 'download_sample_excel'
