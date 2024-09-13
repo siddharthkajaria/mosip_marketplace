@@ -463,9 +463,10 @@ $(document).ready(function () {
       setEqualHeight('partner-h3');
       setEqualHeight('partner-h4');
       setEqualHeight('img-h1');
+      setEqualHeight('solutions-1');
     } else {
       // Reset heights to 'auto' when screen width is 767px or less
-      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4, product-5, .partner-h3, .img-h1, .partner-h4').css('height', 'auto');
+      $('.solution-1, .partner-h1, .partner-h2, .product-1, .product-2, .product-3, .product-4, product-5, .partner-h3, .img-h1, .partner-h4, .solutions-1').css('height', 'auto');
     }
   }
 
@@ -588,6 +589,38 @@ $(document).ready(function () {
 
   // ==============Si filter End==========
 
+
+});
+
+// ==================scrolling-section=============
+
+document.addEventListener("DOMContentLoaded", function () {
+  const images = [
+    "images/partner/part-1.png",
+    "images/partner/part-2.png",
+    "images/partner/part-3.png",
+    "images/partner/part-4.png",
+    "images/partner/part-5.png",
+    "images/partner/part-6.png"
+  ];
+
+  // Randomize the images
+  const shuffledImages = images
+    .concat(images) // Duplicate images for continuous scrolling effect
+    .sort(() => Math.random() - 0.5); // Shuffle the images
+
+  const imageContainer = document.getElementById("imageContainer");
+
+  // Add the images to the container
+  shuffledImages.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "home-partner";
+    img.loading = "lazy";
+    imageContainer.appendChild(img);
+  });
+
+  // ==================scrolling-section end=============
 
   // ------------Sorting  product js--------------
   $(document).on('change', '#sort-options', function() {
