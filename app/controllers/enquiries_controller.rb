@@ -20,21 +20,41 @@ class EnquiriesController < ApplicationController
   def edit
   end
 
+  # def verify_recaptcha(response)
+  #   secret_key = ENV['RECAPTCHA_SECRET_KEY']
+  #   uri = URI.parse("https://www.google.com/recaptcha/api/siteverify")
+  #   request = Net::HTTP.post_form(uri, {
+  #     'secret' => secret_key,
+  #     'response' => response
+  #   })
+  #   JSON.parse(request.body)['success']
+  # end
+
   # POST /enquiries or /enquiries.json
   def create
-    @enquiry = Enquiry.new(enquiry_params)
-
-    if @enquiry.save
-      respond_to do |format|
-        format.html { redirect_to new_enquiry_path, notice: 'Enquiry was successfully created.' }
-        format.json { render json: { success: true, message: 'Enquiry submitted successfully!' } }
+      @enquiry = Enquiry.new(enquiry_params)
+      a = verify_recaptcha(model: @enquiry)
+      p a
+      p "____________"
+      if a
+        if @enquiry.save
+          respond_to do |format|
+            format.html { redirect_to new_enquiry_path, notice: 'Enquiry was successfully created.' }
+            format.json { render json: { success: true, message: 'Enquiry submitted successfully!' } }
+          end
+        else
+          respond_to do |format|
+            format.html { render :new }
+            format.json { render json: { success: false, errors: @enquiry.errors.full_messages }, status: :unprocessable_entity }
+          end
+        end
+      else
+        # reCAPTCHA failed
+        respond_to do |format|
+          format.html { render :new, alert: 'reCAPTCHA verification failed. Please try again.' }
+          format.json { render json: { success: false, errors: ['reCAPTCHA verification failed. Please try again.'] }, status: :unprocessable_entity }
+        end
       end
-    else
-      respond_to do |format|
-        format.html { render :new }
-        format.json { render json: { success: false, errors: @enquiry.errors.full_messages }, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /enquiries/1 or /enquiries/1.json

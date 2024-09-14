@@ -1,0 +1,34 @@
+<%= render "shared/header" %>
+
+  <%= render "shared/breadcrumbs" %>
+
+  <section class="container">
+    <!-- Icons for Grid and List View -->
+    <div class="text-right">
+      <span class="cursor-1 fs-25"><i class="fas fa-th active-icon" id="grid-view-icon"></i></span>
+      <span class="cursor-1 ml-2 fs-25"><i class="fas fa-list inactive-icon" id="list-view-icon"></i></span>
+    </div>
+  
+    <!-- Header with Dropdown and Search Input -->
+    <div class="row mt-10">
+        <div class="col-md-6">
+          <h2 class="text-style-2"><%= "Searched Results" %></h2>
+        </div>
+    </div>
+  
+  </section>
+
+  <section class="d-flex mt-20">
+    <!-- Grid/List View Section -->
+    <div class="prod">
+      <%= render 'search/search_list', products: @products %>
+    </div>
+  </section>
+
+  
+
+  <section>
+    <%= render "shared/footer" %>
+  </section>
+ 
+  

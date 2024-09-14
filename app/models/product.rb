@@ -61,6 +61,45 @@ class Product < ApplicationRecord
 
   before_save :check_certified
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+
+  # searchable do
+	# 	text :name, boost: 100
+	# 	# text :description1, boost: 50
+	# 	# text :description2, boost: 30
+	# 	# text :categories, :boost => 60 do
+	# 	# 	categories.map { |category| category.name }
+	# 	# end
+	# 	# text :authors, :boost => 40 do
+	# 	# 	authors.map { |author| author.name }
+	# 	# end
+	# 	# text :hidden_tags, :boost => 40 do
+	# 	# 	hidden_tags.map { |hidden_tag| hidden_tag.name }
+	# 	# end
+
+	# 	# boolean :active
+
+	# 	# # Here we have filtered data like author name and category name.
+	# 	# string :authors, :multiple => true do
+	# 	# 	authors.map { |author| author.code }
+	# 	# end
+	# 	# string :categories, :multiple => true do
+	# 	# 	categories.map { |category| category.code }
+	# 	# end
+	# end
+
+
+  # Define the Elasticsearch index settings and mappings if necessary
+  settings do
+    mappings dynamic: false do
+      indexes :name, type: :text, analyzer: :english
+      indexes :short_description, type: :text, analyzer: :english
+      indexes :model, type: :text, analyzer: :english
+    end
+  end
+
   state_machine :mosip_compliance do
     state :compliance_in_progress, value: "Compliance in Progress"
     state :compliant, value: "Compliant"
@@ -262,6 +301,24 @@ class Product < ApplicationRecord
           return Product.all
       end
   end
+  
+   # Define the method to customize the data indexed in Elasticsearch
+  def as_indexed_json(options = {})
+    as_json(only: [:name, :model, :short_description])
+  end
+
+    def self.search(query)
+      __elasticsearch__.search(
+        {
+          query: {
+            multi_match: {
+              query: query,
+              fields: ['name^10', 'model', 'short_description']
+            }
+          }
+        }
+      )
+    end
   
   
 end

@@ -24,6 +24,42 @@ class SystemIntegrator < ApplicationRecord
   belongs_to :si_partnership, optional: true
   require 'roo'
 
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+
+  # searchable do
+	# 	text :name, boost: 100
+		# text :description1, boost: 50
+		# text :description2, boost: 30
+		# text :categories, :boost => 60 do
+		# 	categories.map { |category| category.name }
+		# end
+		# text :authors, :boost => 40 do
+		# 	authors.map { |author| author.name }
+		# end
+		# text :hidden_tags, :boost => 40 do
+		# 	hidden_tags.map { |hidden_tag| hidden_tag.name }
+		# end
+
+		# boolean :active
+
+		# # Here we have filtered data like author name and category name.
+		# string :authors, :multiple => true do
+		# 	authors.map { |author| author.code }
+		# end
+		# string :categories, :multiple => true do
+		# 	categories.map { |category| category.code }
+		# end
+	# end
+
+  settings do
+    mappings dynamic: false do
+      indexes :name, type: :text, analyzer: :english
+      indexes :desc, type: :text, analyzer: :english
+    end
+  end
+
   def get_image_url
     images=Hash.new 
     images['available']=self.image.present?
@@ -109,6 +145,23 @@ class SystemIntegrator < ApplicationRecord
 
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "desc", "id", "image_data", "name", "partnership_validity", "si_partnership_id", "updated_at"]
+  end
+
+  def as_indexed_json(options = {})
+    as_json(only: [:name, :desc])
+  end
+
+  def self.search(query)
+    __elasticsearch__.search(
+      {
+        query: {
+          multi_match: {
+            query: query,
+            fields: ['name^10', 'desc']
+          }
+        }
+      }
+    )
   end
 
   

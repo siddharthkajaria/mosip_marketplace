@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :mosip_compliance_statuses
   resources :manufacturers
   resources :products
+  get 'search', to: 'search#search'
   resources :categories
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

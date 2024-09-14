@@ -12,6 +12,10 @@ gem 'mysql2', '0.5.4'
 gem 'state_machines-activerecord', '~> 0.9.0'
 gem 'roo', '~> 2.7', '>= 2.7.1'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+
 # Use sqlite3 as the database for Active Record
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -81,3 +85,6 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'annotate'
 gem 'cancancan'
+gem 'recaptcha', require: 'recaptcha/rails'
+# gem 'sunspot_rails'
+# gem 'sunspot_solr'

@@ -58,6 +58,8 @@
     <%= form.text_area :question, class: "form-control", id: "message", rows: 5, placeholder: "Enter your message", required: true %>
   </div>
 
+  <%= recaptcha_tags %>
+
   <!-- Submit button aligned to the right -->
   <div class="form-group text-right mb-0">
     <%= form.submit 'SEND', class: "btn btn-style-3", id: "send_button" %>

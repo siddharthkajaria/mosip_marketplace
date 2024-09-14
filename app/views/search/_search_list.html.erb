@@ -1,0 +1,185 @@
+      <div class="container">
+        <div class="ml-15p mr-15 ml-5p-pro ml-5p-md mx-0-sm">
+          <div class="row">
+            <div class="col-lg-12">
+              <div id="grid-view" class="grid-view">
+                <div class="row">
+
+                  <% @products.each do |product| %>
+                      <% if product.class.name == "Product" %>
+                        <div class="col-lg-4 mt-30">
+                          <%= link_to product_path(product) do %>
+                            <div class="border-grey-3 br-20 cursor-1 cursor-1">
+                              <div class="bg-style-4 position-relative">
+                                <div class="product-1">
+                                  <% if product.product_images.active.order(:position).first.present? %>
+                                    <img src="<%= product.product_images.active.order(:position).first.image_url %>" class="w-100 h-150px object-contain" alt="product-img">
+                                  <% else %>
+                                    <img src="images/meeting_default.png" class="w-100 h-150px object-contain" alt="default-img">
+                                  <% end %>
+                                </div>
+                                <div class="text-right mt-1 position-3">
+                                  <img src="/images/product-main/info-1.png" width="20" height="20" alt="info" title="<%= ERB::Util.html_escape(strip_tags(product.short_description)) %>" class="">
+                                </div>
+                              </div>
+                              <div class="border-top-1 p-1 product-5">
+                                <div class="bg-style-5">
+                                  <div class="text-style-1 fs-14 product-2"><%= product.manufacturer.name%></div>
+                                  <div class="mt-10 text-style-2 fs-18 product-3"><%= product.name%></div>
+                                    <% if product.mosip_compliance.present? || product.mosip_integration.present? %>
+                                      <div class="d-flex align-items-center product-4 mt-10">
+                                        <!--<% [product.mosip_compliance, product.mosip_integration].each do |status| %>
+                                          <% if status.present? && (mosip_status = MosipComplianceStatus.find_by_code(status.parameterize)).present? && MosipComplianceStatus.find_by_code(status.parameterize).image_url %>
+                                            <div class="w-80px h-30px mr-3 img-h1">
+                                              <img src="<%= mosip_status.image_url %>" alt="<%= status.parameterize %>" class="w-100 object-contain">
+                                            </div>
+                                            <% end %>
+                                          <% end %>-->
+
+                                          <% if product.mosip_compliance.present? %>
+                                            <% if product.mosip_compliance == "Compliant" %>
+                                              <% if MosipComplianceStatus.find_by_code(product.mosip_compliance.parameterize()).present? && MosipComplianceStatus.find_by_code(product.mosip_compliance.parameterize()).image_url %>
+                                                <div class="w-80px h-30px mr-3 img-h1">
+                                                  <img src="<%= MosipComplianceStatus.find_by_code(product.mosip_compliance.parameterize()).image_url %>" alt="compliant-a" class="w-100 object-contain">
+                                                </div>
+                                              <% end %>
+                                            <% else %>
+                                                <div class="h-30px mr-3 img-h1 mt-2">
+                                                  <strong><p style="color:black!important;"><%= product.mosip_compliance %></p></strong>
+                                                </div>
+                                            <% end %>
+                                          <% end %>
+
+                                        
+                                      </div>
+                                    <% end %>
+                                  </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      <% else %>
+                        <div class="col-lg-4 mt-30">
+                          <%= link_to system_integrator_path(product) do %>
+                            <div class="border-grey-3 br-20 cursor-1">
+                              <div class="bg-style-4 position-relative">
+                                <div class="product-1">
+                                  <% if product.image_data.present? %>
+                                    <img src="<%= product.image_url %>" class="w-100 h-150px object-contain" alt="integrator-img">
+                                  <% else %>
+                                    <img src="images/meeting_default.png" class="w-100 h-150px object-contain" alt="default-img">
+                                  <% end %>
+                                </div>
+                                
+                              </div>
+                              <div class="border-top-1 p-1">
+                                <div class="bg-style-5">
+                                  <div class="text-style-1 fs-14 product-2"><%= product.name %></div>
+                                  <% if product.partnership_validity.present? %>
+                                    <div class=" mt-10 text-style-2-valid product-3">Partner Till: <%= product.partnership_validity %></div>
+                                  <% end %>
+                                </div>
+                              </div>
+                            </div>
+                          <% end %>
+                        </div>
+                      <% end %>
+
+                  <% end %>
+
+                </div>
+              </div>
+              <div id="list-view" class="list-view" style="display: none;">
+                <% @products.each do |product| %>
+                  <% if product.class.name == "Product" %>
+                    <%= link_to product_path(product), class: 'text-decoration-none' do %>
+                      <div class="row mt-30">
+                        <div class="col-lg-4"> 
+                          <div class="border-grey-3 br-20 cursor-1 p-20">
+                            <% if product.product_images.active.order(:position).first.present? %>
+                              <img src="<%= product.product_images.active.order(:position).first.image_url %>" class="w-100 h-200px object-contain" alt="product-img">
+                            <% else %>
+                              <img src="images/meeting_default.png" class="w-100 h-200px object-contain" alt="default-img">
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="col-lg-8">
+                          <div class="mt-15-sm">
+                            <div class="text-style-1 fs-14"><%= product.manufacturer.name%></div>
+                            <div class="mt-10 text-style-2 fs-18"><%= product.name%></div>
+                            <div class="text-style-3 fs-12-sm mt-10">
+                              <% if product.short_description.present? %>
+                                <td><%= truncate(product.short_description, :length => 230, :omission => "..." , :escape => false) %></td>
+                              <% end %>
+                            </div>
+                            <div class="mt-20">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                  
+                                  <% if product.mosip_compliance_status.present? %>
+                                    <% if @product.mosip_compliance == "Compliant" %>
+                                      <% if product.mosip_compliance_status.image_data.present? %>
+                                        <div class="w-80px h-30px">
+                                          <img src="<%= product.mosip_compliance_status.image_url %>" alt="compliant-a" class="w-100 object-contain">
+                                        </div>
+                                      <% end %>
+                                    <% else %>
+                                        <div class="h-30px ml-3">
+                                          <strong><%= simple_format(@product.mosip_compliance) %></strong>
+                                        </div>
+                                    <% end %>
+                                  <% end %>
+
+                                </div>
+                                <div>
+                                  <button class="btn btn-style-1">
+                                    Read More
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% else %>
+                    <%= link_to system_integrator_path(product), class: 'text-decoration-none' do %>
+                      <div class="row mt-30">
+                        <div class="col-lg-4"> 
+                          <div class="border-grey-3 br-20 cursor-1 bg-grey-1 p-20">
+                            <% if product.image_data.present? %>
+                              <img src="<%= product.image_url %>" class="w-100 h-200px object-contain" alt="integrator-img">
+                            <% else %>
+                              <img src="images/meeting_default.png" class="w-100 h-200px object-contain" alt="default-img">
+                            <% end %>
+                          </div>
+                        </div>
+                        <div class="col-lg-8">
+                          <div class="mt-15-sm">
+                            <div class="text-style-1 fs-14"><%= product.name %></div>
+                            <% if product.partnership_validity.present? %>
+                              <div class="text-style-2-valid ">Partner Till: <%= product.partnership_validity %></div>
+                            <% end %>
+                            <div class="text-style-3 fs-12-sm mt-10">
+                              <% if product.desc.present? %>
+                                <%= truncate(product.desc, :length => 230, :omission => "..." , :escape => false) %>
+                              <% end %>
+                            </div>
+                            <div class="mt-20">
+                              <button class="btn btn-style-1">Read More</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <section>
+          </section>
+        </div>
+      </div>
+    
