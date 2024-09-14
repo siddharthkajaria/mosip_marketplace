@@ -44,22 +44,23 @@
                 <a class="nav-link <% if controller.controller_name == 'enquiries' %> active <% end %>" href="<%= enquiries_path %>">CONTACT US</a>
               </li>
 
+              
               <li class="nav-item search-container">
                 <a class="nav-link" href="javascript:void(0);" id="search-icon">
                   <i class="fas fa-search"></i>
                 </a>
+
+                <!-- Search form (initially hidden) -->
                 <div class="search-box">
-                  <input type="text" class="form-control" placeholder="Search...">
-                  <button class="btn btn-primary search-button" type="button">Search</button> <!-- Search button -->
+                  <%= form_tag search_path, method: :get, class: 'search-form' do %>
+                    <%= text_field_tag :query, params[:query], placeholder: 'Search...', class: 'form-control' %>
+                    <%= submit_tag 'Search', class: 'btn btn-primary search-button' %>
+                  <% end %>
                 </div>
               </li>
 
-              <li class="nav-item search-container">
-                <%= form_tag search_path, method: :get, class: '' do %>
-                  <%= text_field_tag :query, params[:query], placeholder: 'Search1...', class: 'form-control' %>
-                  <%= submit_tag 'Search', class: 'btn btn-primary' %>
-                <% end %>
-              </li>
+
+
               
             </ul>
           </div>
@@ -327,10 +328,16 @@
     font-family: "Montserrat", sans-serif;
   }
 
-  .btn-primary {
+  .search-form {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-form .btn-primary {
     background-color: #007bff;
     border: none;
     font-family: "Montserrat", sans-serif;
+    width: 85px;
   }
 
   @media (max-width: 768px) {
