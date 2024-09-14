@@ -48,7 +48,7 @@ class Partner < ApplicationRecord
 
 
     # Method to import partners from a folder of images
-  def self.import_from_folder(folder_path = 'public/images/Partners_logo_new/solutions_provider')
+  def self.import_from_folder(folder_path = 'public/images/p_logo')
     uploader = PartnerImageUploader.new(:store) # Assuming you're using CarrierWave or similar
 
     # Ensure the folder exists

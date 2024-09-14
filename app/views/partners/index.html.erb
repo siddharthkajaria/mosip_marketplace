@@ -9,7 +9,7 @@
           <div class="row align-items-center">
             <% @partners.each do |partner| %>
                 <div class="col-lg-3 col-sm-4 col-4 mt-30 mt-15-sm">
-                  <div class="m-auto">
+                  <div class="partner-img-container">
                     <%= link_to partner.url, target: "_blank" do %>
                       <% if partner.image_url.present? %>
                         <%= image_tag partner.image_url, class: "w-80p" %>
