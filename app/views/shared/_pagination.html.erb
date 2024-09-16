@@ -70,10 +70,11 @@
   border-radius: 20px;
   background-color: #222222;
   color: #ffffff;
-  padding: 5px 12px;
+  padding: 6px 12px;
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
+  font-style: normal;
 }
 
 .pagination .previous_page.disabled,
@@ -97,6 +98,16 @@
 .pagination .previous_page.after {
   background-color: #222222;
   color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .pagination {
+    display: flex;
+  }
+  
+  .pagination a {
+    padding: 5px 5px;
+  }
 }
 
 

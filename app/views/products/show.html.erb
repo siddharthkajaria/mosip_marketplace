@@ -6,7 +6,7 @@
         <div class="col-lg-6 col-md-12">
           <div class="border-grey-1 br-20 br-30-sm">
             <div class="bg-style-1">
-              <div class="h-400px h-200px-sm">
+              <div class="h-400px h-200px-sm p-20">
                 <% if @product.product_images.active.order(:position).first.present? %>
                   <img id="main-product-image" src="<%= @product.product_images.active.order(:position).first.image_url%>" alt="product-1" class="w-100 h-100 br-20 br-30-sm object-contain">
                 <% else %>
@@ -45,7 +45,7 @@
             </div>
           </div>
           
-            <div class="d-flex flex-wrap justify-content-center">
+            <div class="d-flex flex-wrap">
               <% @product.product_images.active.order(:position).each do |img| %>
                 <div class="bg-style-3 mx-20 mx-5-sm cursor-1 mt-30 mt-15-sm">
                   <div class="w-80px h-70px">
@@ -89,7 +89,7 @@
                 <% if @product.category.code == "registration-devices" %>
                   <% if @product.manufacturer.name.present? %>
                     <tr>
-                      <td>Manufacturer</td>
+                      <td>Manufacturer </td>
                       <td>:</td>
                       <td><%= @product.manufacturer.name %></td>
                     </tr>

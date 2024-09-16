@@ -95,31 +95,42 @@
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a class="nav-link" href="">Home</a>
+          <a class="nav-link <% if controller.controller_name == 'homes' %> active <% end %>" href="<%= root_path%>">HOME</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="">About Marketplace</a>
-        </li>
-        
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Solutions
+          <a class="nav-link dropdown-toggle <% if controller.controller_name == 'products' %> active <% end %>" href=""
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            SOLUTIONS
           </a>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="">item 1</a>
-            <a class="dropdown-item" href="">item 1</a>
-            <a class="dropdown-item" href="">item 1</a>
-            <a class="dropdown-item" href="">item 1</a>
+            <a class="dropdown-item" href="<%= products_path(category_code: 'registration-devices') %>">Registration Devices</a>
+            <a class="dropdown-item" href="<%= products_path(category_code: 'authentication-devices') %>">Authentication
+              Devices</a>
+            <a class="dropdown-item" href="<%= products_path(category_code: 'abis') %>">Abis</a>
+            <a class="dropdown-item" href="<%= products_path(category_code: 'sdk') %>">Biometric SDK</a>
           </div>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="">MOSIP Partners</a>
+          <a class="nav-link <% if controller.controller_name == 'partner_categories' %> active <% end %> "
+            href="<%= partner_categories_path %>">LIST YOUR SOLUTIONS</a>
         </li>
         
         <li class="nav-item">
-          <a class="nav-link" href="">Partners With Us</a>
+          <a class="nav-link <% if controller.controller_name == 'system_integrators' %> active <% end %> "
+            href="<%= system_integrators_path %>">SYSTEM INTEGRATOR</a>
         </li>
+        
+        <li class="nav-item">
+          <a class="nav-link <% if controller.controller_name == 'partners' %> active <% end %> "
+            href="<%= partners_path %>">PARTNERS</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link <% if controller.controller_name == 'enquiries' %> active <% end %>"
+            href="<%= enquiries_path %>">CONTACT US</a>
+        </li>
+
       </ul>
     </div>
   </nav>
